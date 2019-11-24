@@ -35,7 +35,7 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 ./vrep
 ```
 
-Ubuntu 18.04
+Ubuntu 18.04:
 ```bash
 curl -O http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Ubuntu16_04.tar.xz
 tar -xzfv V-REP_PRO_EDU_V3_6_2_Ubuntu16_04.tar.xz
