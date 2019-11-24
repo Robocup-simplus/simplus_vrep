@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.simplus";
+option java_outer_classname = "SimPlusProto";
+option objc_class_prefix = "SPP";
+
+package SimPlus;
+
+service SimPlus {
+  rpc Start  (WorldInfo) returns (TeamInfo);
+  rpc Action (Observations) returns (Commands);
+  rpc End    (Ending) returns (Result);
+}
+
+message WorldInfo {
+  int32 team_size                  = 1;
+  int32 robot_per_team             = 2;
+  int32 color_sensor_size          = 3;
+  int32 proximity_sensor_size      = 4;
+  repeated CheckPoint check_points = 5;
+}
+
+message ServerInfo {
+  uint32 time         = 1;
+  string server_state = 2;
+  int32 my_score      = 3;
+  int32 opp_score     = 4;
+}
+
+message TeamInfo {
+  string name = 1;
+}
+
+message Observations {
+  ServerInfo server = 1;
+  repeated Observation robots = 2;
+}
+
+message Observation {
+  Image camera = 1;
+  repeated Pixel colors = 2;
+  repeated Proximity distances = 3;
+  Position pos = 4;
+}
+
+message Proximity {
+  bool detected   = 1;
+  double distance = 2;
+}
+
+message Position {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  double roll  = 4;
+  double pitch = 5;
+  double yaw   = 6;
+  bool gps_enabled = 7;
+}
+
+message Commands {
+  repeated Command commands = 1;
+}
+
+message Command {
+  int32  id       = 1;
+  double linear   = 2;
+  double angular  = 3;
+  string  LED      = 4;
+  repeated Action actions = 5;
+}
+
+message Ending {
+  ServerInfo server = 1;
+}
+
+message Result {
+  Image map = 1;
+  string message = 2;
+}
+
+message Action {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+  string type = 4;
+}
+
+message CheckPoint {
+  string color = 1;
+  int32 point  = 2;
+}
+
+message Pixel {
+  int32 r = 1;
+  int32 g = 2;
+  int32 b = 3;
+}
+
+message Image {
+  int32 w = 1;
+  int32 h = 2;
+  bytes raw = 3;
+}
