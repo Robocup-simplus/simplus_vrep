@@ -42,11 +42,11 @@ Please consult the [install instructions](INSTALL.md) for more details.
 - Run the VREP and Start the world (click on play icon)
 
 ## Python 
-1. Run Clients (From `simplus_vrep/client/python` directiory):
+1. Run Clients (Go to  `simplus_vrep/client/python` directiory):
 ```bash
 python client.py
 ```
-2. Run Servers for each client (From `simplus_vrep/server` directiory):
+2. Run Servers for each client (Go to  `simplus_vrep/server` directiory):
 ```bash
 python server.py
 ```
@@ -57,7 +57,7 @@ python server.py
 ![SimPlus on macOS](docs/img/full.png?raw=true "Simplus on macOS")
 
 ## Scratch 
-1. Run Server (From `simplus_vrep/server` directiory):
+1. Run Server (Go to  `simplus_vrep/server` directiory):
 ```bash
 python simplus_scratch.py
 ```
