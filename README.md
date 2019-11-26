@@ -50,33 +50,32 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 2.  Move `models/SimPlus` directory to vrep `models` directory.
 3.  Install [`python3.5+`](https://www.python.org/downloads/) and [`pip`](https://pip.pypa.io/en/stable/installing/) (Tutorial for Windows [Link](https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation))
 4.  Go to server directory and run `pip install -r requirements.txt`
-## Windows
-
-## Linux / osx
-
 ---
 
 # Server Setup
-## Windows
-
-## Linux / osx
+All Configuration can be set in `serverconfig.txt`
 
 ---
 
 # Client Setup
-## Windows
 ### Python
+1.  Install [`python3.5+`](https://www.python.org/downloads/) and [`pip`](https://pip.pypa.io/en/stable/installing/) (Tutorial for Windows [Link](https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation))
+2.  Go to client directory and run `pip install -r requirements.txt`
+
 ### Scratch
 In order to access the sctrachx extension project, one should do one of the followings:
 - using the link to open the project: https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch
 - Downloading the files and opening the "simplus_scratch.sbx" file in http://scratchx.org/ by "Open Extension File" and browsing the "simplus_scratch.sbx" file. (The sctrachx project uses Adobe Flashplayer so you should allow the website to run the progrom.)
 - Loading the "simplus_scratch.sbx" file by browing from https://scratchx.org/#scratch and File > Load Projects.
 
-## Linux / osx
-### Python
-### Scratch
-In order to access the sctrachx extension project, one should do one of the followings:
-- using the link to open the project: https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch
-- Downloading the files and opening the "simplus_scratch.sbx" file in http://scratchx.org/ by "Open Extension File" and browsing the "simplus_scratch.sbx" file. (The sctrachx project uses Adobe Flashplayer so you should allow the website to run the progrom.)
-- Loading the "simplus_scratch.sbx" file by browing from https://scratchx.org/#scratch and File > Load Projects.
-
+# Usage
+1.  Run the VREP and Start the world (click on play icon)
+2. Run Clients:
+```bash
+python client.py
+```
+3. Run Servers for each client:
+```bash
+python server.py
+```
+4. Manage and Watch the Game form Lua Panel 
