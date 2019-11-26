@@ -42,11 +42,11 @@ Please consult the [install instructions](INSTALL.md) for more details.
 - Run the VREP and Start the world (click on play icon)
 
 ## Python 
-1. Run Clients:
+1. Run Clients (From `simplus_vrep/client/python` directiory):
 ```bash
 python client.py
 ```
-2. Run Servers for each client:
+2. Run Servers for each client (From `simplus_vrep/server` directiory):
 ```bash
 python server.py
 ```
@@ -57,9 +57,13 @@ python server.py
 ![SimPlus on macOS](docs/img/full.png?raw=true "Simplus on macOS")
 
 ## Scratch 
-1. Go to  https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch  (It may takes few minutes)
-2. Simplus blocks are located in "More Blocks" tab and you can drag and drop them to the right scene
-3. In order to use the sample project, from the top menu click on  `File` then `load project` and select the `simplus_scratch.sbx` file from `simplus_vrep/client/scratch`
+1. Run Server (From `simplus_vrep/server` directiory):
+```bash
+python simplus_scratch.py
+```
+2. Go to  https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch  (It may takes few minutes)
+3. Simplus blocks are located in "More Blocks" tab and you can drag and drop them to the right scene
+4. In order to use the sample project, from the top menu click on  `File` then `load project` and select the `simplus_scratch.sbx` file from `simplus_vrep/client/scratch`
 
 ![Scratch sample code](docs/img/scratch.png?raw=true "Scratch Simplus extention")
 
