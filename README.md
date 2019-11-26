@@ -7,32 +7,30 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
 - [Install instructions](INSTALL.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
-- License: [GNU General Public License (GPLv3)](LICENSE.md)
 
 System Requirements
 -----------------------
 
-grSim will likely run on a modern dual core PC with a decent graphics card. Typical configuration is:
+SimPlus will likely run on a modern dual core PC with a decent graphics card. Typical configuration is:
 
 - Dual Core CPU (2.0 Ghz+)
-- 1GB of RAM
+- 2GB of RAM
 - 256MB nVidia or ATI graphics card
 
-Note that it may run on lower end equipment though good performance is not guaranteed.
+Note that it may run on lower end equipment, though good performance is not guaranteed.
 
 
 Software Requirements
 ---------------------
 
-grSim compiles on Linux (tested on Ubuntu variants only) and Mac OS. It depends on the following libraries:
+SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It depends on the following libraries:
 
-- [CMake](https://cmake.org/) version 3.5+ 
-- [OpenGL](https://www.opengl.org)
-- [Qt5 Development Libraries](https://www.qt.io)
-- [Open Dynamics Engine (ODE)](http://www.ode.org)
-- [VarTypes Library](https://github.com/jpfeltracco/vartypes) forked from [Szi's Vartypes](https://github.com/szi/vartypes)
+- [Python](https://www.python.org) version 3.5+ 
+- [Vrep Simulation](https://www.coppeliarobotics.com)
 - [Google Protobuf](https://github.com/google/protobuf)
-- [Boost development libraries](http://www.boost.org/) (needed by VarTypes)
+- [GRPC](http://grpc.io)
+- [Bottle](https://bottlepy.org/docs/dev/) (Only needed for Scratch API)
+
 
 Please consult the [install instructions](INSTALL.md) for more details.
 
