@@ -35,7 +35,7 @@ SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It
 
 Please consult the [install instructions](INSTALL.md) for more details.
 
-#Usage
+# Usage
 
 - Open the Vrep Simulator (Make sure about the setup using [VREP Installation ](INSTALL.md))
 - From the top menu click on  `File` then `Open Scene` and select the `SampleMap.ttt` file from `simplus_vrep/worlds`
