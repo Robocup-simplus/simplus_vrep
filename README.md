@@ -18,7 +18,7 @@ vrep.app/Contents/MacOS/vrep
 ```
 
 ## Linux (Only Ubuntu 16.04 / 18.04)
-Download `V-REP PRO EDU V3.6.2 rev0` and extract `V-REP_PRO_EDU_V3_6_2_Mac.tar.gz` then execute `vrep`
+Download `V-REP PRO EDU V3.6.2 rev0` and extract `V-REP_PRO_EDU_V3_6_2_Mac.tar.gz` then execute `vrep.sh`
 
 or Use Terminal
 
