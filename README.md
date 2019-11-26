@@ -3,7 +3,7 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
 
 ![SimPlus on macOS](docs/img/world2.png?raw=true "Simplus on macOS")
 
-
+- [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Install instructions](INSTALL.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
