@@ -5,6 +5,7 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
 
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Install instructions](INSTALL.md)
+- [Simplus Models](Models.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
 
