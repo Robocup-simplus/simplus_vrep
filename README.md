@@ -48,3 +48,6 @@ python client.py
 python server.py
 ```
 4. Manage and Watch the Game form Lua Panel 
+
+![SimPlus on macOS](docs/img/full.png?raw=true "Simplus on macOS")
+
