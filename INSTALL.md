@@ -44,9 +44,9 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 ---
 
 # Server Setup
-1. All Configuration can be set in `server/serverconfig.txt` . This Configuration will describe the rules of each game. 
-   - Action name;List of models types;List of number of each model;Positive score;Negetive score
-
+All Configuration can be set in `server/serverconfig.txt` . This Configuration will describe the rules of each game. 
+   - Action1's name;List of Action1's models;List of number of each Action1's model;Action1's Positive score ;Action1's Negetive score
+   - Action2's name;List of Action2's models;List of number of each Action2's model;Action2's Positive score ;Action2's Negetive score
 ---
 
 # Client Setup
