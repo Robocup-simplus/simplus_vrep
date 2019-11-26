@@ -1,11 +1,6 @@
-# simplus_vrep
+# SimPlus_VRep
 This repository is dedicated to a Rescue simulation environment for Robocup Juniors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions.
 
----
-
-# Structure
-
----
 
 # VREP Installation
 Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliarobotics.com/downloads.html)
