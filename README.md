@@ -35,18 +35,32 @@ SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It
 
 Please consult the [install instructions](INSTALL.md) for more details.
 
+#Usage
 
-# Usage
-1.  Run the VREP and Start the world (click on play icon)
-2. Run Clients:
+- Open the Vrep Simulator (Make sure about the setup using [VREP Installation ](INSTALL.md))
+- From the top menu click on  `File` then `Open Scene` and select the `SampleMap.ttt` file from `simplus_vrep/worlds`
+- Run the VREP and Start the world (click on play icon)
+
+## Python 
+1. Run Clients:
 ```bash
 python client.py
 ```
-3. Run Servers for each client:
+2. Run Servers for each client:
 ```bash
 python server.py
 ```
-4. Manage and Watch the Game form Lua Panel 
+4. Manage the Game using the Game manager GUI, The Game will start after pressing it's "play" button.
+
+5. Manage and Watch the Game form Lua Panel 
 
 ![SimPlus on macOS](docs/img/full.png?raw=true "Simplus on macOS")
+
+## Scratch 
+1. Go to  https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch  (It may takes few minutes)
+2. Simplus blocks are located in "More Blocks" tab and you can drag and drop them to the right scene
+3. In order to use the sample project, from the top menu click on  `File` then `load project` and select the `simplus_scratch.sbx` file from `simplus_vrep/client/scratch`
+
+![Scratch sample code](docs/img/scratch.png?raw=true "Scratch Simplus extention")
+
 
