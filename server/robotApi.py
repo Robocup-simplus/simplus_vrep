@@ -123,15 +123,6 @@ class trapClass:
 
 class robotApi:
 
-    # constructor for client api class
-    # arg nodeName : type string : name of client for connecting to api
-    # arg channelName : type string : name of channel used by api
-    # arg robot_base : type string : name of robot model in V-rep
-    # arg robot_namespace : type string : prefix string for all sensors and joints 
-    # arg robot_motors : type dictionary : {"left": name of left wheel joint , "right" : name of right wheel joint , "radius": radius of wheel model in V-rep}
-    # arg proximity_sensor : type dictionary : {"num": number of proximity sensors ,"name":prefix of proximity sensor's name}
-    # arg camera : type dictionary : {"name": prefix of Visionsensor's name ,"joint": name of joint for camera rotation, set to None if no joint exists}
-    # color_sensor : type dictionary : {"num": number of color sensors ,"name":prefix of color sensor's name}
     def __init__(self, remoteApi, trapConfig=None, robot_base='ePuck', robot_namespace="ePuck_",
                  robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                  proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
@@ -160,10 +151,6 @@ class robotApi:
             self.proxSensors.append(sensor)
 
         self.colorSensors = []
-        # for i in range(1,color_sensor["num"]+1):
-        #     if(i==0):i=''
-        #     temp,sensor=vrep.simxGetObjectHandle(self.clientID,robot_namespace+color_sensor["name"]+str(i),vrep.simx_opmode_blocking)
-        #     self.colorSensors.append(sensor)
         for i in ['', '_l', '_r']:
             temp, sensor = vrep.simxGetObjectHandle(self.clientID, robot_namespace + color_sensor["name"] + str(i),
                                                     vrep.simx_opmode_blocking)
@@ -182,18 +169,16 @@ class robotApi:
         left_x, left_y = response_left[1][0:2]
         x_width = abs((left_x) - (right_x))
         y_width = abs((left_y) - (right_y))
-        # print("xxxx",right_x,left_x)
-        # print("yyy",right_y,left_y)
         return max(x_width, y_width)
 
-    def __getRobotXYZ__(self):
+    def getRobotXYZ(self):
         returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
                                                                vrep.simx_opmode_blocking)
         return position
 
     def checkAllTraps(self):
         penalty = 0
-        pose = self.__getRobotXYZ__()
+        pose = self.getRobotXYZ()
 
         for t in self.traps_dict.keys():
             penalty += self.traps_dict.get(t).checkTrap(pose)
@@ -251,24 +236,14 @@ class robotApi:
             else:
                 return -1
 
-    # function to get Image 
-    # arg : None
-    # return : -1 : if the api fails 
-    # return : 3D Numpy array holding RGB values 
     def getCameraImage(self):
         returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
                                                                                   vrep.simx_opmode_blocking)
         if (returnCode == 0):
             return [image_array, image_resolution[0], image_resolution[1]]
-            # image_array=(np.frombuffer(response[2], dtype=np.uint8))
-            # return np.flip(np.reshape(image_array,[response[1][0],response[1][1],3]),0)
         else:
             return -1
 
-    # function to get color sensor output
-    # arg : sensor_index : integer : index of color sensor : 0<= index  < number of color sensors 
-    # return : -1 : if the api fails 
-    # return : 3D Numpy array holding RGB values
     def getColorSensor(self, sensor_index=0):
         if (sensor_index >= len(self.colorSensors)): return -1
         returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
@@ -277,20 +252,12 @@ class robotApi:
         if (returnCode == 0):
             image_array = (np.array(image_array, dtype=np.uint8))
             return image_array[24:27]
-            # image_array=(np.frombuffer(response[2], dtype=np.uint8))
-            # return np.flip(np.reshape(image_array,[response[1][0],response[1][1],3]),0)
         else:
             return -1
 
-    # function to get proximity sensor output
-    # arg : sensor_index : integer : index of color sensor : 0<= index  < number of proximity sensors 
-    # return : -1 : if the api fails 
-    # return : [0,0] if no obstacle is detected 
-    # return : [1, d] if obstacle is detected : d is distance from sensor to obstacle
     def getProximitySensor(self, sensor_index=0):
         returnCode, detectionState, detectedPoint, detectedObjectHandle, detectedSurfaceNormalVector = vrep.simxReadProximitySensor(
             self.clientID, self.proxSensors[sensor_index], vrep.simx_opmode_blocking)
-        # print("proximity",returnCode,detectionState)
         if (returnCode == 0):
             if (detectionState == True):
                 return [True, pow(pow(detectedPoint[0], 2) + pow(detectedPoint[1], 2) + pow(detectedPoint[2], 2), 0.5)]
@@ -299,11 +266,6 @@ class robotApi:
         else:
             return -1
 
-    # function to get proximity sensor output
-    # arg : none
-    # return : -1 : if the api fails 
-    # return : [x,y,z,roll,pitch,yaw] if gps is enabled
-    # return : [0,0,0,roll,pitch,yaw] if gps is disabled
     def getRobotPose(self):
         returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
                                                                vrep.simx_opmode_blocking)
@@ -319,10 +281,6 @@ class robotApi:
             else:
                 return [0, 0, 0, angles_in_degree[0], angles_in_degree[1], angles_in_degree[2]]
 
-    # function to set robot speed
-    # arg : linear : integer : desired linear speed
-    # arg : angular : integer : desired angular speed
-    # return : none
     def setRobotSpeed(self, linear=0.0, angular=0.0):
         right_rotation = (linear + angular * self.robot_width / 2) / self.wheel_radius
         left_rotation = (linear - angular * self.robot_width / 2) / self.wheel_radius
@@ -330,6 +288,13 @@ class robotApi:
         vrep.simxSetJointTargetVelocity(self.clientID, self.right, right_rotation, vrep.simx_opmode_oneshot)
         vrep.simxSetJointTargetVelocity(self.clientID, self.left, left_rotation, vrep.simx_opmode_oneshot)
         vrep.simxPauseCommunication(self.clientID, False)
+        
+    def setJointSpeed(self,right_rotation,left_rotation):
+        vrep.simxPauseCommunication(self.clientID,True)
+        vrep.simxSetJointTargetVelocity(self.clientID,self.right,right_rotation,vrep.simx_opmode_oneshot)
+        vrep.simxSetJointTargetVelocity(self.clientID,self.left,left_rotation,vrep.simx_opmode_oneshot)
+        vrep.simxPauseCommunication(self.clientID,False)
+
 
     def parseConfig(self, config_file):
         with open(config_file, 'r') as fp:
@@ -351,9 +316,6 @@ class robotApi:
 
 class serverApi:
 
-    # constructor for server api class
-    # arg nodeName : type string : name of server for connecting to api
-    # arg channelName : type string : name of channel used by api
     def __init__(self, remoteApi, serverConfig=None):
         self.clientID = remoteApi
         self.actions_dict = None
@@ -414,10 +376,6 @@ class serverApi:
                                                                                       vrep.simx_opmode_blocking)
         return o_int[0]
 
-    # function to get server time in ms
-    # arg : None
-    # return : -1 : if the api fails 
-    # return : integer : server time in milliseconds
     def getServerTime(self):
         response = vrep.simxGetServerTimeInMs(vrep.simx_opmode_blocking)
         if (response[0]):
@@ -425,12 +383,6 @@ class serverApi:
         else:
             return -1
 
-    # function to get server state
-    # arg : None
-    # return : -1 : if the api fails 
-    # return : string : "paused" 
-    # return : string : "stopped"
-    # return : string : "running"
     def getServerState(self):
         response = vrep.simxGetSimulationState(vrep.simx_opmode_blocking)
         if (response[0]):
@@ -443,10 +395,6 @@ class serverApi:
         else:
             return -1
 
-    # function to stop simulation
-    # arg : None
-    # return : -1 : if stoping the simulation fails
-    # return : integer  : at least 0 if simulation is succesfully stopped
     def stopSimulation(self):
         response = vrep.simxStopSimulation(self.clientID, operationMode=vrep.simx_opmode_blocking)
         if (response == 0):
@@ -454,10 +402,6 @@ class serverApi:
         else:
             return -1
 
-    # function to start simulation
-    # arg : None
-    # return : -1 : if starting the simulation fails
-    # return : integer  : at least 0 if simulation is succesfully started
     def startSimulation(self):
         response = vrep.simxStartSimulation(self.clientID, operationMode=vrep.simx_opmode_blocking)
         if (response):
@@ -468,10 +412,6 @@ class serverApi:
             print("starign failed")
             return -1
 
-    # function to pause simulation
-    # arg : None
-    # return : -1 : if pausing the simulation fails
-    # return : integer  : at least 0 if simulation is succesfully paused
     def pauseSimulation(self):
         response = vrep.simxPauseSimulation(self.clientID, vrep.simx_opmode_blocking)
         if (response):
@@ -498,7 +438,6 @@ def main():
     time.sleep(0.1)
 
     print(ra.getColorSensor(1))
-    # print("getting robot pose",ra.getRobotPose())
     counter = 0
     col = ['red', 'green', 'blue', 'akldjf']
     obstacle = 0
