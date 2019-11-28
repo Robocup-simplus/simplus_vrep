@@ -1,1 +1,2 @@
-action1;Cuboid,Cylinder;6,4;10;5;-1
+FindVictim;Victim_H_small,Victim_S_small,Victim_U_small;5,8,5;5;-2
+CheckPoint;Checkpoint_silver;8;2;0
