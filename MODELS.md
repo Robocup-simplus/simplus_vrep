@@ -40,6 +40,10 @@ the game manager panel which controls the server and scoreboard
   - H, U, & S markers are defined in order to cover rescue maze victims.
 - Victim_lying.ttm, Victim_sitting.ttm, Victim_standing.ttm, Victim_walking.ttm
   - Four human victim model similar to the ones in virtual rescue major.
+- Victim_ball_light_cyan.ttm, Victim_ball_light_pink.ttm, Victim_ball_light_red.ttm
+  - Three ball victim model that the robot can move them.
+- Victim_ball_heavy_cyan.ttm, Victim_ball__heavy_pink.ttm, Victim_ball__heavy_red.ttm
+  - Three ball victim model that the robot can not move them.
 		
 # walls	
 walls with different shapes and sizes are modeled.
