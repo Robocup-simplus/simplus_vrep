@@ -177,6 +177,9 @@ def send_action():
 		res=sapi.callAction("find_checkpoint",pose[0],pose[1],pose[2])
 	elif action == "Rescue Victim":
 		res=sapi.callAction("rescue_victim",pose[0],pose[1],pose[2])
+	else:
+		res=sapi.callAction(action,pose[0],pose[1],pose[2])
+
 
 	return str(value);
 
