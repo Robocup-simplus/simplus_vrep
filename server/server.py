@@ -8,6 +8,7 @@ import simplus_pb2_grpc
 from robotApi import *
 import time
 import array
+import numpy as np
 
 
 def run():
@@ -72,7 +73,7 @@ def run():
                 ra.setLED(color=res.LED)
                 for action in res.actions:
                     team_score += sa.callAction(action.type, action.x, action.y, action.z)
-            # team_score -= ra.checkAllTraps()
+            team_score += ra.checkAllTraps()
             sa.set_score(my_team_id, str(i))
 
             print(1.0 / (time.process_time() - a))

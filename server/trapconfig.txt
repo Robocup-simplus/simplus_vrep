@@ -1,0 +1,2 @@
+trap1;Cylinder;4;5;0.5;-1.5
+trap1;Cuboid;6;2;0.1;-2

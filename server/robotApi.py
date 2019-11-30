@@ -25,7 +25,7 @@ class VrepApi:
         self.robot_api = None
         self.server_api = None
 
-    def init_robotApi(self, trapConfig=None, robot_base='ePuck_base', robot_namespace="ePuck_",
+    def init_robotApi(self, trapConfig=r'trapconfig.txt', robot_base='ePuck_base', robot_namespace="ePuck_",
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True):
@@ -336,8 +336,8 @@ class serverApi:
                         for j in range(0, int(ix[i]) - 1):
                             temp.append(ob[i] + str(j))
                     ob_indexed.extend(temp)
-                ac = actionClass(remoteApi=self.clientID, action=ls[0], max_range=ls[3], success_score=ls[4],
-                                 failure_score=ls[5], obejcts_names=ob_indexed)
+                ac = actionClass(remoteApi=self.clientID, action=ls[0], max_range=float(ls[3]), success_score=float(ls[4]),
+                                 failure_score=float(ls[5]), obejcts_names=ob_indexed)
                 self.actions_dict.update({ls[0]: ac})
 
     def callAction(self, action, x, y, z):

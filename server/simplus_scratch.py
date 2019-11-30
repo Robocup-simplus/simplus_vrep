@@ -1,7 +1,7 @@
 #pip install bottle
 
 from bottle import route, run, template,request,response
-import robotApiNew
+import robotApi
 
 server_ip='127.0.0.1'
 server_port=19999
@@ -9,9 +9,9 @@ print("Please type in server ip address in the following format => 127.0.0.1")
 server_ip= input()
 print("Please type in server port in the following format => 19999")
 server_port= input()
-vapi=robotApiNew.VrepApi(server_ip=server_ip,server_port=int(server_port),waitUntilConnected=True,doNotReconnectOnceDisconnected=True,timeOutInMs=5000,commThreadCycleInMs=5)
+vapi=robotApi.VrepApi(server_ip=server_ip,server_port=int(server_port),waitUntilConnected=True,doNotReconnectOnceDisconnected=True,timeOutInMs=5000,commThreadCycleInMs=5)
 rapi=vapi.init_robotApi(trapConfig=None,robot_base='ePuck_base',robot_namespace="ePuck_",robot_motors={"left":'leftJoint',"right":'rightJoint',"radius":0.02},proximity_sensor={"num":8,"name":'proxSensor'},camera={"name":'camera',"joint":None},color_sensor={"num":1,"name":'lightSensor'},gps_enabled=True)
-sapi=vapi.init_serverApi(serverConfig=None)
+sapi=vapi.init_serverApi(serverConfig=r'serverconfig.txt')
 
 @route('/set_wheels')
 def set_wheels():
@@ -137,8 +137,8 @@ def get_distance_victim():
 
 	pose=rapi.getRobotXYZ()
 	print(pose)
-	#res=sapi.callAction("find_victim",pose[0],pose[1],pose[2])
 	res=-1
+	res=sapi.callAction("find_victim",pose[0],pose[1],pose[2])
 	if(res>=0):
 		value=0.0
 	else:
@@ -154,8 +154,12 @@ def get_sim_status():
 	response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 	response.headers["Set-Cookie"]= 'SameSite=None;Secure'
 	print("get_sim_status");
-	#calculate min distance to victims
-	return "1"; #0
+	is_started = False
+	is_started = sapi.get_status()
+	value=1
+	if not is_started:
+		value=-1
+	return str(value); #0
 
 
 @route('/send_action')
