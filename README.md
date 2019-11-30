@@ -27,7 +27,7 @@ Software Requirements
 SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It depends on the following libraries:
 
 - [Python](https://www.python.org) version 3.5+ 
-- [Vrep Simulation](https://www.coppeliarobotics.com)
+- [Vrep Simulation](http://www.coppeliarobotics.com)
 - [Google Protobuf](https://github.com/google/protobuf)
 - [GRPC](http://grpc.io)
 - [Bottle](https://bottlepy.org/docs/dev/) (Only needed for Scratch API)
