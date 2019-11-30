@@ -75,8 +75,11 @@ def get_color():
 		rgb=rapi.getColorSensor(2)
 	elif sensor == "left":
 		rgb=rapi.getColorSensor(1)
-
-	if(rgb[0]>rgb[1]):
+	if(rgb[0]<10 and rgb[1]<10 and rgb[2]<10):
+		color='black'
+	elif(abs(rgb[0]-rgb[1])<15 and abs(rgb[2]-rgb[1])<15 and abs(rgb[0]-rgb[2])<15 ):
+		color='grey'
+	elif(rgb[0]>rgb[1]):
 		color='red'
 	elif(rgb[1]>rgb[2]):
 		color='green'
