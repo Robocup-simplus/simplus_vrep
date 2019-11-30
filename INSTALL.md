@@ -44,14 +44,29 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 ---
 
 # Server Setup
-All Configuration can be set in `server/serverconfig.txt` . This Configuration will describe the rules of each game. 
-   - Action1's name;List of Action1's models;List of number of each Action1's model;Action1's Positive score ;Action1's Negetive score
-   - Action2's name;List of Action2's models;List of number of each Action2's model;Action2's Positive score ;Action2's Negetive score
+The simplus team made the game's rules flexible by defining Two config files. These files will ease the Technical Committee's work By letting them make improvements in league each year without changing the server code. 
+
+### serverconfig
+Server Configuration can be set using `server/serverconfig.txt`. This Configuration will define the available actions in server inorder to define each game's rule. You can define as many actions as you want. Each line will define a new action, each action will be defined using 6 characteristics. The first term of characteristic is the Action's name which will be sent with the estimated position by the client in order to announce their percptions of Action in a position to get scores. The second characteristic is the list of model's names(Can be found in Vrep's Scene Hierachy) that are involved in the Action.The third characteristic is the list of number of each involved model respectively. Next characteristic is the Action's range in meter which defines the maximum acceptable distance between the position that the team claimed for the Action and the real position of the nearest model defined in the action. The two next characteristics are the positive and negetive scores of the action. Positive score is the score team will recieve if the distance was acceptable and the negetive score is the score that will affect the team's core if the distance was greater. The negetive score can be set to zero.
+   - Action1's name;List of Action1's models;List of number of each Action1's model;Action1's range;Action1's Positive score ;Action1's Negetive score
+   - Action2's name;List of Action2's models;List of number of each Action2's model;Action2's range;Action2's Positive score ;Action2's Negetive score
 
 Sample `serverconfig.txt`:
 ```
 action1;Cuboid,Cylinder;6,4;10;5;-1
 ```
+
+### trapconfig
+Trap Configuration can be set using `server/trapconfig.txt`. This Configuration will define the actions that the server will automatically check each cycle of the game. Most of the times, these actions will be used to define some limitation in the game and decreasing the team's score. You can define as many traps as you want. Each line will define a new trap. 
+
+- Trap1's name;List of Trap1's models;List of number of each Trap1's model;Trap1's range;Trap1's offset ;Trap1's score
+- Trap2's name;List of Trap2's models;List of number of each Trap2's model;Trap2's range;Trap2's offset ;Trap2's score
+
+Sample `trapconfig.txt`:
+```
+trap1;Cuboid;6;2;0.1;-2
+```
+
 ---
 
 # Client Setup
