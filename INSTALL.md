@@ -51,7 +51,7 @@ Server Configuration can be set using `server/serverconfig.txt`. This Configurat
 
 ```
   - Action1's name;List of Action1's models;List of number of each Action1's model;Action1's range;Action1's Positive score ;Action1's Negetive score
-   - Action2's name;List of Action2's models;List of number of each Action2's model;Action2's range;Action2's Positive score ;Action2's Negetive score
+  - Action2's name;List of Action2's models;List of number of each Action2's model;Action2's range;Action2's Positive score ;Action2's Negetive score
 ```
 
 - The first characteristic is the Action's name which will be sent with the estimated position by the client in order to announce their percptions of Action in a position to get scores.
