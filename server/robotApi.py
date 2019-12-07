@@ -345,6 +345,7 @@ class serverApi:
         if (action in self.actions_dict.keys()):
             return self.actions_dict.get(action).applyAction(x, y, z)
         else:
+            
             return 0
 
     def set_score(self, team_id, team_score):

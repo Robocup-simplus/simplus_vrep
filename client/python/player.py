@@ -57,4 +57,8 @@ def Play(id, server, observation, command):
     else:
         command.linear = 0.0
         command.angular = 0.5
-    command.actions.append('salam', observation.pos.x, observation.pos.y, observation.pos.z)
+    
+    for c in observation.colors:
+       if ( (0.64<c.r and 0.65>c.r) and  (0.8<c.r and 0.79>c.r) and (0.83<c.r and 0.82>c.r)):
+           command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='find_checkpoint'))
+           break

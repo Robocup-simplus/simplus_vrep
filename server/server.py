@@ -75,7 +75,7 @@ def run():
                 for action in res.actions:
                     team_score += sa.callAction(action.type, action.x, action.y, action.z)
             team_score += ra.checkAllTraps()
-            sa.set_score(my_team_id, str(i))
+            sa.set_score(my_team_id, str(team_score))
 
             print(1.0 / (time.process_time() - a))
 
