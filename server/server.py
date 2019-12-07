@@ -15,6 +15,7 @@ def run():
 
     vapi = VrepApi()
     sa = vapi.init_serverApi()
+    
     is_started = False
     while not is_started:
         print("Please click on the play button")
