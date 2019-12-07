@@ -42,6 +42,15 @@ Please consult the [install instructions](INSTALL.md) for more details.
 - Run the VREP and Start the world (click on play icon)
 
 ## Python 
+
+### Approach 1
+Run the robotApi, in this approach the client code should be placed in the main function of "robotApi.py". The client can directly access the provided python functions that are declared in the same file. It should be mentioned that this approach is the core part of the second approach. (Go to  `simplus_vrep/server` directiory):
+```bash
+python robotApi.py 
+```
+
+### Approach 2
+In this approach, the client file is writen in a template that makes the development and game management much easier for both students and Technical committies. 
 1. Run Clients (Go to  `simplus_vrep/client/python` directiory):
 ```bash
 python client.py
