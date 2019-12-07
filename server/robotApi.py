@@ -35,6 +35,7 @@ class VrepApi:
 
     def init_serverApi(self,
                        serverConfig=r'serverconfig.txt'):
+        print("hi")
         return serverApi(remoteApi=self.clientID, serverConfig=serverConfig)
 
 
