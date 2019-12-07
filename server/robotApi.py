@@ -35,7 +35,6 @@ class VrepApi:
 
     def init_serverApi(self,
                        serverConfig=r'serverconfig.txt'):
-        print("hi")
         return serverApi(remoteApi=self.clientID, serverConfig=serverConfig)
 
 
@@ -180,9 +179,10 @@ class robotApi:
     def checkAllTraps(self):
         penalty = 0
         pose = self.getRobotXYZ()
+        print(pose)
 
         for t in self.traps_dict.keys():
-            penalty += self.traps_dict.get(t).checkTrap(pose)
+            penalty += self.traps_dict.get(t).checkTrap(pose[0],pose[1],pose[2])
 
         return penalty
 
@@ -365,7 +365,7 @@ class serverApi:
                                                                                       [], [], [team_name],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
-        if len(o_int) > 1:
+        if len(o_int) >= 1:
             return o_int[0]
         else:
             return None
@@ -378,7 +378,7 @@ class serverApi:
                                                                                       [], [], [],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
-        if len(o_int) > 1:
+        if len(o_int) >= 1:
             return o_int[0]
         else:
             return None
@@ -443,7 +443,6 @@ def main():
     time.sleep(0.1)
     ra = vapi.init_robotApi()
     time.sleep(0.1)
-
     print(ra.getColorSensor(1))
     counter = 0
     col = ['red', 'green', 'blue', 'akldjf']
@@ -464,6 +463,7 @@ def main():
         time.sleep(0.25)
         counter += 1
         if (counter > 1000): break
+        # ra.checkAllTraps()
     sa.stopSimulation()
     vrep.simxFinish(vapi.clientID)
     time.sleep(25)

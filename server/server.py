@@ -17,6 +17,7 @@ def run():
     sa = vapi.init_serverApi()
     is_started = False
     while not is_started:
+        print("Please click on the play button")
         is_started = sa.get_status()
     # sa.startSimulation()
     print("step1")
