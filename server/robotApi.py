@@ -11,7 +11,7 @@ except:
 
 import time
 import numpy as np
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import math
 
 
@@ -364,8 +364,11 @@ class serverApi:
                                                                                       [], [], [team_name],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
-        return o_int[0]
-
+        if len(o_int) > 1:
+            return o_int[0]
+        else:
+            return None
+        
     def get_status(self):
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
@@ -374,7 +377,10 @@ class serverApi:
                                                                                       [], [], [],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
-        return o_int[0]
+        if len(o_int) > 1:
+            return o_int[0]
+        else:
+            return None
 
     def getServerTime(self):
         response = vrep.simxGetServerTimeInMs(vrep.simx_opmode_blocking)
@@ -424,8 +430,8 @@ def show_image(inputimage):
     image_array = (np.array(inputimage[0], dtype=np.uint8))
     im = np.flip(np.reshape(image_array, [inputimage[1], inputimage[2], 3]), 0)
     print(im)
-    plt.imshow(im)
-    plt.show()
+    # plt.imshow(im)
+    # plt.show()
 
 
 def main():
