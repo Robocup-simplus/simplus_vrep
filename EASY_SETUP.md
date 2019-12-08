@@ -5,7 +5,7 @@ Follow the setup instruction based on your OS:
 # macOS  
 ## Installation
 1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
-2. Put the file where ever you want the simplus package be installed in(The destination folder name should not include " ").
+2. Put the file where ever you want the simplus package be installed in(The destination folder name should not include any spaces like " ").
 3. Open the terminal and write `sh `
 4. Drag and drop the `Installer.sh` file to terminal.
 5. Press enter
@@ -18,6 +18,9 @@ Follow the setup instruction based on your OS:
 - Press enter
 
 ## Run 
+There is two methods to communicate with the robot:
+Approach1: is based on V-rep python API (there is no client and server),
+Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 ### Approach1
 - Open Another terminal and write `sh `
@@ -45,7 +48,18 @@ Run the bat file in `simplus_vrep-master/easy_setup/windows/install.bat` **as ad
 
 
 ## World setup
+Run the bat file in `simplus_vrep-master/easy_setup/windows/simulator.bat` **as administrator** to open and setup the world.
+
 ## Run 
+There is two methods to communicate with the robot:
+Approach1: is based on V-rep python API (there is no client and server & the robot controling code should be placed in the main function of `robotApi.py`.),
+Approach2: is based on remote API (the teams should use `client.py` to control robot) 
+
+### Approach1
+- run `run1.bat`
+### Approach 2
+- run `run2_client.bat`
+- run `run2-server.bat` 
 
 # Ubuntu
 
