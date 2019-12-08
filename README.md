@@ -9,7 +9,9 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
   - [Manual Setup](MANUAL_SETUP.md)   
     - [Install instructions](MANUAL_SETUP.md#vrep-installation)
     - [Usage](MANUAL_SETUP.md#usage)
-- [Simplus Models](MODELS.md)
+- [World and Rules](WORLD.md)
+  - [World and Rules](WORLD.md)
+  - [Simplus Models](MODELS.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
 
