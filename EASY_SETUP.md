@@ -8,6 +8,7 @@ Follow the setup instruction based on your OS:
 - [Windows](#Windows)
   - [Windows Installation](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#installation-1)
   
+---
 
 # macOS  
 ## Installation
@@ -37,6 +38,8 @@ Approach2: is based on remote API (the teams should use client to control robot 
 - Open Another terminal and write `sh `
 - Drag and drop the `run2.sh` file to terminal.(It can be found in `simplus_vrep/easy_setup/mac` directory)
 - Press enter
+
+---
 
 # windows
 
@@ -68,6 +71,8 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 - run `run2_client.bat`
 - run `run2-server.bat` 
 
+---
+
 # Ubuntu 16.04
 ## Installation
 1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/ubuntu_16/installer.sh)
@@ -81,6 +86,8 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sh run1.sh`
 ### Approach2
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sh run2.sh`
+
+---
 
 # Ubuntu 18.04
 ## Installation
