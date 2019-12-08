@@ -20,12 +20,16 @@ try:
     libfullpath = os.path.join(os.path.dirname(__file__), 'remoteApi' + file_extension)
     libsimx = ct.CDLL(libfullpath)
 except:
+    libfullpath = os.path.join(os.path.dirname(__file__), 'remoteApi32.dll')
+    libsimx = ct.CDLL(libfullpath)
+    '''
     print ('----------------------------------------------------')
     print ('The remoteApi library could not be loaded. Make sure')
     print ('it is located in the same folder as "vrep.py", or')
     print ('appropriately adjust the file "vrep.py"')
     print ('----------------------------------------------------')
     print ('')
+    '''
 
 #ctypes wrapper prototypes
 c_GetJointPosition          = ct.CFUNCTYPE(ct.c_int32,ct.c_int32, ct.c_int32, ct.POINTER(ct.c_float), ct.c_int32)(("simxGetJointPosition", libsimx))
