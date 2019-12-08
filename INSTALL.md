@@ -1,3 +1,5 @@
+https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_install/installer_mac.sh
+
 # VREP Installation
 Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliarobotics.com/previousVersions)
 ## Windows
