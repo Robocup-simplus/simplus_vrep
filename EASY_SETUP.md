@@ -68,8 +68,32 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 - run `run2_client.bat`
 - run `run2-server.bat` 
 
-# Ubuntu
-
+# Ubuntu 16.04
 ## Installation
+1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/ubuntu_16/installer.sh)
+2. Put the file where ever you want the simplus package be installed in(The destination folder name should not include any spaces like " ").
+3. Go to the interested folder, right click and open the terminal then write `sh installer.sh`
+4. Please press Y or Enter when ever the script asked.
 ## World setup
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sh simulator.sh`
 ## Run 
+### Approach1
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sh run1.sh`
+### Approach2
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sh run2.sh`
+
+# Ubuntu 18.04
+## Installation
+1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/ubuntu_18/installer.sh)
+2. Put the file where ever you want the simplus package be installed in(The destination folder name should not include any spaces like " ").
+3. Go to the interested folder, right click and open the terminal then write `sh installer.sh`
+4. Please press Y or Enter when ever the script asked.
+## World setup
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sh simulator.sh`
+## Run 
+### Approach1
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sh run1.sh`
+### Approach2
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sh run2.sh`
+
+
