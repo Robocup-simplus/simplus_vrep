@@ -19,7 +19,7 @@ def run():
     is_started = False
     while not is_started:
         print("Please click on the play button")
-        is_started = sa.get_status()
+        is_started = sa.get_status(1)
     # sa.startSimulation()
     print("step1")
     time.sleep(0.1)

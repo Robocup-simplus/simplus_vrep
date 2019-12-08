@@ -371,12 +371,12 @@ class serverApi:
         else:
             return None
         
-    def get_status(self):
+    def get_status(self,start=0):
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
                                                                                       vrep.sim_scripttype_childscript,
                                                                                       'remote_get_sim_status',
-                                                                                      [], [], [],
+                                                                                      [start], [], [],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
         if len(o_int) >= 1:
@@ -439,7 +439,8 @@ def show_image(inputimage):
 def main():
     vapi = VrepApi()
     sa = vapi.init_serverApi()
-    sa.startSimulation()
+    sa.get_status(1)
+    # sa.startSimulation()
     print("step1")
     time.sleep(0.1)
     ra = vapi.init_robotApi()
