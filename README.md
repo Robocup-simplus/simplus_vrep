@@ -4,7 +4,9 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
 ![SimPlus on macOS](docs/img/world2.png?raw=true "Simplus on macOS")
 
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
-- [Install instructions](INSTALL.md)
+- [Setup](README.md)
+  - [Easy setup(only Mac)](EASYSETUP.md)
+  - [Install instructions](INSTALL.md)
 - [Simplus Models](MODELS.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
@@ -35,8 +37,8 @@ SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It
 
 Please consult the [install instructions](INSTALL.md) for more details.
 
-# Usage
-
+# Setup
+- [Install instructions](INSTALL.md)
 - Open the Vrep Simulator (Make sure about the setup using [VREP Installation ](INSTALL.md))
 - From the top menu click on  `File` then `Open Scene` and select the `SampleMap.ttt` file from `simplus_vrep/worlds`
 - Run the VREP and Start the world (click on play icon)
