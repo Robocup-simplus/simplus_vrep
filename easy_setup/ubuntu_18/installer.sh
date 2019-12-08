@@ -13,6 +13,7 @@ sudo update-alternatives --config python
 alias python=python3
 sudo apt-get update
 sudo apt install python-pip
+sudo apt install python3-pip
 sudo apt-get install curl
 curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
 sudo python get-pip.py
