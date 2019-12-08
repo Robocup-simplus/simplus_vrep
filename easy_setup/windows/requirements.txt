@@ -1,0 +1,5 @@
+numpy
+matplotlib
+grpcio==1.26.0rc1
+protobuf
+bottle
