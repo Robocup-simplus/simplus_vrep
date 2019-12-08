@@ -1,4 +1,4 @@
-Follow the installation based on your OS:
+Follow the setup instruction based on your OS:
 - [macOS](#macOS)
 - [Windows](#Windows)
 
