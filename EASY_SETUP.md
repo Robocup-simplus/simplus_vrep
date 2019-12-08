@@ -1,5 +1,6 @@
-[macOS](#macOS)
-[Windows](#Windows)
+Follow the installation based on your OS:
+- [macOS](#macOS)
+- [Windows](#Windows)
 
 # macOS  
 ## Installation
