@@ -1,5 +1,5 @@
 # VREP Installation
-Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliarobotics.com/downloads.html)
+Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliarobotics.com/previousVersions)
 ## Windows
 Download `V-REP PRO EDU V3.6.2 rev0` and execute `V-REP_PRO_EDU_V3_6_2_Setup.exe`
 
@@ -28,9 +28,9 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 
 Ubuntu 18.04:
 ```bash
-curl -O http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Ubuntu16_04.tar.xz
-tar -xzfv V-REP_PRO_EDU_V3_6_2_Ubuntu16_04.tar.xz
-cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
+curl -O http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Ubuntu18_04.tar.xz
+tar -xzfv V-REP_PRO_EDU_V3_6_2_Ubuntu18_04.tar.xz
+cd V-REP_PRO_EDU_V3_6_2_Ubuntu18_04
 ./vrep.sh
 ```
 
