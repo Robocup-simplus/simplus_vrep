@@ -6,7 +6,7 @@ Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliaro
 ## Windows
 Download `V-REP PRO EDU V3.6.2 rev0` and execute `V-REP_PRO_EDU_V3_6_2_Setup.exe`
 
-## MacOs
+## macOS
 Download `V-REP PRO EDU V3.6.2 rev0` and unzip `V-REP_PRO_EDU_V3_6_2_Mac.zip` then execute `vrep.app`
 
 In case you find your "model browser" empty you may need to use the following commands:
