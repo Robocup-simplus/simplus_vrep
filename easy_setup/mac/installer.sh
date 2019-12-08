@@ -19,6 +19,6 @@ wget "http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Mac.zip"
 unzip V-REP_PRO_EDU_V3_6_2_Mac.zip
 rm -f V-REP_PRO_EDU_V3_6_2_Mac.zip
 cd ..
-rm -f installer_mac.sh
+rm -f installer.sh
 rm -f get-pip.py
 rm -f distribute_setup.py
