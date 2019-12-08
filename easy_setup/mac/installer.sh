@@ -22,3 +22,4 @@ cd ..
 rm -f installer.sh
 rm -f get-pip.py
 rm -f distribute_setup.py
+pwd
