@@ -1,3 +1,6 @@
+[macOS](#macOS)
+[Windows](#Windows)
+
 # macOS  
 ## Installation
 1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
