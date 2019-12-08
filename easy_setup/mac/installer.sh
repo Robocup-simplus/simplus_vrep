@@ -18,6 +18,8 @@ cd ..
 wget "http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Mac.zip"
 unzip V-REP_PRO_EDU_V3_6_2_Mac.zip
 rm -f V-REP_PRO_EDU_V3_6_2_Mac.zip
+mv models/Simplus/ V-REP_PRO_EDU_V3_6_2_Mac/models/
+cp worlds/SampleMap.ttt  V-REP_PRO_EDU_V3_6_2_Mac/vrep.app/Contents/MacOS/
 cd ..
 rm -f installer.sh
 rm -f get-pip.py
