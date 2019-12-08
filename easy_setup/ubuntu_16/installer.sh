@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sudo apt update
 sudo apt-get install software-properties-commonng python-software-properties
 sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
