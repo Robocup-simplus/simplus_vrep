@@ -39,9 +39,9 @@ Run the downloaded file. (make sure to check the highlited box below for adding 
 
 Then, download V-rep from [coppeliarobotics](http://coppeliarobotics.com/files/V-REP_PLAYER_V3_6_2_Setup.exe), there is just a couple of Nexts to finish V-rep installation.
 
-Afterwards, download `simplus_vrep-master` file from [Simplus Github](https://github.com/Robocup-simplus/simplus_vrep/archive/master.zip), and extract the downloaded file to the interested directory, and move the `simplus_vrep-master/models/SimPlus` directory to vrep models directory.
+Afterwards, download `simplus_vrep-master` file from [Simplus Github](https://github.com/Robocup-simplus/simplus_vrep/archive/master.zip), and extract the downloaded file to the interested directory.
 
-Run the bat file in `simplus_vrep-master/easy_setup/windows/install.bat`, to setup all the requirements(while the setup is finished you will be ask to press a key to exit).
+Run the bat file in `simplus_vrep-master/easy_setup/windows/install.bat` **as administrator**, to setup all the requirements(this setup includes prepared worlds, models, & etc, while the setup is finished you will be ask to press a key to exit).
 
 
 ## World setup
