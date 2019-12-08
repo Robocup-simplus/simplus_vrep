@@ -1,8 +1,6 @@
 # SimPlus_VRep
 This repository is dedicated to a Rescue simulation environment for Robocup Juniors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions.
 
-![SimPlus on macOS](docs/img/world2.png?raw=true "Simplus on macOS")
-
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Setup](README.md)
   - [Easy Setup and Run(only Mac)](EASY_SETUP.md)
@@ -14,6 +12,8 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
   - [Simplus Models](MODELS.md)
 - [Authors](AUTHORS.md)
 - [Changelog](CHANGELOG.md)
+
+![SimPlus on macOS](docs/img/world2.png?raw=true "Simplus on macOS")
 
 System Requirements
 -----------------------
