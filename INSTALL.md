@@ -39,7 +39,7 @@ cd V-REP_PRO_EDU_V3_6_2_Ubuntu16_04
 # Server Installation
 1.  Clone or Download the project.
 2.  Move `models/SimPlus` directory to vrep `models` directory.
-3.  Install [`python3.5+`](https://www.python.org/downloads/) and [`pip`](https://pip.pypa.io/en/stable/installing/) (Tutorial for Windows [Link](https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation))
+3.  Install [`python3.5+`](https://www.python.org/downloads/) and [`pip`](https://pip.pypa.io/en/stable/installing/) (In windows don't forget to click on 'Add python to PATH' and 'Install pip' checkbox in the installation process. In case you forgot to check those you have to install python again or config those setting manually using the Tutorial for Windows [Link](https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation))
 4.  Go to server directory and run `pip install -r requirements.txt`
 ---
 
