@@ -1,3 +1,6 @@
+- [Install instructions](MANUAL_SETUP.md#vrep-installation)
+- [Usage](MANUAL_SETUP.md#usage)
+
 # VREP Installation
 Go to official download page of V-Rep: [Coppelia Robotics](http://www.coppeliarobotics.com/previousVersions)
 ## Windows
