@@ -194,5 +194,5 @@ class ScratchThread(threading.Thread):
         self.rapi=rapi
         self.sapi=sapi
     def run(self):
-        sc=simplus_scratch.ScratchApi(self.vapi,self.rapi,self.sapi)
+        sc=ScratchApi(self.vapi,self.rapi,self.sapi)
 #endscratch
