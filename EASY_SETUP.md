@@ -18,10 +18,11 @@ In order to make the communication with server easier, some applications are cre
 You can close this applications using 'close' icon near them. It should be mentioned that the 0% sign below the application name means that it is running. The application name will be automatically removed from the menu whenever it's job is finished.
 
 ## Installation
+```bash
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 2. Double click on the `installer` application and the server will be installed on the Desktop directory(You will recieve a dialog pop up at the end of the installation process).
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it.
-
+```
 or
 
 1. [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
