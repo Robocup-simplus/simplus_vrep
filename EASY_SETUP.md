@@ -25,19 +25,24 @@ You can close this applications using 'close' icon near them. It should be menti
 ```
 or
 
+```bash
 1. [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
 2. Put the file where ever you want the simplus package be installed in.
 3. Open the terminal and write `sh `, drag and drop the `installer.sh` file to terminal then press enter
 - The installation path should not include any " ", if there were any, the simplus vrep will be installed in the path shown at the end of the installation (you can easily cut the  `simplus_vrep` folder and place it whereever you want after the installation is finished).
 - In case you face any error use [installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3.
+```
 
 ## World setup
+```bash
 Double click on the `simulator` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+```
 or
 
-Open the terminal and write `sh `, drag and drop the `simulator.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+```bash
+Open the terminal and write `sh `, drag and drop the `simulator.sh` file to terminal then press enter
+(It can be found in `simplus_vrep/easy_setup/mac` directory)
+```
 
 ## Run 
 There is two methods to communicate with the robot:
@@ -45,21 +50,31 @@ Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 ### Approach1
-Double click on the `run1` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+```bash
+Double click on the `run1` application
+(It can be found in `simplus_vrep/easy_setup/mac` directory)
+```
 or
 
-Open the terminal and write `sh `, drag and drop the `run1.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
+```bash
+Open the terminal and write `sh `, drag and drop the `run1.sh` file to terminal then press enter
+(It can be found in `simplus_vrep/easy_setup/mac` directory)
+```
 
 ### Approach 2
-1. Double click on the `run2_client` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
-2. Double click on the `run2_server` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+```bash
+1. Double click on the `run2_client` application
+2. Double click on the `run2_server` application
+(They can be found in `simplus_vrep/easy_setup/mac` directory)
 
+```
 or
+```bash
+1. Open the terminal and write `sh `, drag and drop the `run2_client.sh` file to terminal then press enter
+2.  Open the terminal and write `sh `, drag and drop the `run2_server.sh` file to terminal then press enter
+(They can be found in `simplus_vrep/easy_setup/mac` directory)
 
-1. Open the terminal and write `sh `, drag and drop the `run2_client.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
-2.  Open the terminal and write `sh `, drag and drop the `run2_server.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+```
 
 ---
 
