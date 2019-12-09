@@ -9,6 +9,7 @@ from robotApi import *
 import time
 import array
 import numpy as np
+import simplus_scratch
 
 
 def run():
@@ -44,6 +45,9 @@ def run():
             r=0
         my_team_id = max(r, my_team_id)
         ra = vapi.init_robotApi()
+        st=simplus_scratch.ScratchThread(vapi,ra,sa)
+        st.start()
+        print("Start")
         team_score = 0
         team_name = response.name
         for i in range(1000):

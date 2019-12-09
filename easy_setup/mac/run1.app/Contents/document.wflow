@@ -62,6 +62,11 @@
 					<string>#!/bin/bash
 
 cd ~/Desktop/simplus_vrep/server
+export PATH=/usr/local/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/python:/usr/local/bin/pip
+pid=$(lsof -ti tcp:8080)
+if [[ $pid ]]; then
+  kill -9 $pid
+fi
 python robotApi.py &amp; osascript -e  'tell app "System Events" to display dialog "The Robot controlling code will be ran in a couple of seconds"'
 
 </string>
@@ -177,7 +182,7 @@ python robotApi.py &amp; osascript -e  'tell app "System Events" to display dial
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>309.000000:253.000000</string>
+				<string>450.000000:548.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

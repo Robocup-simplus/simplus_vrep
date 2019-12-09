@@ -61,10 +61,14 @@
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
 
-export PATH=/usr/local/bin/:/usr/local/bin/python:/usr/local/bin/pip
+export PATH=/usr/local/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/python:/usr/local/bin/pip
+pid=$(lsof -ti tcp:8080)
+if [[ $pid ]]; then
+  kill -9 $pid
+fi
 cd ~/Desktop/simplus_vrep/
 cd server
-python server.py &amp; osascript -e  'tell app "System Events" to display dialog "The Robot controlling code will be ran in a couple of seconds"'</string>
+python server.py &amp; osascript -e  'tell app "System Events" to display dialog "The Server code will be ran in a couple of seconds"'</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -174,8 +178,6 @@ python server.py &amp; osascript -e  'tell app "System Events" to display dialog
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
