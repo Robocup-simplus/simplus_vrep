@@ -19,16 +19,16 @@ You can close this applications using 'close' icon near them. It should be menti
 
 ## Installation
 
-Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
+### Using  [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 ```bash
  Double click on the "installer" application and the server will be installed on the Desktop directory
 (You will recieve a dialog pop up at the end of the installation process).
 ```
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it.
 
-or
 
-Download [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
+
+### Using [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
 ```bash
 1. Put the file where ever you want the simplus package be installed in.
 2. Open the terminal and write "sh ", drag and drop the "installer.sh" file to terminal then press enter
