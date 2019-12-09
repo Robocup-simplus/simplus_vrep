@@ -15,7 +15,7 @@ In order to make the communication with server easier, some applications are cre
   
   ![Applications status](docs/img/mac_runpackage.png?raw=true "Applications status")
 
-You can close this applications using 'close' icon near them. It should be mentioned that the percentage below the applications name is not showing the percentage of the application process and the 0 value means it's running. The application name will be automatically removed from the menu whenever it's job is finished.
+You can close this applications using 'close' icon near them. It should be mentioned that the 0% sign below the application name means that it is running. The application name will be automatically removed from the menu whenever it's job is finished.
 
 ## Installation
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
