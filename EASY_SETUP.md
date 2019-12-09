@@ -45,12 +45,12 @@ or
 Open the terminal and write `sh `, drag and drop the `run1.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
 
 ### Approach 2
-Double click on the `run2` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+1. Double click on the `run2_client` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+2. Double click on the `run2_server` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
 or
 
-Open the terminal and write `sh `, drag and drop the `run2.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
-
+1. Open the terminal and write `sh `, drag and drop the `run2_client.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
+2.  Open the terminal and write `sh `, drag and drop the `run2_server.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
 ---
 
 # windows
