@@ -18,24 +18,27 @@ In order to make the communication with server easier, some applications are cre
 You can close this applications using 'close' icon near them. It should be mentioned that the 0% sign below the application name means that it is running. The application name will be automatically removed from the menu whenever it's job is finished.
 
 ## Installation
-```bash
+
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-2. Double click on the `installer` application and the server will be installed on the Desktop directory(You will recieve a dialog pop up at the end of the installation process).
+```bash
+2. Double click on the `installer` application and the server will be installed on the Desktop directory
+(You will recieve a dialog pop up at the end of the installation process).
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it.
 ```
 or
 
-```bash
 1. [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
+```bash
 2. Put the file where ever you want the simplus package be installed in.
 3. Open the terminal and write `sh `, drag and drop the `installer.sh` file to terminal then press enter
+```
 - The installation path should not include any " ", if there were any, the simplus vrep will be installed in the path shown at the end of the installation (you can easily cut the  `simplus_vrep` folder and place it whereever you want after the installation is finished).
 - In case you face any error use [installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3.
-```
 
 ## World setup
 ```bash
-Double click on the `simulator` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+Double click on the `simulator` application
+(It can be found in `simplus_vrep/easy_setup/mac` directory)
 ```
 or
 
