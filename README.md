@@ -1,8 +1,10 @@
 # SimPlus_VRep
-This repository is dedicated to the new Rescue simulation environment for Robocupers from Juniors to Majors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions, so that a kid could start with it (e.g. by using Scratch to move a simulated robot) and gradually be introduced with more complex problems and languages (e.g. implementing object detection and SLAM by ROS).
+This repository is dedicated to the new Rescue simulation environment for Robocupers from Juniors to Majors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions, so that a kid could start with it (e.g. by using Scratch to move a simulated robot) and gradually be introduced with more complex problems and languages (e.g. implementing object detection and SLAM in ROS).
 
 
 - [Overview](https://github.com/Robocup-simplus/simplus_vrep/#overview)
+  - [Game Manager Features](https://github.com/Robocup-simplus/simplus_vrep/#game-manager-features)
+  - [Robot Controlling](https://github.com/Robocup-simplus/simplus_vrep/#robot-controlling)
   - [System Requirements](https://github.com/Robocup-simplus/simplus_vrep/#system-requirements)
   - [Software Requirements](https://github.com/Robocup-simplus/simplus_vrep/#software-requirements)
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
@@ -38,8 +40,12 @@ The scheme of Simplus V-rep could be found in the figure below.
 
 ### Game Manager Features
 The Game Manager has been developed to
-- Control the game state such as Stop, Start
-- Calculate the scores based on the fexible defined by TC/OCs.
+- Control the game state such as Start, Pause, & Stop,
+- Calculate the scores based on the fexible rules defined by TC/OCs, (One of the most difficult parts of the TC/OC jobs in Virtual Rescue is fairly calculating the score as it is a simulated environment, so it is necessary to have the automated scoring system)
+- Show scoreboard.
+
+### Robot Controlling
+Simplus V-Rep supports lots of programming languages (e.g. Scratch, Python, GO, C, C++, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
 
 
 ## System Requirements
