@@ -36,7 +36,7 @@ V-REP provides a free license for educational purposes and accepts seven program
 
 ## Developed Structure
 The scheme of Simplus V-rep could be found in the figure below.
-![Simplus V-rep Structure](docs/img/vrep structure.png?raw=true "Simplus V-rep Structure")
+![Simplus V-rep Structure]("docs/img/vrep structure.png"?raw=true "Simplus V-rep Structure")
 
 ### Game Manager Features
 The Game Manager has been developed to
