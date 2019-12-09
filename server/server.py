@@ -39,7 +39,10 @@ def run():
                                                      simplus_pb2.CheckPoint(color='green', point=5)]), timeout=1)
         print("Client Received: " + response.name)
         my_team_id = 0
-        my_team_id = max(sa.set_name(response.name), my_team_id)
+        r=sa.set_name(response.name)
+        if r is None:
+            r=0
+        my_team_id = max(r, my_team_id)
         ra = vapi.init_robotApi()
         team_score = 0
         team_name = response.name
@@ -67,7 +70,6 @@ def run():
                     ) for i in range(1)]
                 )
             )
-            print(1.0 / (time.process_time() - a))
             for res in response.commands:
                 print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' +
                       res.LED)
