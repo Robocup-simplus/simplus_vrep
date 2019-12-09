@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pid=$(lsof -ti tcp:8080)
 if [[ $pid ]]; then
   kill -9 $pid
