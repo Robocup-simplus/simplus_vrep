@@ -17,6 +17,7 @@ git clone "https://github.com/Robocup-simplus/simplus_vrep.git"
 cd simplus_vrep/server
 pip install -r requirements.txt
 cd ..
+brew install wget
 wget "http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Mac.zip"
 unzip V-REP_PRO_EDU_V3_6_2_Mac.zip
 rm -f V-REP_PRO_EDU_V3_6_2_Mac.zip
