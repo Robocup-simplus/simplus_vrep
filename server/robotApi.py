@@ -16,7 +16,6 @@ import math
 
 #scratch
 import simplus_scratch
-import threading 
 #endscratch
 
 class VrepApi:
@@ -440,16 +439,6 @@ def show_image(inputimage):
 
 
 
-#scratch
-class ScratchThread(threading.Thread):
-    def __init__(self,vapi,rapi,sapi):
-        threading.Thread.__init__(self)
-        self.vapi=vapi
-        self.rapi=rapi
-        self.sapi=sapi
-    def run(self):
-        sc=simplus_scratch.ScratchApi(self.vapi,self.rapi,self.sapi)
-#endscratch
 
 def main():
     vapi = VrepApi()
@@ -460,7 +449,7 @@ def main():
     time.sleep(0.1)
     ra = vapi.init_robotApi()
     #scratch
-    st=ScratchThread(vapi,ra,sa)
+    st=simplus_scratch.ScratchThread(vapi,ra,sa)
     st.start()
     #endscratch
     time.sleep(0.1)

@@ -1,7 +1,7 @@
 #pip install bottle
 
 from bottle import Bottle,response,request
-
+import threading
 # print("Please type in server ip address in the following format => 127.0.0.1")
 # server_ip= input()
 # print("Please type in server port in the following format => 19999")
@@ -184,3 +184,15 @@ class ScratchApi(Bottle):
             else:
                 res=self.sapi.callAction(action,pose[0],pose[1],pose[2])
             return str(value);
+
+
+#scratch
+class ScratchThread(threading.Thread):
+    def __init__(self,vapi,rapi,sapi):
+        threading.Thread.__init__(self)
+        self.vapi=vapi
+        self.rapi=rapi
+        self.sapi=sapi
+    def run(self):
+        sc=simplus_scratch.ScratchApi(self.vapi,self.rapi,self.sapi)
+#endscratch
