@@ -14,9 +14,9 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 brew install git
 git clone "https://github.com/Robocup-simplus/simplus_vrep.git"
-cd simplus_vrep/server
+cd simplus_vrep/easy_setup/mac
 pip install -r requirements.txt
-cd ..
+cd ../..
 brew install wget
 wget "http://www.coppeliarobotics.com/files/V-REP_PRO_EDU_V3_6_2_Mac.zip"
 unzip V-REP_PRO_EDU_V3_6_2_Mac.zip
