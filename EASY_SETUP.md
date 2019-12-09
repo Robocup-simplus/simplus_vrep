@@ -12,18 +12,25 @@ Follow the setup instruction based on your OS:
 
 # macOS  
 ## Installation
-1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
-2. Put the file where ever you want the simplus package be installed in(The destination folder name should not include any spaces like " ").
-3. Open the terminal and write `sh `
-4. Drag and drop the `Installer.sh` file to terminal.
-5. Press enter
-6. At the end of the installation the installation path will be printed and if it is different with your interested folder you can easily cut the  `simplus_vrep` folder and place it where ever you want. 
-- In case you face any error download [Installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3 to 5.
+1. Download [installer Application](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Robocup-simplus/simplus_vrep/tree/master/easy_setup/mac/installer.app) 
+2. Double click on the `installer` application and the server will be installed on the Desktop directory.
+- In case you face any error use [installer_full Application](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Robocup-simplus/simplus_vrep/tree/master/easy_setup/mac/installer_full.app) and Double click on it.
+
+or
+
+1.[installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
+2. Put the file where ever you want the simplus package be installed in.
+3. Open the terminal and write `sh `, drag and drop the `installer.sh` file to terminal then press enter
+- The installation path should not include any " ", if there were any, the simplus vrep will be installed in the path shown at the end of the installation (you can easily cut the  `simplus_vrep` folder and place it whereever you want after the installation is finished).
+- In case you face any error use [installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3.
 
 ## World setup
-- Open the terminal and right `sh `
-- Drag and drop the `simulator.sh` file to terminal.(It can be found in `simplus_vrep/easy_setup/mac` directory)
-- Press enter
+Double click on the `simulator` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
+or
+
+Open the terminal and write `sh `, drag and drop the `simulator.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
 
 ## Run 
 There is two methods to communicate with the robot:
@@ -31,13 +38,18 @@ Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 ### Approach1
-- Open Another terminal and write `sh `
-- Drag and drop the `run1.sh` file to terminal.(It can be found in `simplus_vrep/easy_setup/mac` directory)
-- Press enter
+Double click on the `run1` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
+or
+
+Open the terminal and write `sh `, drag and drop the `run1.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
 ### Approach 2
-- Open Another terminal and write `sh `
-- Drag and drop the `run2.sh` file to terminal.(It can be found in `simplus_vrep/easy_setup/mac` directory)
-- Press enter
+Double click on the `run2` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
+or
+
+Open the terminal and write `sh `, drag and drop the `run2.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
 
 ---
 
