@@ -97,7 +97,8 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run1.sh`
 ### Approach2
-Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run2.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run2_client.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run2_server.sh`
 
 ---
 
@@ -113,6 +114,7 @@ Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open th
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run1.sh`
 ### Approach2
-Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2_client.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2_server.sh`
 
 
