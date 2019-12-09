@@ -1,6 +1,8 @@
 # SimPlus_VRep
-This repository is dedicated to a Rescue simulation environment for Robocup Juniors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions.
 
+- [Overview](https://github.com/Robocup-simplus/simplus_vrep/#overview)
+  - [System Requirements](https://github.com/Robocup-simplus/simplus_vrep/#system-requirements)
+  - [Software Requirements](https://github.com/Robocup-simplus/simplus_vrep/#software-requirements)
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Setup](README.md)
   - [Easy Setup and Run](EASY_SETUP.md)
@@ -15,7 +17,21 @@ This repository is dedicated to a Rescue simulation environment for Robocup Juni
 
 ![SimPlus on macOS](docs/img/world2.png?raw=true "Simplus on macOS")
 
-System Requirements
+# Overview
+This repository is dedicated to the new Rescue simulation environment for Robocupers from Juniors to Majors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions, so that a kid could start with it (e.g. by using Scratch to move a simulated robot) and gradually be introduced with more complex problems and languages (e.g. implementing object detection and SLAM by ROS).
+
+A poster entitled as ["A proposal on more advanced Robot Rescue Simulation challenges for Robotics Education"](https://www.researchgate.net/profile/Fatemeh_Pahlevan_Aghababa/publication/336114712_WeROB2019/links/5d8f0692a6fdcc2554a1125f/WeROB2019.pdf) was presented in [Workshop On Educational Robotics-WEROB 2019](https://junior.robocup.org/workshop-on-educational-robotics-werob-2019/). In the poster, the reqiurments of a platform to be used as bridge to filling the gap between RoboCup Junoir Rescue and Virtual Rescue Robot competition for such a development are defined as follows:
+- Being free and fully accessible to students to use,
+- Ease of installation even on low-spec PCs,
+- Interface that is intuitive to use.
+- The ability to serve from fundamentals to higher complexity concepts,
+- Easy transition to research-based platforms from educational-focused platform
+
+After lots of investigations the team decided to workd on V-REP from the three selected platforms: V-REP, Webot, and Gazebo.
+V-REP provides a free license for educational purposes and accepts seven programming languages. The scheme of developed environment for V-REP could be found in Wiki page.
+
+
+## System Requirements
 -----------------------
 
 SimPlus will likely run on a modern dual core PC with a decent graphics card. Typical configuration is:
@@ -27,7 +43,7 @@ SimPlus will likely run on a modern dual core PC with a decent graphics card. Ty
 Note that it may run on lower end equipment, though good performance is not guaranteed.
 
 
-Software Requirements
+## Software Requirements
 ---------------------
 
 SimPlus compiles and run on Win/Linux/macOS (tested on Ubuntu variants only). It depends on the following libraries:
