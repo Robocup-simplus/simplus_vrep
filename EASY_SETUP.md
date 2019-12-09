@@ -37,12 +37,13 @@ You can close this applications using 'close' icon near them. It should be menti
 - In case you face any error use [installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3.
 
 ## World setup
+### Using Application
 ```bash
 Double click on the "simulator" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
-or
 
+### Using Script
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
@@ -54,11 +55,13 @@ Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 ### Approach1
+### Using Application
 ```bash
 Double click on the "run1" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
-or
+
+### Using Script
 
 ```bash
 Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal then press enter
@@ -66,13 +69,15 @@ Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal 
 ```
 
 ### Approach 2
+### Using Application
 ```bash
 1. Double click on the "run2_client" application
 2. Double click on the "run2_server" application
 (They can be found in "simplus_vrep/easy_setup/mac" directory)
 
 ```
-or
+
+### Using Script
 ```bash
 1. Open the terminal and write "sh ", drag and drop the "run2_client.sh" file to terminal then press enter
 2. Open the terminal and write "sh ", drag and drop the "run2_server.sh" file to terminal then press enter
