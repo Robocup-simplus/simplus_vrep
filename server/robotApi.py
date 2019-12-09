@@ -449,6 +449,12 @@ def main():
     counter = 0
     col = ['red', 'green', 'blue', 'akldjf']
     obstacle = 0
+    team_score = 0
+    my_team_id = 0
+    r=sa.set_name('my_team_name')
+    if r is None:
+        r=0
+    my_team_id = max(r, my_team_id)
     while True:
         obstacle = 0
         col0 = np.array(ra.getColorSensor(0))
@@ -465,7 +471,8 @@ def main():
         time.sleep(0.25)
         counter += 1
         if (counter > 1000): break
-        # ra.checkAllTraps()
+        team_score += ra.checkAllTraps()
+        sa.set_score(my_team_id, str(team_score))
     sa.stopSimulation()
     vrep.simxFinish(vapi.clientID)
     time.sleep(25)
