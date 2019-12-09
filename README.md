@@ -1,12 +1,14 @@
 # SimPlus_VRep
+This repository is dedicated to the new Rescue simulation environment for Robocupers from Juniors to Majors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions, so that a kid could start with it (e.g. by using Scratch to move a simulated robot) and gradually be introduced with more complex problems and languages (e.g. implementing object detection and SLAM by ROS).
+
 
 - [Overview](https://github.com/Robocup-simplus/simplus_vrep/#overview)
   - [System Requirements](https://github.com/Robocup-simplus/simplus_vrep/#system-requirements)
   - [Software Requirements](https://github.com/Robocup-simplus/simplus_vrep/#software-requirements)
 - [Getting Start](https://github.com/Robocup-simplus/simplus_vrep/wiki)
-- [Setup](README.md)
-  - [Easy Setup and Run](EASY_SETUP.md)
-  - [Manual Setup](MANUAL_SETUP.md)   
+- [Setup & Run](README.md)
+  - [Easy Setup & Run](EASY_SETUP.md)
+  - [Manual Setup & Run](MANUAL_SETUP.md)   
     - [Install instructions](MANUAL_SETUP.md#vrep-installation)
     - [Usage](MANUAL_SETUP.md#usage)
 - [World and Rules](WORLD.md)
@@ -27,8 +29,17 @@ A poster entitled as ["A proposal on more advanced Robot Rescue Simulation chall
 - The ability to serve from fundamentals to higher complexity concepts,
 - Easy transition to research-based platforms from educational-focused platform
 
-After lots of investigations the team decided to workd on V-REP from the three selected platforms: V-REP, Webot, and Gazebo.
-V-REP provides a free license for educational purposes and accepts seven programming languages. The scheme of developed environment for V-REP could be found in Wiki page.
+After lots of investigations the team decided to work on V-REP from the three selected platforms: V-REP, Webot, and Gazebo.
+V-REP provides a free license for educational purposes and accepts seven programming languages. 
+
+## Developed Structure
+The scheme of Simplus V-rep could be found in the figure below.
+![Simplus V-rep Structure](docs/img/vrep structure.png?raw=true "Simplus V-rep Structure")
+
+### Game Manager Features
+The Game Manager has been developed to
+- control the game state such as Stop, Start
+- calculate the scores based on a fexible .
 
 
 ## System Requirements
