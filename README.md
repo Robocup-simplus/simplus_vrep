@@ -31,7 +31,7 @@ A poster entitled as ["A proposal on more advanced Robot Rescue Simulation chall
 - The ability to serve from fundamentals to higher complexity concepts,
 - Easy transition to research-based platforms from educational-focused platform
 
-After lots of investigations the team decided to work on V-REP from the three selected platforms: V-REP, Webot, and Gazebo.
+After lots of investigations the team decided to work based on **V-REP** from the three selected platforms: V-REP, Webot, and Gazebo.
 V-REP provides a free license for educational purposes and accepts seven programming languages. 
 
 ## Developed Structure
@@ -45,8 +45,9 @@ The Game Manager has been developed to
 - Show scoreboard.
 
 ### Robot Controlling
-Simplus V-Rep supports lots of programming languages (e.g. Scratch, Python, GO, C, C++, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
+The Robot Controlling code developed by the teams will be placed here. Simplus V-Rep supports lots of programming languages (e.g. **Scratch**, **Python**, GO, C, C++, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
 
+The developing team have prepared 2 sample codes moving one for Scratch, and an other for Python (more samples will be provided if needed).
 
 ## System Requirements
 -----------------------
