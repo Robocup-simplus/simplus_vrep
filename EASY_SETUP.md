@@ -11,9 +11,11 @@ Follow the setup instruction based on your OS:
 ---
 
 # macOS  
+In order to make the communication with server easier, some applications are created. These Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu( like the photo attached at the end of this section). You can close this applications using 'close' icon near them. It should be mentioned that the percentage below the name of the application is not showing the percentage of the application process and the 0 value means it's running. The application name will be automatically removed from the menu whenever it's job is finished.
+
 ## Installation
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-2. Double click on the `installer` application and the server will be installed on the Desktop directory.
+2. Double click on the `installer` application and the server will be installed on the Desktop directory(If the installer name is not in the application list anymore,the installation is finished ).
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it.
 
 or
