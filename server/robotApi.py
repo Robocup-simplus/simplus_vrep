@@ -14,6 +14,10 @@ import numpy as np
 # from matplotlib import pyplot as plt
 import math
 
+#scratch
+import simplus_scratch
+import threading 
+#endscratch
 
 class VrepApi:
     def __init__(self, server_ip='127.0.0.1', server_port=19999, waitUntilConnected=True,
@@ -435,6 +439,18 @@ def show_image(inputimage):
     # plt.show()
 
 
+
+#scratch
+class ScratchThread(threading.Thread):
+    def __init__(self,vapi,rapi,sapi):
+        threading.Thread.__init__(self)
+        self.vapi=vapi
+        self.rapi=rapi
+        self.sapi=sapi
+    def run(self):
+        sc=simplus_scratch.ScratchApi(self.vapi,self.rapi,self.sapi)
+#endscratch
+
 def main():
     vapi = VrepApi()
     sa = vapi.init_serverApi()
@@ -443,6 +459,10 @@ def main():
     print("step1")
     time.sleep(0.1)
     ra = vapi.init_robotApi()
+    #scratch
+    st=ScratchThread(vapi,ra,sa)
+    st.start()
+    #endscratch
     time.sleep(0.1)
     print(ra.getColorSensor(1))
     counter = 0
@@ -478,6 +498,17 @@ def main():
     vrep.simxFinish(vapi.clientID)
     time.sleep(25)
 
+
+
+# def main2():
+#     vapi = VrepApi()
+#     sa = vapi.init_serverApi()
+#     is_started = sa.get_status(1)
+#     # sa.startSimulation()
+#     print("step1")
+#     time.sleep(0.1)
+#     ra = vapi.init_robotApi()
+    
 
 if __name__ == '__main__':
     main()
