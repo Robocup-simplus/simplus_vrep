@@ -80,8 +80,6 @@ def run():
             team_score += ra.checkAllTraps()
             sa.set_score(my_team_id, str(team_score))
 
-            print(1.0 / (time.process_time() - a))
-
         response = stub.End(
             simplus_pb2.Ending(server=simplus_pb2.ServerInfo(time=i, server_state='running', my_score=0, opp_score=1)))
         print('END IS: ' + response.message)
