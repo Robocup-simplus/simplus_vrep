@@ -11,7 +11,11 @@ Follow the setup instruction based on your OS:
 ---
 
 # macOS  
-In order to make the communication with server easier, some applications are created. These Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu( like the photo attached at the end of this section). You can close this applications using 'close' icon near them. It should be mentioned that the percentage below the name of the application is not showing the percentage of the application process and the 0 value means it's running. The application name will be automatically removed from the menu whenever it's job is finished.
+In order to make the communication with server easier, some applications are created. These Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu.
+  
+  ![Applications status](docs/img/mac_runpackage.png?raw=true "Applications status")
+
+You can close this applications using 'close' icon near them. It should be mentioned that the percentage below the applications name is not showing the percentage of the application process and the 0 value means it's running. The application name will be automatically removed from the menu whenever it's job is finished.
 
 ## Installation
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
@@ -55,7 +59,6 @@ or
 1. Open the terminal and write `sh `, drag and drop the `run2_client.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
 2.  Open the terminal and write `sh `, drag and drop the `run2_server.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
 
-![Applications status](docs/img/mac_runpackage.png?raw=true "Applications status")
 
 ---
 
