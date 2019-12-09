@@ -5,13 +5,14 @@ import robotApi
 
 server_ip='127.0.0.1'
 server_port=19999
-print("Please type in server ip address in the following format => 127.0.0.1")
-server_ip= input()
-print("Please type in server port in the following format => 19999")
-server_port= input()
+# print("Please type in server ip address in the following format => 127.0.0.1")
+# server_ip= input()
+# print("Please type in server port in the following format => 19999")
+# server_port= input()
 vapi=robotApi.VrepApi(server_ip=server_ip,server_port=int(server_port),waitUntilConnected=True,doNotReconnectOnceDisconnected=True,timeOutInMs=5000,commThreadCycleInMs=5)
 rapi=vapi.init_robotApi(trapConfig=None,robot_base='ePuck_base',robot_namespace="ePuck_",robot_motors={"left":'leftJoint',"right":'rightJoint',"radius":0.02},proximity_sensor={"num":8,"name":'proxSensor'},camera={"name":'camera',"joint":None},color_sensor={"num":1,"name":'lightSensor'},gps_enabled=True)
 sapi=vapi.init_serverApi(serverConfig=r'serverconfig.txt')
+sapi.get_status(1)
 
 @route('/set_wheels')
 def set_wheels():
@@ -22,7 +23,7 @@ def set_wheels():
 	rw=request.GET.get('rw', '').strip()
 	lw=request.GET.get('lw', '').strip()
 	rapi.setJointSpeed(right_rotation=float(rw),left_rotation=float(lw))
-	print("set_wheels")
+# 	print("set_wheels")
 	return "set_wheels"
 
 
@@ -52,7 +53,7 @@ def get_proximity():
 	response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 	response.headers["Set-Cookie"]= 'SameSite=None;Secure'
 	number=request.GET.get('number', '').strip()
-	print(number)
+# 	print(number)
 	proximity=rapi.getProximitySensor(int(number))
 	value=100000
 	if(proximity[0]==True):
@@ -135,7 +136,7 @@ def get_distance_victim():
 	response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, OPTIONS'
 	response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
 	response.headers["Set-Cookie"]= 'SameSite=None;Secure'
-	print("get_distance_victim");
+# 	print("get_distance_victim");
 	value=1;
 
 	pose=rapi.getRobotXYZ()
@@ -162,6 +163,7 @@ def get_sim_status():
 	value=1
 	if not is_started:
 		value=-1
+# 	print(value)
 	return str(value); #0
 
 
