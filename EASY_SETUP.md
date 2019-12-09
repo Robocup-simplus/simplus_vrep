@@ -44,8 +44,8 @@ Double click on the "simulator" application
 or
 
 ```bash
-Open the terminal and write `sh `, drag and drop the `simulator.sh` file to terminal then press enter
-(It can be found in `simplus_vrep/easy_setup/mac` directory)
+Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
+(It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
 
 ## Run 
