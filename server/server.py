@@ -71,8 +71,8 @@ def run():
                 )
             )
             for res in response.commands:
-                print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' +
-                      res.LED)
+#                 print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' +
+#                       res.LED)
                 ra.setRobotSpeed(linear=res.linear, angular=res.angular)
                 ra.setLED(color=res.LED)
                 for action in res.actions:
