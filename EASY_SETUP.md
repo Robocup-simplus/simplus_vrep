@@ -18,7 +18,7 @@ Follow the setup instruction based on your OS:
 
 or
 
-1.[installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
+1. [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
 2. Put the file where ever you want the simplus package be installed in.
 3. Open the terminal and write `sh `, drag and drop the `installer.sh` file to terminal then press enter
 - The installation path should not include any " ", if there were any, the simplus vrep will be installed in the path shown at the end of the installation (you can easily cut the  `simplus_vrep` folder and place it whereever you want after the installation is finished).
