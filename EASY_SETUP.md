@@ -11,7 +11,7 @@ Follow the setup instruction based on your OS:
 ---
 
 # macOS  
-In order to make the communication with server easier, some applications are created. These Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu.
+In order to make the communication with server easier, some applications and scripts are created. You can choose using applications or scripts .The Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu.
   
   ![Applications status](docs/img/mac_runpackage.png?raw=true "Applications status")
 
@@ -28,7 +28,7 @@ You can close this applications using 'close' icon near them. It should be menti
 
 
 
-### Using [installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
+### Using [installer Script](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer.sh)
 ```bash
 1. Put the file where ever you want the simplus package be installed in.
 2. Open the terminal and write "sh ", drag and drop the "installer.sh" file to terminal then press enter
@@ -55,13 +55,13 @@ Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 ### Approach1
-### Using Application
+#### Using Application
 ```bash
 Double click on the "run1" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
 
-### Using Script
+#### Using Script
 
 ```bash
 Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal then press enter
@@ -69,7 +69,7 @@ Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal 
 ```
 
 ### Approach 2
-### Using Application
+#### Using Application
 ```bash
 1. Double click on the "run2_client" application
 2. Double click on the "run2_server" application
@@ -77,7 +77,7 @@ Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal 
 
 ```
 
-### Using Script
+#### Using Script
 ```bash
 1. Open the terminal and write "sh ", drag and drop the "run2_client.sh" file to terminal then press enter
 2. Open the terminal and write "sh ", drag and drop the "run2_server.sh" file to terminal then press enter
