@@ -38,8 +38,8 @@ The scheme of Simplus V-rep could be found in the figure below.
 
 ### Game Manager Features
 The Game Manager has been developed to
-- control the game state such as Stop, Start
-- calculate the scores based on a fexible .
+- Control the game state such as Stop, Start
+- Calculate the scores based on the fexible defined by TC/OCs.
 
 
 ## System Requirements
