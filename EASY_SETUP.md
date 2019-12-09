@@ -12,7 +12,7 @@ Follow the setup instruction based on your OS:
 
 # macOS  
 ## Installation
-1. Download [installer Application](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Robocup-simplus/simplus_vrep/tree/master/easy_setup/mac/installer.app) 
+1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 2. Double click on the `installer` application and the server will be installed on the Desktop directory.
 - In case you face any error use [installer_full Application](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/Robocup-simplus/simplus_vrep/tree/master/easy_setup/mac/installer_full.app) and Double click on it.
 
