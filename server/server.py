@@ -29,8 +29,9 @@ def run():
             options=[('grpc.lb_policy_name', 'pick_first'),
                      ('grpc.enable_retries', 0), ('grpc.keepalive_timeout_ms',
                                                   10000)]) as channel:
-        stub = simplus_pb2_grpc.SimPlusStub(channel)
-        # Timeout in seconds.
+      stub = simplus_pb2_grpc.SimPlusStub(channel)
+      # Timeout in seconds.
+      try:
         response = stub.Start(simplus_pb2.WorldInfo(team_size=2,
                                                     robot_per_team=2,
                                                     color_sensor_size=2,
@@ -38,6 +39,7 @@ def run():
                                                     check_points=
                                                     [simplus_pb2.CheckPoint(color='red', point=10),
                                                      simplus_pb2.CheckPoint(color='green', point=5)]), timeout=1)
+            
         print("Client Received: " + response.name)
         my_team_id = 0
         r=sa.set_name(response.name)
@@ -75,8 +77,7 @@ def run():
                 )
             )
             for res in response.commands:
-#                 print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' +
-#                       res.LED)
+                print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' + res.LED)
                 ra.setRobotSpeed(linear=res.linear, angular=res.angular)
                 ra.setLED(color=res.LED)
                 for action in res.actions:
@@ -87,7 +88,29 @@ def run():
         response = stub.End(
             simplus_pb2.Ending(server=simplus_pb2.ServerInfo(time=i, server_state='running', my_score=0, opp_score=1)))
         print('END IS: ' + response.message)
-
+      except:
+          print("Waiting for Scratch")
+          print("Client Received: " + "my_team_name")
+          my_team_id = 0
+          r=sa.set_name( "my_team_name")
+          if r is None:
+              r=0
+          my_team_id = max(r, 0)
+          ra = vapi.init_robotApi()
+          st=simplus_scratch.ScratchThread(vapi,ra,sa)
+          st.start()
+          print("Start")
+          team_score = 0
+          team_name = "my_team_name"
+          counter=0
+          while True: 
+             team_score += ra.checkAllTraps()
+             sa.set_score(my_team_id, str(team_score))
+             while not is_started:
+                  is_started = sa.get_status() 
+             time.sleep(0.25)
+             counter += 1
+             if (counter > 1000): break
 
 if __name__ == '__main__':
     logging.basicConfig()

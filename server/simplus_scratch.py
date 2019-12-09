@@ -20,6 +20,8 @@ class ScratchApi(Bottle):
             self.route('/get_distance_victim', callback=self.get_distance_victim)
             self.route('/get_sim_status', callback=self.get_sim_status)
             self.route('/send_action', callback=self.send_action)
+            self.route('/get_proximity', callback=self.get_proximity)
+            
             self.run(host=host, port=port)
 
         def set_wheels(self):
@@ -63,6 +65,7 @@ class ScratchApi(Bottle):
             value=100000
             if(proximity[0]==True):
                 value=proximity[1]
+            print(value)
             return str(value);
 
 
@@ -80,17 +83,17 @@ class ScratchApi(Bottle):
                 rgb=self.rapi.getColorSensor(2)
             elif sensor == "left":
                 rgb=self.rapi.getColorSensor(1)
-            if(rgb[0]<10 and rgb[1]<10 and rgb[2]<10):
+            if(len(rgb)>2 and rgb[0]<10 and rgb[1]<10 and rgb[2]<10):
                 color='black'
-            elif(abs(rgb[0]-rgb[1])<15 and abs(rgb[2]-rgb[1])<15 and abs(rgb[0]-rgb[2])<15 ):
+            elif(len(rgb)>2 and abs(rgb[0]-rgb[1])<15 and abs(rgb[2]-rgb[1])<15 and abs(rgb[0]-rgb[2])<15 ):
                 color='grey'
-            elif(rgb[0]>rgb[1]):
+            elif(len(rgb)>2 and rgb[0]>rgb[1]):
                 color='red'
-            elif(rgb[1]>rgb[2]):
+            elif(len(rgb)>2 and rgb[1]>rgb[2]):
                 color='green'
             else:
                 color='blue'
-
+            print(color)
             return color
 
 
@@ -141,10 +144,11 @@ class ScratchApi(Bottle):
             value=1;
 
             pose=self.rapi.getRobotXYZ()
-            print(pose)
+#             print(pose)
             res=-1
             res=self.sapi.callAction("find_victim",pose[0],pose[1],pose[2])
-            if(res>=0):
+#             print(res,"  dis")
+            if(res<1):
                 value=0.0
             else:
                 value=10

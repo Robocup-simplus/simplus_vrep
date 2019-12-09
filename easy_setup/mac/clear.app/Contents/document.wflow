@@ -70,9 +70,8 @@ pid=$(lsof -ti tcp:50051)
 if [[ $pid ]]; then
   kill -9 $pid
 fi
-cd ~/Desktop/simplus_vrep/
-python client/python/client.py &amp;
-cd server; python server.py &amp; osascript -e  'tell app "System Events" to display dialog "The Robot controlling code will be ran in a couple of seconds"'</string>
+
+osascript -e  'tell app "System Events" to display dialog "Cleared unused ports successfully!!"'</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -97,7 +96,7 @@ cd server; python server.py &amp; osascript -e  'tell app "System Events" to dis
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>7F5825D0-7796-477F-8298-0C72D438D721</string>
+				<string>E9124F0E-04FB-45DA-8EE0-8864E3EE8DE3</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -107,9 +106,9 @@ cd server; python server.py &amp; osascript -e  'tell app "System Events" to dis
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>D1C3AA8D-9685-4599-B849-1D106F343516</string>
+				<string>40C7B8D6-2955-4099-9ECC-7C1548D364A1</string>
 				<key>UUID</key>
-				<string>72E2830C-5415-46B7-A2BD-613DC11382EC</string>
+				<string>1CB8F4A2-03A2-4F01-AB22-13531B5556FD</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -182,10 +181,12 @@ cd server; python server.py &amp; osascript -e  'tell app "System Events" to dis
 						<string>4</string>
 					</dict>
 				</dict>
+				<key>conversionLabel</key>
+				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:604.000000</string>
+				<string>450.000000:576.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

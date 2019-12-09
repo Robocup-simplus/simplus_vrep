@@ -181,7 +181,7 @@ python server.py &amp; osascript -e  'tell app "System Events" to display dialog
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:253.000000</string>
+				<string>450.000000:552.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

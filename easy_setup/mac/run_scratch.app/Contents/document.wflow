@@ -66,6 +66,10 @@ pid=$(lsof -ti tcp:8080)
 if [[ $pid ]]; then
   kill -9 $pid
 fi
+pid=$(lsof -ti tcp:50051)
+if [[ $pid ]]; then
+  kill -9 $pid
+fi
 cd ~/Desktop/simplus_vrep/server
 python simplus_scratch.py </string>
 					<key>CheckedForUserDefaultShell</key>
@@ -180,7 +184,7 @@ python simplus_scratch.py </string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:498.000000</string>
+				<string>450.000000:545.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

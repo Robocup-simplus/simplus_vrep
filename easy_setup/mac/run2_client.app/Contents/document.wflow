@@ -61,7 +61,11 @@
 					<key>COMMAND_STRING</key>
 					<string>#!/bin/bash
 
-export PATH=/usr/local/bin/:/usr/local/bin/python:/usr/local/bin/pip
+export PATH=/usr/local/bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin/python:/usr/local/bin/pip
+pid=$(lsof -ti tcp:50051)
+if [[ $pid ]]; then
+  kill -9 $pid
+fi
 cd ~/Desktop/simplus_vrep/
 python client/python/client.py &amp; osascript -e  'tell app "System Events" to display dialog "The client code will be ran in a couple of seconds"'</string>
 					<key>CheckedForUserDefaultShell</key>
@@ -176,7 +180,7 @@ python client/python/client.py &amp; osascript -e  'tell app "System Events" to 
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:513.000000</string>
+				<string>450.000000:548.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
