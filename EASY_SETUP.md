@@ -15,7 +15,7 @@ In order to make the communication with server easier, some applications are cre
 
 ## Installation
 1. Download [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-2. Double click on the `installer` application and the server will be installed on the Desktop directory(If the installer name is not in the application list anymore,the installation is finished ).
+2. Double click on the `installer` application and the server will be installed on the Desktop directory(You will recieve a dialog pop up at the end of the installation process).
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it.
 
 or
