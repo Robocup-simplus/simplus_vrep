@@ -47,6 +47,7 @@ Open the terminal and write `sh `, drag and drop the `run1.sh` file to terminal 
 ### Approach 2
 1. Double click on the `run2_client` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
 2. Double click on the `run2_server` application(It can be found in `simplus_vrep/easy_setup/mac` directory)
+
 or
 
 1. Open the terminal and write `sh `, drag and drop the `run2_client.sh` file to terminal then press enter(It can be found in `simplus_vrep/easy_setup/mac` directory)
@@ -87,7 +88,7 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 
 # Ubuntu 16.04
 ## Installation
-1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/ubuntu_16/installer.sh)
+1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_16/installer.tar.gz)
 2. Put the file where ever you want the simplus package be installed in.
 3. Go to the interested folder, right click and open the terminal then write `sudo sh installer.sh`
 4. Please press Y or Enter when ever the script asked.
@@ -104,7 +105,7 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 
 # Ubuntu 18.04
 ## Installation
-1. Download [Installer.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/ubuntu_18/installer.sh)
+1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_18/installer.tar.gz)
 2. Put the file where ever you want the simplus package be installed in.
 3. Go to the interested folder, right click and open the terminal then write `sudo sh installer.sh`
 4. Please press Y or Enter when ever the script asked.
