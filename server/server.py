@@ -46,7 +46,7 @@ def run():
         ra = vapi.init_robotApi()
         team_score = 0
         team_name = response.name
-        for i in range(100):
+        for i in range(1000):
             is_started = sa.get_status()
             while not is_started:
                 is_started = sa.get_status()
