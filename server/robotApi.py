@@ -179,7 +179,6 @@ class robotApi:
     def checkAllTraps(self):
         penalty = 0
         pose = self.getRobotXYZ()
-        print(pose)
 
         for t in self.traps_dict.keys():
             penalty += self.traps_dict.get(t).checkTrap(pose[0],pose[1],pose[2])
@@ -439,7 +438,7 @@ def show_image(inputimage):
 def main():
     vapi = VrepApi()
     sa = vapi.init_serverApi()
-    sa.get_status(1)
+    is_started = sa.get_status(1)
     # sa.startSimulation()
     print("step1")
     time.sleep(0.1)
@@ -456,12 +455,14 @@ def main():
         r=0
     my_team_id = max(r, my_team_id)
     while True:
+        while not is_started:
+           is_started = sa.get_status()
         obstacle = 0
         col0 = np.array(ra.getColorSensor(0))
         col1 = np.array(ra.getColorSensor(1))
         col2 = np.array(ra.getColorSensor(2))
         col_total = (col1 + col0 + col2)
-        print(ra.setLED(col[np.argmax(col_total)]))
+        ra.setLED(col[np.argmax(col_total)])
         for i in range(2, 6):
             obstacle += ra.getProximitySensor(i)[0]
         if (obstacle == 0):
