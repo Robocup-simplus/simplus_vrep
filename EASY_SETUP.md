@@ -7,7 +7,14 @@ Follow the setup instruction based on your OS:
     - [Approach 2](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#approach2)
 - [Windows](#Windows)
   - [Windows Installation](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#installation-1)
-  
+- [Ubuntu 16.04](#ubuntu-1604)
+  - [Installation](#installation-2)
+  - [World setup](#world-setup-2)
+  - [Run](#run-2)
+- [Ubuntu 16.04](#ubuntu-1804)
+  - [Installation](#installation-3)
+  - [World setup](#world-setup-3)
+  - [Run](#run-3)
 ---
 
 # macOS  
