@@ -15,7 +15,7 @@ Follow the setup instruction based on your OS:
   - [Installation](#installation-3)
   - [World setup](#world-setup-3)
   - [Run](#run-3)
-- [Setup for Scratch]  
+- [Setup for Scratch](#setup-for-scratch)  
 
 ---
 
