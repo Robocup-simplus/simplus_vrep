@@ -3,6 +3,7 @@ The installation is based on 2 approaches;
 - in the second approach the Game Manager & the Robot Controlling Code are placed in different files by a Client/Server senario and the connection is based on ports which makes it suitable for competition).
 
 > It should be noted that the for now using the Scratch is just available through the second approach.  
+
 > Since the approach2 uses ports to communicate, and several ports might be left open by the previously ran programs, it is advised to run the `clear.sh`, `clear.bat`, & `clear.sh` with respect to your OS before each run.
 
 Follow the setup instruction based on your OS:
