@@ -58,7 +58,7 @@ class actionClass:
 
     def applyAction(self, x, y, z):
         target_distances = []
-        print("Seen=",self.seen_list)
+#         print("Seen=",self.seen_list)
         for i in range(0, len(self.objects_distances)):
             s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
                 self.objects_distances[i][2] - z, 2)
@@ -473,11 +473,11 @@ def main():
         col0 = ra.getColorSensor(0)
         col1 = ra.getColorSensor(1)
         col2 = ra.getColorSensor(2)
-        print(col0,col1,col2)
+#         print(col0,col1,col2)
         if((col0[0]>100 and col0[0]<215 and col0[1]<215 and col0[2]<215 and abs(int(col0[0])-int(col0[1]))<45 and abs(int(col0[1])-int(col0[2]))<45 and  abs(int(col0[0])-int(col0[2]))<45 ) or
            (col1[0]>100 and col1[0]<215 and col1[1]<215 and col1[2]<215 and abs(int(col1[0])-int(col1[1]))<45 and abs(int(col1[1])-int(col1[2]))<45 and  abs(int(col1[0])-int(col1[2]))<45 ) or
            (col2[0]>100 and col2[0]<215 and col2[1]<215 and col2[2]<215 and abs(int(col2[0])-int(col2[1]))<45 and abs(int(col2[1])-int(col2[2]))<45 and  abs(int(col2[0])-int(col2[2]))<45) ):
-            print("here")
+#             print("here")
             pos = ra.getRobotXYZ()
             team_score += sa.callAction("find_checkpoint", pos[0],pos[1], pos[2])
         col_total = (np.array(col0) + np.array(col1) + np.array(col2))
