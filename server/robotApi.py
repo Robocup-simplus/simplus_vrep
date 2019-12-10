@@ -50,6 +50,7 @@ class actionClass:
         self.failure_score = float(failure_score)
         self.obejcts_names = obejcts_names
         self.objects_distances = []
+        self.seen_list=[]
         for i in self.obejcts_names:
             temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
@@ -62,8 +63,9 @@ class actionClass:
                 self.objects_distances[i][2] - z, 2)
             target_distances.append(pow(s, 0.5))
         index_min = np.argmin(np.array(target_distances))
-        if target_distances[index_min] <= self.range:
+        if target_distances[index_min] <= self.range and not(index_min in self.seen_list):
             self.logAction(x, y, z, index_min, target_distances[index_min], self.success_score)
+            self.seen_list.append(index_min)
             return self.success_score
         else:
             self.logAction(x, y, z, index_min, target_distances[index_min], self.failure_score)
@@ -467,10 +469,16 @@ def main():
         while not is_started:
            is_started = sa.get_status()
         obstacle = 0
-        col0 = np.array(ra.getColorSensor(0))
-        col1 = np.array(ra.getColorSensor(1))
-        col2 = np.array(ra.getColorSensor(2))
-        col_total = (col1 + col0 + col2)
+        col0 = ra.getColorSensor(0)
+        col1 = ra.getColorSensor(1)
+        col2 = ra.getColorSensor(2)
+#         print(col0,col1,col2)
+        if((col0[0]>100 and col0[0]<215 and col0[1]<215 and col0[2]<215 and abs(col0[0]-col0[1])<45 and abs(col0[1]-col0[2])<45 and  abs(col0[0]-col0[2])<45 ) or
+           (col1[0]>100 and col1[0]<215 and col1[1]<215 and col1[2]<215 and abs(col1[0]-col1[1])<45 and abs(col1[1]-col1[2])<45 and  abs(col1[0]-col1[2])<45 ) or
+           (col2[0]>100 and col2[0]<215 and col2[1]<215 and col2[2]<215 and abs(col2[0]-col2[1])<45 and abs(col2[1]-col2[2])<45 and  abs(col2[0]-col2[2])<45) ):
+            pos = ra.getRobotXYZ()
+            team_score += sa.callAction("find_checkpoint", pos[0],pos[1], pos[2])
+        col_total = (np.array(col0) + np.array(col1) + np.array(col2))
         ra.setLED(col[np.argmax(col_total)])
         for i in range(2, 6):
             obstacle += ra.getProximitySensor(i)[0]
@@ -478,11 +486,11 @@ def main():
             ra.setRobotSpeed(0.05, 0.0)
         else:
             ra.setRobotSpeed(0.00, 0.5)
+        team_score += ra.checkAllTraps()
+        sa.set_score(my_team_id, str(team_score))
         time.sleep(0.25)
         counter += 1
         if (counter > 1000): break
-        team_score += ra.checkAllTraps()
-        sa.set_score(my_team_id, str(team_score))
     sa.stopSimulation()
     vrep.simxFinish(vapi.clientID)
     time.sleep(25)
