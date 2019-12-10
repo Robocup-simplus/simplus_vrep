@@ -79,5 +79,3 @@ Scratch Simplus extention enviroment
 ---------------------
 
 ![Scratch sample code](docs/img/scratch.png?raw=true "Scratch Simplus extention")
-
-
