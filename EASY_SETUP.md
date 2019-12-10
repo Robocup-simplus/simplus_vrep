@@ -1,7 +1,7 @@
 The installation is based on 2 approaches; 
 - in the first approach the Game Manager & the Robot Controlling Code are placed in the same file which could be useful for training)
 - in the second approach the Game Manager & the Robot Controlling Code are placed in different files by a Client/Server senario and the connection is based on ports which makes it suitable for competition).
-It should be noted that the for now using the Scratch is just available through the second approach.  
+> It should be noted that the for now using the Scratch is just available through the second approach.  
 Follow the setup instruction based on your OS:
 - [macOS](#macOS)
   - [macOS Installation](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#installation)
