@@ -451,9 +451,9 @@ def main():
     print("step1")
     time.sleep(0.1)
     ra = vapi.init_robotApi()
-    #scratch
-    st=simplus_scratch.ScratchThread(vapi,ra,sa)
-    st.start()
+#     #scratch
+#     st=simplus_scratch.ScratchThread(vapi,ra,sa)
+#     st.start()
     #endscratch
     time.sleep(0.1)
     print(ra.getColorSensor(1))
