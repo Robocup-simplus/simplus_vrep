@@ -51,6 +51,7 @@ You can close this applications using 'close' icon near them. It should be menti
 - In case you face any error use [installer_full.sh](https://raw.githubusercontent.com/Robocup-simplus/simplus_vrep/master/easy_setup/mac/installer_full.sh) and repeat step 3.
 
 ## World setup
+
 ### Using Application
 ```bash
 Double click on the "simulator" application
@@ -61,12 +62,14 @@ Double click on the "simulator" application
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
+``` 
 
 ## Run 
 There is two methods to communicate with the robot:
 Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
+
+> Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 
 ### Approach1
 #### Using Application
@@ -125,6 +128,8 @@ There is two methods to communicate with the robot:
 Approach1: is based on V-rep python API (there is no client and server & the robot controling code should be placed in the main function of `robotApi.py`.),
 Approach2: is based on remote API (the teams should use `client.py` to control robot) 
 
+> Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
+
 ### Approach1
 - run `run1.bat`
 ### Approach 2
@@ -142,6 +147,12 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 ## World setup
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh simulator.sh`
 ## Run 
+There is two methods to communicate with the robot:
+Approach1: is based on V-rep python API (there is no client and server),
+Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
+
+> Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
+
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run1.sh`
 ### Approach2
@@ -159,6 +170,11 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 ## World setup
 Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh simulator.sh`
 ## Run 
+There is two methods to communicate with the robot:
+Approach1: is based on V-rep python API (there is no client and server),
+Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
+
+> Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run1.sh`
 ### Approach2
