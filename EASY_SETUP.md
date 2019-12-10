@@ -15,6 +15,8 @@ Follow the setup instruction based on your OS:
   - [Installation](#installation-3)
   - [World setup](#world-setup-3)
   - [Run](#run-3)
+- [Setup for Scratch]  
+
 ---
 
 # macOS  
@@ -159,3 +161,10 @@ Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open th
 2. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2_server.sh`
 
 
+# Setup for Scratch
+Based on your desired operating system go through steps abow and chose the **Approach2 & skip the client part** (since the client would be the Scratch program), then follow the below steps: 
+1. Go to  https://scratchx.org/?url=https://Robocup-simplus.github.io/simplus.js#scratch  (wait till the extention loads)
+2. Simplus blocks are located in "More Blocks" tab and you can drag and drop them to the right scene
+3. In order to use the sample project, from the top menu click on  `File` then `load project` and select the `simplus_scratch.sbx` file from `simplus_vrep/client/scratch`
+
+![Scratch sample code](docs/img/scratch.png?raw=true "Scratch Simplus extention")
