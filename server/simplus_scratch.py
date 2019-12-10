@@ -9,6 +9,7 @@ import threading
 class ScratchApi(Bottle):
         def __init__(self,vapi,rapi,sapi,host='localhost', port=8080):
             super(ScratchApi, self).__init__()
+            self.team_score=0
             self.rapi=rapi
             self.vapi=vapi
             self.sapi=sapi
@@ -85,7 +86,7 @@ class ScratchApi(Bottle):
                 rgb=self.rapi.getColorSensor(1)
             if(len(rgb)>2 and rgb[0]<10 and rgb[1]<10 and rgb[2]<10):
                 color='black'
-            elif(len(rgb)>2 and abs(rgb[0]-rgb[1])<15 and abs(rgb[2]-rgb[1])<15 and abs(rgb[0]-rgb[2])<15 ):
+            elif(len(rgb)>2 and abs(int(rgb[0])-int(rgb[1]))<15 and abs(int(rgb[2])-int(rgb[1]))<15 and abs(int(rgb[0])-int(rgb[2]))<15 ):
                 color='grey'
             elif(len(rgb)>2 and rgb[0]>rgb[1]):
                 color='red'
@@ -162,6 +163,8 @@ class ScratchApi(Bottle):
             response.headers['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
             response.headers["Set-Cookie"]= 'SameSite=None;Secure'
             print("get_sim_status");
+            self.team_score += self.rapi.checkAllTraps()
+            self.sapi.set_score(1, str(self.team_score))
             is_started = False
             is_started = self.sapi.get_status()
             value=1
