@@ -104,8 +104,7 @@ def run():
           team_name = "my_team_name"
           counter=0
           while True: 
-             team_score += ra.checkAllTraps()
-             sa.set_score(my_team_id, str(team_score))
+
              while not is_started:
                   is_started = sa.get_status() 
              time.sleep(0.25)
