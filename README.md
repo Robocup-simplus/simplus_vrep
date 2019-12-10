@@ -7,7 +7,7 @@ This repository is dedicated to the new Rescue simulation environment for Robocu
   - [Robot Controlling](https://github.com/Robocup-simplus/simplus_vrep/#robot-controlling)
   - [System Requirements](https://github.com/Robocup-simplus/simplus_vrep/#system-requirements)
   - [Software Requirements](https://github.com/Robocup-simplus/simplus_vrep/#software-requirements)
-- [Getting Start(Wiki page)](https://github.com/Robocup-simplus/simplus_vrep/wiki)
+- [Getting Start (Wiki page)](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Setup & Run](EASY_SETUP.md)
 - [Manual Setup & Run](MANUAL_SETUP.md)   
     - [Install instructions](MANUAL_SETUP.md#vrep-installation)
