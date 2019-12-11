@@ -68,7 +68,7 @@ The developing team have prepared 2 sample codes moving one for Scratch, and an 
 ## Demo
 In order to have a better understanding of how the installation and running is performed, we have provided a demo.
 Please have a look at the following video:
-https://youtu.be/zule-A18Qzo
+[https://youtu.be/zule-A18Qzo](https://youtu.be/zule-A18Qzo)
 
 It shows the installation process, and runs a sample of robot controlling code in order to show the robot interaction with the environment.
 
