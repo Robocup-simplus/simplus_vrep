@@ -37,12 +37,12 @@ You can close this applications using 'close' icon near them. It should be menti
 ## Installation
 
 ### Using  [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-#### Using V-rep version 4 (CoppeliaSim)
+- #### Using V-rep version 4 (CoppeliaSim)
 ```bash
  Double click on the "installer_v4" application and the server will be installed on the Desktop directory
 (You will recieve a dialog pop up at the end of the installation process).
 ```
-#### Using V-rep version 3.6.2
+- #### Using V-rep version 3.6.2
 ```bash
  Double click on the "installer" application and the server will be installed on the Desktop directory
 (You will recieve a dialog pop up at the end of the installation process).
@@ -53,14 +53,14 @@ You can close this applications using 'close' icon near them. It should be menti
 
 
 ### Using [installer Script](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-#### Using V-rep version 4 (CoppeliaSim)
+- #### Using V-rep version 4 (CoppeliaSim)
 
 ```bash
 1. Put the file where ever you want the simplus package be installed in.
 2. Open the terminal and write "sh ", drag and drop the "installer_v4.sh" file to terminal then press enter
 ```
 
-#### Using V-rep version 3.6.2
+- #### Using V-rep version 3.6.2
 
 ```bash
 1. Put the file where ever you want the simplus package be installed in.
@@ -73,24 +73,24 @@ You can close this applications using 'close' icon near them. It should be menti
 ## World setup
 
 ### Using Application
-#### Using V-rep version 4 (CoppeliaSim)
+- #### Using V-rep version 4 (CoppeliaSim)
 ```bash
 Double click on the "simulator_v4" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
-#### Using V-rep version 3.6.2
+- #### Using V-rep version 3.6.2
 ```bash
 Double click on the "simulator" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
 
 ### Using Script
-#### Using V-rep version 4 (CoppeliaSim)
+- #### Using V-rep version 4 (CoppeliaSim)
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator_v4.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ``` 
-#### Using V-rep version 3.6.2
+- #### Using V-rep version 3.6.2
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
