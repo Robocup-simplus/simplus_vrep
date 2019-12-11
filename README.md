@@ -38,7 +38,7 @@ The scheme of Simplus V-rep could be found in the figure below.
 The proposed platform structure is consist of 3 main parts; V-REP + models + worlds, Gama Manager + Robot Monitor, & Robot Controlling code.
 
 ### V-REP + models + worlds
-For the first part, V-REP released the latest version of V-REP 4.0.0 and named it CoppelliaSim just two weeks ago.
+V-REP released the latest version of V-REP 4.0.0 and named it CoppelliaSim just two weeks ago.
 We have tested our developlments also with V-REP 4.0.0 (CoppelliaSim) it works perfectly and even faster.
 It was a good sign here that V-REP at its' biggest update is compattible with our developments.
 We have prepared bunch of sample models and a sample world.
