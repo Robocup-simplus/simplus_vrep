@@ -4,6 +4,7 @@ This repository is dedicated to the new Rescue simulation environment for Robocu
 
 - [Overview](#overview)
   - [Structure](#developed-structure)
+  - [Demo](#demo)
   - [System Requirements](#system-requirements)
   - [Software Requirements](#software-requirements)
 - [Getting Start (Wiki page)](https://github.com/Robocup-simplus/simplus_vrep/wiki)
@@ -63,6 +64,13 @@ The Robot Monitor shows the robot's sensors status, camera, orientation, & posit
 The Robot Controlling code developed by the teams will be placed here. Simplus V-Rep supports lots of programming languages (e.g. **Scratch**, **Python**, GO, C, C++, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
 
 The developing team have prepared 2 sample codes moving one for Scratch, and an other for Python (more samples will be provided if needed).
+
+## Demo
+In order to have a better understanding of how the installation and running is performed, we have provided a demo.
+Please have a look at the following video:
+https://youtu.be/zule-A18Qzo
+
+It shows the installation process, and runs a sample of robot controlling code in order to show the robot interaction with the environment.
 
 ## System Requirements
 -----------------------
