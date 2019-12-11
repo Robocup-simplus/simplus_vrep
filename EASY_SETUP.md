@@ -28,21 +28,21 @@ Follow the setup instruction based on your OS:
 ---
 
 # macOS  
-In order to make the communication with server easier, some applications and scripts are created. You can choose using applications or scripts .The Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu.
+In order to make the setup process easier, some applications and scripts are created. You can choose using applications or scripts .The Applications will be run by duoble clicking on them and you can find the current running application list on the mac's top menu.
   
   ![Applications status](docs/img/mac_runpackage.png?raw=true "Applications status")
 
-You can close this applications using 'close' icon near them. It should be mentioned that the 0% sign below the application name means that it is running. The application name will be automatically removed from the menu whenever it's job is finished.
-
+You can close this applications using 'close' icon near them.
+Please Choose One of the two provided setup approaches. Two V-rep Simulator versions are available in each approach.
+# Using Application
 ## Installation
-
-### Using  [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
-- #### Using V-rep version 4 (CoppeliaSim)
+Download the [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
+- ### Using V-rep version 4 (CoppeliaSim)
 ```bash
  Double click on the "installer_v4" application and the server will be installed on the Desktop directory
 (You will recieve a dialog pop up at the end of the installation process).
 ```
-- #### Using V-rep version 3.6.2
+- ### Using V-rep version 3.6.2
 ```bash
  Double click on the "installer" application and the server will be installed on the Desktop directory
 (You will recieve a dialog pop up at the end of the installation process).
@@ -50,9 +50,40 @@ You can close this applications using 'close' icon near them. It should be menti
 
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it corresponding version.
 
+## World setup
+- ### Using V-rep version 4 (CoppeliaSim)
+```bash
+Double click on the "simulator_v4" application
+(It can be found in "simplus_vrep/easy_setup/mac" directory)
+```
+- ### Using V-rep version 3.6.2
+```bash
+Double click on the "simulator" application
+(It can be found in "simplus_vrep/easy_setup/mac" directory)
+```
+## Run
+There is two methods to communicate with the robot:
+Approach1: is based on V-rep python API (there is no client and server),
+Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
+> Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 
-### Using [installer Script](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
+### Approach1
+```bash
+Double click on the "run1" application
+(It can be found in "simplus_vrep/easy_setup/mac" directory)
+```
+### Approach2
+```bash
+1. Double click on the "run2_client" application
+2. Double click on the "run2_server" application
+(They can be found in "simplus_vrep/easy_setup/mac" directory)
+
+```
+
+# Using Scripts
+## Installation
+Download the [installer Scripts](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 - #### Using V-rep version 4 (CoppeliaSim)
 
 ```bash
@@ -71,62 +102,28 @@ You can close this applications using 'close' icon near them. It should be menti
 - In case you face any error use installer_full.sh or installer_full_v4.sh and repeat step 3.
 
 ## World setup
-
-### Using Application
-- #### Using V-rep version 4 (CoppeliaSim)
-```bash
-Double click on the "simulator_v4" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
-- #### Using V-rep version 3.6.2
-```bash
-Double click on the "simulator" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
-
-### Using Script
-- #### Using V-rep version 4 (CoppeliaSim)
+- ### Using V-rep version 4 (CoppeliaSim)
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator_v4.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ``` 
-- #### Using V-rep version 3.6.2
+- ### Using V-rep version 3.6.2
 ```bash
 Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ``` 
-
-## Run 
+## Run
 There is two methods to communicate with the robot:
 Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
-
 ### Approach1
-#### Using Application
-```bash
-Double click on the "run1" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
-
-#### Using Script
-
 ```bash
 Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal then press enter
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
-
-### Approach 2
-#### Using Application
-```bash
-1. Double click on the "run2_client" application
-2. Double click on the "run2_server" application
-(They can be found in "simplus_vrep/easy_setup/mac" directory)
-
-```
-
-#### Using Script
+### Approach2
 ```bash
 1. Open the terminal and write "sh ", drag and drop the "run2_client.sh" file to terminal then press enter
 2. Open the terminal and write "sh ", drag and drop the "run2_server.sh" file to terminal then press enter
