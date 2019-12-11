@@ -13,9 +13,9 @@ Follow the setup instruction based on your OS:
     - [World setup](#world-setup)
     - [Run](#run) 
    - [Using Scripts](#using-scripts)
-    - [macOS Installation](#installation-1)
-    - [World setup](#world-setup-1)
-    - [Run](#run-1)
+     - [macOS Installation](#installation-1)
+     - [World setup](#world-setup-1)
+     - [Run](#run-1)
 - [Windows](#Windows)
   - [Windows Installation](#installation-2)
   - [World setup](#world-setup-2)
@@ -43,29 +43,29 @@ Please Choose One of the two provided setup approaches. Two V-rep Simulator vers
 ## Installation
 Download the [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 - ### Using V-rep version 4 (CoppeliaSim)
-```bash
- Double click on the "installer_v4" application and the server will be installed on the Desktop directory
-(You will recieve a dialog pop up at the end of the installation process).
-```
+  ```bash
+     Double click on the "installer_v4" application and the server will be installed on the Desktop directory
+    (You will recieve a dialog pop up at the end of the installation process).
+  ```
 - ### Using V-rep version 3.6.2
-```bash
- Double click on the "installer" application and the server will be installed on the Desktop directory
-(You will recieve a dialog pop up at the end of the installation process).
-```
+  ```bash
+   Double click on the "installer" application and the server will be installed on the Desktop directory
+  (You will recieve a dialog pop up at the end of the installation process).
+  ```
 
 - In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it's corresponding version.
 
 ## World setup
 - ### Using V-rep version 4 (CoppeliaSim)
-```bash
-Double click on the "simulator_v4" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
+  ```bash
+  Double click on the "simulator_v4" application
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ```
 - ### Using V-rep version 3.6.2
-```bash
-Double click on the "simulator" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
+  ```bash
+  Double click on the "simulator" application
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ```
 
 ## Run
 There is two methods to communicate with the robot:
@@ -76,49 +76,49 @@ Approach2: is based on remote API (the teams should use client to control robot 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 
 ### Approach1
-```bash
-Double click on the "run1" application
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
+  ```bash
+  Double click on the "run1" application
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ```
 ### Approach2
-```bash
-1. Double click on the "run2_client" application
-2. Double click on the "run2_server" application
-(They can be found in "simplus_vrep/easy_setup/mac" directory)
+  ```bash
+  1. Double click on the "run2_client" application
+  2. Double click on the "run2_server" application
+  (They can be found in "simplus_vrep/easy_setup/mac" directory)
 
-```
+  ```
 
 # Using Scripts
 ## Installation
 Download the [installer Scripts](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
 - #### Using V-rep version 4 (CoppeliaSim)
 
-```bash
-1. Put the file where ever you want the simplus package be installed in.
-2. Open the terminal and write "sh ", drag and drop the "installer_v4.sh" file to terminal then press enter
-```
+  ```bash
+  1. Put the file where ever you want the simplus package be installed in.
+  2. Open the terminal and write "sh ", drag and drop the "installer_v4.sh" file to terminal then press enter
+  ```
 
 - #### Using V-rep version 3.6.2
 
-```bash
-1. Put the file where ever you want the simplus package be installed in.
-2. Open the terminal and write "sh ", drag and drop the "installer.sh" file to terminal then press enter
-```
+  ```bash
+  1. Put the file where ever you want the simplus package be installed in.
+  2. Open the terminal and write "sh ", drag and drop the "installer.sh" file to terminal then press enter
+  ```
 
 - The installation path should not include any " ", if there were any, the simplus vrep will be installed in the path shown at the end of the installation (you can easily cut the  "simplus_vrep" folder and place it whereever you want after the installation is finished).
 - In case you face any error use installer_full.sh or installer_full_v4.sh and repeat step 3.
 
 ## World setup
 - ### Using V-rep version 4 (CoppeliaSim)
-```bash
-Open the terminal and write "sh ", drag and drop the "simulator_v4.sh" file to terminal then press enter
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-``` 
+  ```bash
+  Open the terminal and write "sh ", drag and drop the "simulator_v4.sh" file to terminal then press enter
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ``` 
 - ### Using V-rep version 3.6.2
-```bash
-Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-``` 
+  ```bash
+  Open the terminal and write "sh ", drag and drop the "simulator.sh" file to terminal then press enter
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ``` 
 ## Run
 There is two methods to communicate with the robot:
 
@@ -127,17 +127,17 @@ Approach2: is based on remote API (the teams should use client to control robot 
 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 ### Approach1
-```bash
-Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal then press enter
-(It can be found in "simplus_vrep/easy_setup/mac" directory)
-```
+  ```bash
+  Open the terminal and write "sh ", drag and drop the "run1.sh" file to terminal then press enter
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+  ```
 ### Approach2
-```bash
-1. Open the terminal and write "sh ", drag and drop the "run2_client.sh" file to terminal then press enter
-2. Open the terminal and write "sh ", drag and drop the "run2_server.sh" file to terminal then press enter
-(They can be found in `simplus_vrep/easy_setup/mac` directory)
+  ```bash
+  1. Open the terminal and write "sh ", drag and drop the "run2_client.sh" file to terminal then press enter
+  2. Open the terminal and write "sh ", drag and drop the "run2_server.sh" file to terminal then press enter
+  (They can be found in `simplus_vrep/easy_setup/mac` directory)
 
-```
+  ```
 
 ---
 
