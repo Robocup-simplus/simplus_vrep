@@ -24,7 +24,7 @@ Follow the setup instruction based on your OS:
   - [Installation](#installation-3)
   - [World setup](#world-setup-3)
   - [Run](#run-3)
-- [Ubuntu 16.04](#ubuntu-1804)
+- [Ubuntu 18.04](#ubuntu-1804)
   - [Installation](#installation-4)
   - [World setup](#world-setup-4)
   - [Run](#run-4)
