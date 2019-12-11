@@ -8,21 +8,26 @@ The installation is based on 2 approaches;
 
 Follow the setup instruction based on your OS:
 - [macOS](#macOS)
-  - [macOS Installation](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#installation)
-  - [World setup](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#world-setup)
-  - [Run](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#run)
+  - [Using macOS Applications](#using-application)
+    - [macOS Installation](#installation)
+    - [World setup](#world-setup)
+    - [Run](#run) 
+   - [Using Scripts](#using-scripts)
+    - [macOS Installation](#installation-1)
+    - [World setup](#world-setup-1)
+    - [Run](#run-1)
 - [Windows](#Windows)
-  - [Windows Installation](https://github.com/Robocup-simplus/simplus_vrep/blob/master/EASY_SETUP.md#installation-1)
-  - [World setup](#world-setup-1)
-  - [Run](#run-1)
-- [Ubuntu 16.04](#ubuntu-1604)
-  - [Installation](#installation-2)
+  - [Windows Installation](#installation-2)
   - [World setup](#world-setup-2)
   - [Run](#run-2)
-- [Ubuntu 16.04](#ubuntu-1804)
+- [Ubuntu 16.04](#ubuntu-1604)
   - [Installation](#installation-3)
   - [World setup](#world-setup-3)
   - [Run](#run-3)
+- [Ubuntu 16.04](#ubuntu-1804)
+  - [Installation](#installation-4)
+  - [World setup](#world-setup-4)
+  - [Run](#run-4)
 - [Setup for Scratch](#setup-for-scratch)  
 
 ---
@@ -48,7 +53,7 @@ Download the [installer Application](https://github.com/Robocup-simplus/simplus_
 (You will recieve a dialog pop up at the end of the installation process).
 ```
 
-- In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it corresponding version.
+- In case you face any error use [installer_full Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer_full.zip) and Double click on it's corresponding version.
 
 ## World setup
 - ### Using V-rep version 4 (CoppeliaSim)
@@ -61,8 +66,10 @@ Double click on the "simulator_v4" application
 Double click on the "simulator" application
 (It can be found in "simplus_vrep/easy_setup/mac" directory)
 ```
+
 ## Run
 There is two methods to communicate with the robot:
+
 Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
@@ -114,6 +121,7 @@ Open the terminal and write "sh ", drag and drop the "simulator.sh" file to term
 ``` 
 ## Run
 There is two methods to communicate with the robot:
+
 Approach1: is based on V-rep python API (there is no client and server),
 Approach2: is based on remote API (the teams should use client to control robot and the server is responnsible for other things prepared by technical committee) 
 
