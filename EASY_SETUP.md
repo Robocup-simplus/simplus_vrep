@@ -186,18 +186,18 @@ Approach2: is based on remote API (the teams should use client to control robot 
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
 ```bash
-    sudo sh run1.sh
+       sudo sh run1.sh
 ```
 
 ### Approach2
 1. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
 ```bash
-sudo sh run2_client.sh
+       sudo sh run2_client.sh
 ```
 
 2. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
 ```bash
-sudo sh run2_server.sh`
+       sudo sh run2_server.sh`
 ```
 ---
 
@@ -234,18 +234,18 @@ Approach2: is based on remote API (the teams should use client to control robot 
 ### Approach1
 Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
 ```bash
-sudo sh run1.sh
+       sudo sh run1.sh
 ```
 
 ### Approach2
 1. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write
 ```bash 
-sudo sh run2_client.sh
+       sudo sh run2_client.sh
 ```
 
 2. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
 ```bash
-sudo sh run2_server.sh
+       sudo sh run2_server.sh
 ```
 
 # Setup for Scratch
