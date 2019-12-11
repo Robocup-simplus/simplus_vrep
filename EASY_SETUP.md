@@ -117,7 +117,7 @@ Run the downloaded file. (make sure to check the highlited box below for adding 
 ![install Python Win](docs/img/installPythonWin.png?raw=true "install Python Win")
 
 ### Using V-rep version 4 (CoppeliaSim)
-[Download the installer_4.zip] (https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/windows/installer_v4.zip). extract it and run the "installer_4.bat" by double clicking on it.
+[Download the installer_4.zip](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/windows/installer_v4.zip). Extract it and run the "installer_4.bat" by double clicking on it.
 
 ### Using V-rep version 3.6.2
 
@@ -158,16 +158,24 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 2. Put the file where ever you want the simplus package be installed in.
 3. Go to the interested folder, right click and open the terminal then write
    - Using V-rep version 4 (CoppeliaSim)
-```bash
-        sudo sh installer_v4.sh
-```
+     ```bash
+            sudo sh installer_v4.sh
+     ```
    - Using V-rep version 3.6.2
-```bash
-     sudo sh installer.sh
-```
+     ```bash
+            sudo sh installer.sh
+     ```
 4. Please press Y or Enter when ever the script asked.
 ## World setup
-Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh simulator.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write
+   - Using V-rep version 4 (CoppeliaSim)
+     ```bash
+            sudo sh simulator_v4.sh
+     ```
+   - Using V-rep version 3.6.2
+     ```bash
+            sudo sh simulator.sh
+     ```
 ## Run 
 There is two methods to communicate with the robot:
 Approach1: is based on V-rep python API (there is no client and server),
@@ -176,21 +184,47 @@ Approach2: is based on remote API (the teams should use client to control robot 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 
 ### Approach1
-Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run1.sh`
-### Approach2
-1. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run2_client.sh`
-2. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh run2_server.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
+```bash
+    sudo sh run1.sh
+```
 
+### Approach2
+1. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
+```bash
+sudo sh run2_client.sh
+```
+
+2. Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write 
+```bash
+sudo sh run2_server.sh`
+```
 ---
 
 # Ubuntu 18.04
 ## Installation
 1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_18/installer.tar.gz)
 2. Put the file where ever you want the simplus package be installed in.
-3. Go to the interested folder, right click and open the terminal then write `sudo sh installer.sh`
+3. Go to the interested folder, right click and open the terminal then write
+   - Using V-rep version 4 (CoppeliaSim)
+     ```bash
+            sudo sh installer_v4.sh
+     ```
+   - Using V-rep version 3.6.2
+     ```bash
+            sudo sh installer.sh
+     ```
 4. Please press Y or Enter when ever the script asked.
 ## World setup
-Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh simulator.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
+   - Using V-rep version 4 (CoppeliaSim)
+     ```bash
+            sudo sh simulator_v4.sh
+     ```
+   - Using V-rep version 3.6.2
+     ```bash
+            sudo sh simulator.sh
+     ```
 ## Run 
 There is two methods to communicate with the robot:
 Approach1: is based on V-rep python API (there is no client and server),
@@ -198,11 +232,21 @@ Approach2: is based on remote API (the teams should use client to control robot 
 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
 ### Approach1
-Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run1.sh`
-### Approach2
-1. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2_client.sh`
-2. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write `sudo sh run2_server.sh`
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
+```bash
+sudo sh run1.sh
+```
 
+### Approach2
+1. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write
+```bash 
+sudo sh run2_client.sh
+```
+
+2. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
+```bash
+sudo sh run2_server.sh
+```
 
 # Setup for Scratch
 Based on your desired operating system go through steps abow and chose the **Approach2 & skip the client part** (since the client would be the Scratch program), then follow the below steps: 
