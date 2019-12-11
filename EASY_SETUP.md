@@ -116,15 +116,26 @@ For intalling Python download the suitable executable file from below:
 Run the downloaded file. (make sure to check the highlited box below for adding python path)
 ![install Python Win](docs/img/installPythonWin.png?raw=true "install Python Win")
 
+### Using V-rep version 4 (CoppeliaSim)
+[Download the installer_4.zip] (https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/windows/installer_v4.zip). extract it and run the "installer_4.bat" by double clicking on it.
+
+### Using V-rep version 3.6.2
+
 Then, download V-rep from [coppeliarobotics](http://coppeliarobotics.com/files/V-REP_PLAYER_V3_6_2_Setup.exe), there is just a couple of Nexts to finish V-rep installation.
 
 Afterwards, download `simplus_vrep-master` file from [Simplus Github](https://github.com/Robocup-simplus/simplus_vrep/archive/master.zip), and extract the downloaded file to the interested directory.
 
-Run the bat file in `simplus_vrep-master/easy_setup/windows/install.bat` **as administrator**, to setup all the requirements(this setup includes prepared worlds, models, & etc, while the setup is finished you will be ask to press a key to exit).
+Run the bat file in `simplus_vrep-master/easy_setup/windows/install.bat` , to setup all the requirements(this setup includes prepared worlds, models, & etc, while the setup is finished you will be ask to press a key to exit).
 
 
 ## World setup
-Run the bat file in `simplus_vrep-master/easy_setup/windows/simulator.bat` **as administrator** to open and setup the world.
+
+### Using V-rep version 4 (CoppeliaSim)
+
+Run the bat file in `simplus_vrep-master/easy_setup/windows/simulator_v4.bat`.
+
+### Using V-rep version 3.6.2
+Run the bat file in `simplus_vrep-master/easy_setup/windows/simulator.bat` .
 
 ## Run 
 There is two methods to communicate with the robot:
@@ -145,7 +156,15 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 ## Installation
 1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_16/installer.tar.gz)
 2. Put the file where ever you want the simplus package be installed in.
-3. Go to the interested folder, right click and open the terminal then write `sudo sh installer.sh`
+3. Go to the interested folder, right click and open the terminal then write
+   - Using V-rep version 4 (CoppeliaSim)
+```bash
+        sudo sh installer_v4.sh
+```
+   - Using V-rep version 3.6.2
+```bash
+     sudo sh installer.sh
+```
 4. Please press Y or Enter when ever the script asked.
 ## World setup
 Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write `sudo sh simulator.sh`
