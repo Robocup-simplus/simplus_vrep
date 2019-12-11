@@ -36,12 +36,29 @@ V-REP provides a free license for educational purposes and accepts seven program
 ## Developed Structure
 The scheme of Simplus V-rep could be found in the figure below.
 ![Simplus V-rep Structure](docs/img/SimplusVrepStructure.png?raw=true "Simplus V-rep Structure")
+The proposed platform structure is consist of 3 main parts; V-REP + models + worlds, Gama Manager + Robot Monitor, & Robot Controlling code.
 
-### Game Manager Features
+### V-REP + models + worlds
+For the first part, V-REP released the latest version of V-REP 4.0.0 and named it CoppelliaSim just two weeks ago.
+We have tested our developlments also with V-REP 4.0.0 (CoppelliaSim) it works perfectly and even faster.
+It was a good sign here that V-REP at its' biggest update is compattible with our developments.
+We have prepared bunch of sample models and a sample world.
+
+### Game Manager + Robot Monitor
+
+we have considered two senarios; a server/client senario and a combined version, both senarios include the Game Manager, Robot Monitor, and the Robot Controlling code. The point is that in a server/client based approach the robot controling code (which the teams are soppused to develope) could be separated and run by an different computers which makes it a better solution for compettitions.
+
+#### Game Manager
+
+We have developed a Game Manager that is fed by the rules (whatever it is, finding victim, moving victim or obstacles, moving to a particular position, avoiding traps, to make the list short: robots can even play football:) and we did not limit the rules just to the rescue)
+
 The Game Manager has been developed to
 - Control the game state such as Start, Pause, & Stop,
 - Calculate the scores based on the fexible rules defined by TC/OCs, (One of the most difficult parts of the TC/OC jobs in Virtual Rescue is fairly calculating the score as it is a simulated environment, so it is necessary to have the automated scoring system)
 - Show scoreboard.
+
+#### Robot Monitor
+The Robot Monitor shows the robot's sensors status, camera, orientation, & positions along providing a simple robot control panel, and possibility to connect with a real robot which might be intresting for kids.
 
 ### Robot Controlling
 The Robot Controlling code developed by the teams will be placed here. Simplus V-Rep supports lots of programming languages (e.g. **Scratch**, **Python**, GO, C, C++, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
