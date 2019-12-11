@@ -41,7 +41,7 @@ You can close this applications using 'close' icon near them.
 Please Choose One of the two provided setup approaches. Two V-rep Simulator versions are available in each approach.
 # Using Application
 ## Installation
-Download the [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
+Download the [installer Application](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) and choose your interested V-rep version.
 - ### Using V-rep version 4 (CoppeliaSim)
   ```bash
      Double click on the "installer_v4" application and the server will be installed on the Desktop directory
@@ -90,7 +90,7 @@ Approach2: is based on remote API (the teams should use client to control robot 
 
 # Using Scripts
 ## Installation
-Download the [installer Scripts](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) 
+Download the [installer Scripts](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/mac/installer.zip) and choose your interested V-rep version.
 - #### Using V-rep version 4 (CoppeliaSim)
 
   ```bash
