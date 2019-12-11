@@ -2,11 +2,10 @@
 This repository is dedicated to the new Rescue simulation environment for Robocupers from Juniors to Majors and is aimed to be a bridge from Robocup Junior Rescue to Robocup Major Rescue competitions, so that a kid could start with it (e.g. by using Scratch to move a simulated robot) and gradually be introduced with more complex problems and languages (e.g. implementing object detection and SLAM in ROS).
 
 
-- [Overview](https://github.com/Robocup-simplus/simplus_vrep/#overview)
-  - [Game Manager Features](https://github.com/Robocup-simplus/simplus_vrep/#game-manager-features)
-  - [Robot Controlling](https://github.com/Robocup-simplus/simplus_vrep/#robot-controlling)
-  - [System Requirements](https://github.com/Robocup-simplus/simplus_vrep/#system-requirements)
-  - [Software Requirements](https://github.com/Robocup-simplus/simplus_vrep/#software-requirements)
+- [Overview](#overview)
+  - [Structure](#developed-structure)
+  - [System Requirements](#system-requirements)
+  - [Software Requirements](#software-requirements)
 - [Getting Start (Wiki page)](https://github.com/Robocup-simplus/simplus_vrep/wiki)
 - [Setup & Run](EASY_SETUP.md)
 - [Manual Setup & Run](MANUAL_SETUP.md)   
