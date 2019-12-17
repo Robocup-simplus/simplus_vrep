@@ -173,7 +173,9 @@ Run the bat file in `simplus_vrep-master/easy_setup/windows/simulator.bat` .
 
 ## Run 
 There is two methods to communicate with the robot:
+
 Approach1: is based on V-rep python API (there is no client and server & the robot controling code should be placed in the main function of `robotApi.py`.),
+
 Approach2: is based on remote API (the teams should use `client.py` to control robot) 
 
 > Remember to Stop the V-REP Simulator (by the V-REP Stop bottom) & Play agein (by the V-REP Start bottom) before starting a new Run.
