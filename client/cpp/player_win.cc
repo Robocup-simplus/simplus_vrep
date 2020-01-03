@@ -30,8 +30,8 @@ EXPORT char* play(int colors_1[],int colors_2[],int colors_3[],int proximity_det
 
     /* led_color_id: 1---> red  2---> green 3---> blue 4---> off
        colors_1[]: color sensor 1 value, colors are defined by (r,g,b), colors_1[0]-->r value  colors_1[1]-->g value colors_1[2]-->b value
-       colors_1[]: color sensor 2 value, colors are defined by (r,g,b), colors_2[0]-->r value  colors_2[1]-->g value colors_3[2]-->b value
-       colors_1[]: color sensor 3 value, colors are defined by (r,g,b), colors_3[0]-->r value  colors_2[1]-->g value colors_3[2]-->b value
+       colors_2[]: color sensor 2 value, colors are defined by (r,g,b), colors_2[0]-->r value  colors_2[1]-->g value colors_3[2]-->b value
+       colors_3[]: color sensor 3 value, colors are defined by (r,g,b), colors_3[0]-->r value  colors_2[1]-->g value colors_3[2]-->b value
        
        wheel_linear: linear velocity 
        wheel_angular: angular velocity
