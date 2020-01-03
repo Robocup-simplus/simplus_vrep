@@ -1,1 +1,1 @@
-how to write a sample code in python
+How to write a sample code in c/cpp
