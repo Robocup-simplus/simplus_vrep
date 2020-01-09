@@ -29,6 +29,11 @@ the game manager panel which controls the server and scoreboard
 # robots
 - simplus_e-puck.ttm
   - the e-puck modeled in v-rep with a monitoring and controling GUI.
+  - simplus_e-puck.ttm
+  - the e-puck modeled in v-rep with a monitoring and controling GUI.
+  - the e-puck proximity max sensor range is 0.04 m  which is the standard value defined by the manufactured company. The proximity sensor return the distance between the robot and the obstacle.
+  - the e-puck can move by setting the linear and angular speed. The linear speed is in range of (0,0.5) and the angular speed is in range of (0,1). exg: 0.5 means 90 degree and 1 means 180 degree.
+  
 # tiles
 - speed_bump.ttm
   - a small speed bump model
