@@ -82,7 +82,7 @@ Approach2: is based on remote API (the teams should use client to control robot 
   ```
 ### Approach2
   ```bash
-  1. Double click on the "run2_client" application
+  1. Double click on the "run2_client1" application
   2. Double click on the "run2_server" application
   (They can be found in "simplus_vrep/easy_setup/mac" directory)
 
