@@ -167,6 +167,17 @@ class robotApi:
             self.traps_dict = {}
             self.parseConfig(trapConfig)
 
+    def precompute(self):
+        vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,vrep.simx_opmode_streaming)
+        vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,vrep.simx_opmode_streaming)
+        vrep.simxGetObjectPosition(self.clientID, self.left, self.robot_base, vrep.simx_opmode_streaming) 
+        vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,vrep.simx_opmode_streaming)    
+        vrep.simxGetObjectOrientation(self.clientID, self.robot_base, -1,vrep.simx_opmode_streaming)  
+        vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,vrep.simx_opmode_streaming)
+        vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[0], 0,vrep.simx_opmode_streaming)
+        vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[1], 0,vrep.simx_opmode_streaming)
+        vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[2], 0,vrep.simx_opmode_streaming)
+        
     def __getRobotWidth__(self):
         response_right = vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,
                                                     vrep.simx_opmode_blocking)
@@ -179,7 +190,7 @@ class robotApi:
 
     def getRobotXYZ(self):
         returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
-                                                               vrep.simx_opmode_oneshot)
+                                                               vrep.simx_opmode_buffer)
         return position
 
     def checkAllTraps(self):
@@ -242,27 +253,17 @@ class robotApi:
             else:
                 return -1
 
-    def getCameraImage(self,isstart=False):
-        if(isstart):
-            returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
-                                                                                  vrep.simx_opmode_streaming)
-            return []
-        else:
-            returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
+    def getCameraImage(self):
+        returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
                                                                                   vrep.simx_opmode_buffer)
         if (returnCode == 0 or returnCode == 1  ):
             return [image_array, image_resolution[0], image_resolution[1]]
         else:
             return -1
 
-    def getColorSensor(self, sensor_index=0,isstart=False):
+    def getColorSensor(self, sensor_index=0):
         if (sensor_index >= len(self.colorSensors)): return -1
-        if(isstart):
-                returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
-                                                                                  self.colorSensors[sensor_index], 0,
-                                                                                  vrep.simx_opmode_streaming)
-        else:        
-           returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
+        returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
                                                                                   self.colorSensors[sensor_index], 0,
                                                                                   vrep.simx_opmode_buffer)
         if (returnCode == 0 or returnCode == 1  ):
@@ -287,11 +288,11 @@ class robotApi:
 
     def getRobotPose(self):
         returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
-                                                               vrep.simx_opmode_blocking)
+                                                               vrep.simx_opmode_buffer)
         returnCode_orient, eulerAngles = vrep.simxGetObjectOrientation(self.clientID, self.robot_base, -1,
-                                                                       vrep.simx_opmode_blocking)
+                                                                       vrep.simx_opmode_buffer)
 
-        if (returnCode_pose == 0 and returnCode_orient == 0):
+        if ( (returnCode_pose == 0 or returnCode_pose == 1) and  (returnCode_orient == 0 or returnCode_orient == 1)):
             angles_in_degree = [(i + math.pi / 2) * 180 / math.pi for i in eulerAngles]
 
             if (self.gps_enabled):
@@ -366,14 +367,23 @@ class serverApi:
             
             return 0
 
-    def set_score(self, team_id, team_score):
-        return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+    def set_score(self, team_id, team_score,isOneshot=True):
+        if isOneshot:
+           return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
                                                                                       vrep.sim_scripttype_childscript,
                                                                                       'remote_set_score',
                                                                                       [team_id], [], [team_score],
                                                                                       bytearray(),
-                                                                                      vrep.simx_opmode_blocking)
+                                                                                      vrep.simx_opmode_oneshot)
+        else:
+            return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+                                                                                      'Game_manager',
+                                                                                      vrep.sim_scripttype_childscript,
+                                                                                      'remote_set_score',
+                                                                                      [team_id], [], [team_score],
+                                                                                      bytearray(),
+                                                                                      vrep.simx_opmode_blocking)      
         return return_code
 
     def set_name(self, team_name):
@@ -389,8 +399,17 @@ class serverApi:
         else:
             return None
         
-    def get_status(self,start=0):
-        return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+    def get_status(self,start=0,isOneshot=False):
+        if isOneshot:
+           return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+                                                                                      'Game_manager',
+                                                                                      vrep.sim_scripttype_childscript,
+                                                                                      'remote_get_sim_status',
+                                                                                      [start], [], [],
+                                                                                      bytearray(),
+                                                                                      vrep.simx_opmode_oneshot)
+        else:
+           return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
                                                                                       vrep.sim_scripttype_childscript,
                                                                                       'remote_get_sim_status',
@@ -470,10 +489,7 @@ def main():
     #endscratch
     time.sleep(0.1)
     print("start precompute")
-    ra.getColorSensor(0,True)
-    ra.getColorSensor(1,True)
-    ra.getColorSensor(2,True)
-    ra.getCameraImage(True)
+    ra.precompute()
     print("end precompute")
 
     counter = 0
@@ -488,7 +504,7 @@ def main():
     testtime=time.time_ns()
     while True:
         while not is_started:
-           is_started = sa.get_status()
+           is_started = sa.get_status(isOneshot=True)
 
         obstacle = 0
         col0 = ra.getColorSensor(0)
@@ -513,7 +529,7 @@ def main():
         else:
             ra.setRobotSpeed(0.00, 0.5)
         team_score += ra.checkAllTraps()
-        sa.set_score(my_team_id, str(team_score))
+        sa.set_score(my_team_id, str(team_score),False)
         print("dif time =",1000000000/(time.time_ns()-testtime))
         testtime=time.time_ns()
        # time.sleep(0.25)
