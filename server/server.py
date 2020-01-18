@@ -14,23 +14,23 @@ import simplus_scratch
 
 def run():
 
-    vapi = VrepApi()
-    sa = vapi.init_serverApi()
-    
-    is_started = False
-    while not is_started:
-        print("Please click on the play button")
-        is_started = sa.get_status(1)
-    # sa.startSimulation()
-    print("step1")
-    time.sleep(0.1)
-    with grpc.insecure_channel(
-            target='localhost:50051',
-            options=[('grpc.lb_policy_name', 'pick_first'),
-                     ('grpc.enable_retries', 0), ('grpc.keepalive_timeout_ms',
-                                                  10000)]) as channel:
+     vapi = VrepApi()
+     sa = vapi.init_serverApi()
+#     
+     is_started = False
+     while not is_started:
+         print("Please click on the play button")
+         is_started = sa.get_status(1)
+#     # sa.startSimulation()
+     print("step1")
+     time.sleep(0.1)
+     with grpc.insecure_channel(
+             target='localhost:50051',
+             options=[('grpc.lb_policy_name', 'pick_first'),
+                      ('grpc.enable_retries', 0), ('grpc.keepalive_timeout_ms',
+                                                   10000)]) as channel:
       stub = simplus_pb2_grpc.SimPlusStub(channel)
-      # Timeout in seconds.
+#       # Timeout in seconds.
       try:
         response = stub.Start(simplus_pb2.WorldInfo(team_size=2,
                                                     robot_per_team=2,
@@ -47,6 +47,12 @@ def run():
             r=0
         my_team_id = max(r, my_team_id)
         ra = vapi.init_robotApi()
+        print("start precompute")
+        ra.getColorSensor(0,True)
+        ra.getColorSensor(1,True)
+        ra.getColorSensor(2,True)
+        ra.getCameraImage(True)
+        print("end precompute")
         st=simplus_scratch.ScratchThread(vapi,ra,sa)
         st.start()
         print("Start")
