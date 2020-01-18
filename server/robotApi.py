@@ -179,7 +179,7 @@ class robotApi:
 
     def getRobotXYZ(self):
         returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
-                                                               vrep.simx_opmode_blocking)
+                                                               vrep.simx_opmode_oneshot)
         return position
 
     def checkAllTraps(self):
@@ -200,7 +200,7 @@ class robotApi:
                                                                                                 'remote_led_change',
                                                                                                 [21002], [], [],
                                                                                                 bytearray(),
-                                                                                                vrep.simx_opmode_blocking)
+                                                                                                vrep.simx_opmode_oneshot)
             if (returnCode == 0):
                 return 'red'
             else:
@@ -212,7 +212,7 @@ class robotApi:
                                                                                                 'remote_led_change',
                                                                                                 [21003], [], [],
                                                                                                 bytearray(),
-                                                                                                vrep.simx_opmode_blocking)
+                                                                                                vrep.simx_opmode_oneshot)
             if (returnCode == 0):
                 return 'green'
             else:
@@ -224,7 +224,7 @@ class robotApi:
                                                                                                 'remote_led_change',
                                                                                                 [21004], [], [],
                                                                                                 bytearray(),
-                                                                                                vrep.simx_opmode_blocking)
+                                                                                                vrep.simx_opmode_oneshot)
             if (returnCode == 0):
                 return 'blue'
             else:
@@ -236,40 +236,53 @@ class robotApi:
                                                                                                 'remote_led_change',
                                                                                                 [21001], [], [],
                                                                                                 bytearray(),
-                                                                                                vrep.simx_opmode_blocking)
+                                                                                                vrep.simx_opmode_oneshot)
             if (returnCode == 0):
                 return ''
             else:
                 return -1
 
-    def getCameraImage(self):
-        returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
-                                                                                  vrep.simx_opmode_blocking)
-        if (returnCode == 0):
+    def getCameraImage(self,isstart=False):
+        if(isstart):
+            returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
+                                                                                  vrep.simx_opmode_streaming)
+            return []
+        else:
+            returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
+                                                                                  vrep.simx_opmode_buffer)
+        if (returnCode == 0 or returnCode == 1  ):
             return [image_array, image_resolution[0], image_resolution[1]]
         else:
             return -1
 
-    def getColorSensor(self, sensor_index=0):
+    def getColorSensor(self, sensor_index=0,isstart=False):
         if (sensor_index >= len(self.colorSensors)): return -1
-        returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
+        if(isstart):
+                returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
                                                                                   self.colorSensors[sensor_index], 0,
-                                                                                  vrep.simx_opmode_blocking)
-        if (returnCode == 0):
+                                                                                  vrep.simx_opmode_streaming)
+        else:        
+           returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
+                                                                                  self.colorSensors[sensor_index], 0,
+                                                                                  vrep.simx_opmode_buffer)
+        if (returnCode == 0 or returnCode == 1  ):
             image_array = (np.array(image_array, dtype=np.uint8))
             return image_array[24:27]
         else:
+            print( returnCode, image_resolution, image_array)
             return -1
 
     def getProximitySensor(self, sensor_index=0):
+
         returnCode, detectionState, detectedPoint, detectedObjectHandle, detectedSurfaceNormalVector = vrep.simxReadProximitySensor(
-            self.clientID, self.proxSensors[sensor_index], vrep.simx_opmode_blocking)
-        if (returnCode == 0):
+            self.clientID, self.proxSensors[sensor_index], vrep.simx_opmode_oneshot)
+        if (returnCode == 0 or returnCode == 1):
             if (detectionState == True):
                 return [True, pow(pow(detectedPoint[0], 2) + pow(detectedPoint[1], 2) + pow(detectedPoint[2], 2), 0.5)]
             else:
                 return [False, 0]
-        else:
+        else: 
+            print(returnCode,detectionState,detectedPoint )
             return -1
 
     def getRobotPose(self):
@@ -456,7 +469,13 @@ def main():
 #     st.start()
     #endscratch
     time.sleep(0.1)
-    print(ra.getColorSensor(1))
+    print("start precompute")
+    ra.getColorSensor(0,True)
+    ra.getColorSensor(1,True)
+    ra.getColorSensor(2,True)
+    ra.getCameraImage(True)
+    print("end precompute")
+
     counter = 0
     col = ['red', 'green', 'blue', 'akldjf']
     obstacle = 0
@@ -466,31 +485,38 @@ def main():
     if r is None:
         r=0
     my_team_id = max(r, my_team_id)
+    testtime=time.time_ns()
     while True:
         while not is_started:
            is_started = sa.get_status()
+
         obstacle = 0
         col0 = ra.getColorSensor(0)
         col1 = ra.getColorSensor(1)
         col2 = ra.getColorSensor(2)
-#         print(col0,col1,col2)
+
+
         if((col0[0]>100 and col0[0]<215 and col0[1]<215 and col0[2]<215 and abs(int(col0[0])-int(col0[1]))<45 and abs(int(col0[1])-int(col0[2]))<45 and  abs(int(col0[0])-int(col0[2]))<45 ) or
            (col1[0]>100 and col1[0]<215 and col1[1]<215 and col1[2]<215 and abs(int(col1[0])-int(col1[1]))<45 and abs(int(col1[1])-int(col1[2]))<45 and  abs(int(col1[0])-int(col1[2]))<45 ) or
            (col2[0]>100 and col2[0]<215 and col2[1]<215 and col2[2]<215 and abs(int(col2[0])-int(col2[1]))<45 and abs(int(col2[1])-int(col2[2]))<45 and  abs(int(col2[0])-int(col2[2]))<45) ):
-#             print("here")
             pos = ra.getRobotXYZ()
             team_score += sa.callAction("find_checkpoint", pos[0],pos[1], pos[2])
+
         col_total = (np.array(col0) + np.array(col1) + np.array(col2))
         ra.setLED(col[np.argmax(col_total)])
+
         for i in range(2, 6):
             obstacle += ra.getProximitySensor(i)[0]
+
         if (obstacle == 0):
             ra.setRobotSpeed(0.05, 0.0)
         else:
             ra.setRobotSpeed(0.00, 0.5)
         team_score += ra.checkAllTraps()
         sa.set_score(my_team_id, str(team_score))
-        time.sleep(0.25)
+        print("dif time =",1000000000/(time.time_ns()-testtime))
+        testtime=time.time_ns()
+       # time.sleep(0.25)
         counter += 1
         if (counter > 1000): break
     sa.stopSimulation()
