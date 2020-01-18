@@ -26,6 +26,8 @@ def End(server, result):
     # Fill your final result here
     result.message = 'The Ending Message'
 
+import time
+testtime=time.time_ns()
 
 def Play(id, server, observation, command):
     """ THIS FUNCTION WILL BE CALLED FOR EACH ROBOT
@@ -39,7 +41,9 @@ def Play(id, server, observation, command):
     #
     # for i, c in enumerate(observation.colors):
     #     print('COL:', i, c.r, c.g, c.b)
-
+    global testtime
+    print("dif time =",1000000000/(time.time_ns()-testtime))
+    testtime=time.time_ns()
     col = ['red', 'green', 'blue', 'akldjf']
     a = [0, 0, 0]
     for c in observation.colors:
