@@ -48,10 +48,7 @@ def run():
         my_team_id = max(r, my_team_id)
         ra = vapi.init_robotApi()
         print("start precompute")
-        ra.getColorSensor(0,True)
-        ra.getColorSensor(1,True)
-        ra.getColorSensor(2,True)
-        ra.getCameraImage(True)
+        ra.precompute()
         print("end precompute")
         st=simplus_scratch.ScratchThread(vapi,ra,sa)
         st.start()
@@ -59,17 +56,22 @@ def run():
         team_score = 0
         team_name = response.name
         for i in range(1000):
-            is_started = sa.get_status()
+            testtime=time.time_ns()
+            is_started = sa.get_status(isOneshot=True)
             while not is_started:
-                is_started = sa.get_status()
+                is_started = sa.get_status(isOneshot=True)
             a = time.process_time()
 
             image = ra.getCameraImage()
+            
             image_array = np.array(image[0], dtype=np.uint8)
 
             colors = [ra.getColorSensor(i) for i in range(3)]
+
             proxim = [ra.getProximitySensor(i) for i in range(8)]
+
             pos = ra.getRobotPose()
+
             response = stub.Action(
                 simplus_pb2.Observations(
                     server=simplus_pb2.ServerInfo(time=i, server_state='running', my_score=0, opp_score=1),
@@ -82,19 +84,23 @@ def run():
                     ) for i in range(1)]
                 )
             )
+
             for res in response.commands:
-                print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' + res.LED)
+#                 print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' + res.LED)
                 ra.setRobotSpeed(linear=res.linear, angular=res.angular)
                 ra.setLED(color=res.LED)
                 for action in res.actions:
                     team_score += sa.callAction(action.type, action.x, action.y, action.z)
-            team_score += ra.checkAllTraps()
-            sa.set_score(my_team_id, str(team_score))
 
+            team_score += ra.checkAllTraps()
+
+            sa.set_score(my_team_id, str(team_score))
+            print("dif time =",1000000000/(time.time_ns()-testtime))
+            testtime=time.time_ns()
         response = stub.End(
             simplus_pb2.Ending(server=simplus_pb2.ServerInfo(time=i, server_state='running', my_score=0, opp_score=1)))
         print('END IS: ' + response.message)
-      except:
+      except Exception as err:
           print("Waiting for Scratch")
           print("Client Received: " + "my_team_name")
           my_team_id = 0
