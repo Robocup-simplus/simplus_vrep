@@ -37,3 +37,19 @@ Sample `trapconfig.txt`:
 ```
 trap1;Cuboid;6;2;0.1;-2
 ```
+
+### Game manager
+In order to add the "Game manager" to the world, you should drag & drop the game_manager.ttm in the world. game_manager.ttm  could be found in the "Model browser" section of V-rep and in the root of "Simplus" directory.
+For setting the "game duration" in "Cycles":
+  1. open the "Scene Hirarchy" section of V-rep 
+  2. find the "Game_manager" model
+  3. Double click on the "script icon" near the "Game_manager"
+  4. Go to Line 130 and change the "game_duration" variable(It's default value is 1000)
+  ```bashe
+    -- Set game duration here --
+    game_duration=1000;
+  ```
+  5. press the following key coresspond to your OS inorder to save the script
+           - ctrl+ s (Windows/Ubuntu)
+           - command + s (mac)
+  6. close the script
