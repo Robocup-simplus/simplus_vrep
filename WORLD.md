@@ -50,6 +50,6 @@ For setting the "game duration" in "Cycles":
     game_duration=1000;
   ```
   5. press the following key coresspond to your OS inorder to save the script
-           - ctrl+ s (Windows/Ubuntu)
-           - command + s (mac)
+      - ctrl+ s (Windows/Ubuntu)
+      - command + s (mac)
   6. close the script
