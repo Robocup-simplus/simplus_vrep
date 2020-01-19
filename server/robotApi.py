@@ -73,10 +73,14 @@ class actionClass:
             return self.failure_score
 
     def logAction(self, x, y, z, index_min, distance, score):
-        print(self.action)
-        print(x, y, z)
-        print(self.obejcts_names[index_min], self.objects_distances[index_min])
-        print(distance, score)
+         if score==0:
+            print("ACTION: ",self.action," Was requested on point : ",x, y, z,"---- Distance from center of action: ",distance,"---- Recieved score:",score," --- It's Duplicated action!!")     
+         else:
+            print("ACTION: ",self.action," Was requested on point : ",x, y, z,"---- Distance from center of action: ",distance,"---- Recieved score:",score)
+#         print(self.action)
+#         print(x, y, z)
+#         print(self.obejcts_names[index_min], self.objects_distances[index_min])
+#         print(distance, score)
 
 
 class trapClass:
@@ -116,15 +120,17 @@ class trapClass:
                 target_distances.append(pow(s, 0.5))
             index_min = np.argmin(np.array(target_distances))
             if target_distances[index_min] >= self.range + self.bandgap_range:
-                self.logTrap(x, y, z, index_min, target_distances[index_min])
+             #   self.logTrap(x, y, z, index_min, target_distances[index_min])
                 self.trap_activated = False
             return 0
 
     def logTrap(self, x, y, z, index_min, distance):
-        print(self.trap)
-        print(x, y, z)
-        print(self.obejcts_names[index_min], self.objects_distances[index_min])
-        print(distance)
+          print("TRAP: ",self.trap," Passed point : ",x, y, z,"---- Distance to center of trap: ",distance,"---- Recieved score: ",self.penalty)
+
+#         print(self.trap)
+#         print(x, y, z)
+#         print(self.obejcts_names[index_min], self.objects_distances[index_min])
+#         print(distance)
 
 
 class robotApi:
@@ -394,8 +400,10 @@ class serverApi:
                                                                                       [], [], [team_name],
                                                                                       bytearray(),
                                                                                       vrep.simx_opmode_blocking)
-        if len(o_int) >= 1:
-            return o_int[0]
+        if len(o_int) > 1:
+            return o_int[0],o_int[1]
+        elif len(o_int) == 1:
+            return o_int[0],1000
         else:
             return None
         
@@ -497,12 +505,14 @@ def main():
     obstacle = 0
     team_score = 0
     my_team_id = 0
-    r=sa.set_name('my_team_name')
+    r,game_duration=sa.set_name('my_team_name')
+    print("game_duration=",game_duration)
     if r is None:
         r=0
     my_team_id = max(r, my_team_id)
     testtime=time.time_ns()
     while True:
+        is_started = sa.get_status(isOneshot=True)
         while not is_started:
            is_started = sa.get_status(isOneshot=True)
 
@@ -534,7 +544,7 @@ def main():
         testtime=time.time_ns()
        # time.sleep(0.25)
         counter += 1
-        if (counter > 1000): break
+        if (counter > game_duration): break
     sa.stopSimulation()
     vrep.simxFinish(vapi.clientID)
     time.sleep(25)

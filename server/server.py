@@ -42,7 +42,8 @@ def run():
             
         print("Client Received: " + response.name)
         my_team_id = 0
-        r=sa.set_name(response.name)
+        r,game_duration=sa.set_name(response.name)
+        print("game_duration=",game_duration)
         if r is None:
             r=0
         my_team_id = max(r, my_team_id)
@@ -55,7 +56,7 @@ def run():
         print("Start")
         team_score = 0
         team_name = response.name
-        for i in range(1000):
+        for i in range(game_duration):
             testtime=time.time_ns()
             is_started = sa.get_status(isOneshot=True)
             while not is_started:
