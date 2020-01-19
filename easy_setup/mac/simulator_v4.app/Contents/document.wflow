@@ -64,7 +64,7 @@
 cd ~/Desktop/simplus_vrep
 pwd
 cp worlds/SampleMap.ttt  CoppeliaSim_Edu_V4_0_0_Mac/
-CoppeliaSim_Edu_V4_0_0_Mac/coppeliaSim.app/Contents/MacOS/coppeliaSim -q ../../../SampleMap.ttt -s 
+CoppeliaSim_Edu_V4_0_0_Mac/coppeliaSim.app/Contents/MacOS/coppeliaSim  ../../../SampleMap.ttt -s 
 </string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
@@ -74,27 +74,6 @@ CoppeliaSim_Edu_V4_0_0_Mac/coppeliaSim.app/Contents/MacOS/coppeliaSim -q ../../.
 					<string>/bin/bash</string>
 					<key>source</key>
 					<string></string>
-				</dict>
-				<key>ActionRuntimeParameters</key>
-				<dict>
-					<key>COMMAND_STRING</key>
-					<string>#!/bin/bash
-
-cd ~/Desktop/simplus_vrep
-pwd
-cp worlds/SampleMap.ttt  CoppeliaSim_Edu_V4_0_0_Mac/
-CoppeliaSim_Edu_V4_0_0_Mac/coppeliaSim.app/Contents/MacOS/coppeliaSim -q ../../../SampleMap.ttt -s 
-</string>
-					<key>CheckedForUserDefaultShell</key>
-					<true/>
-					<key>inputMethod</key>
-					<integer>0</integer>
-					<key>shell</key>
-					<string>/bin/bash</string>
-					<key>source</key>
-					<string></string>
-					<key>temporary items path</key>
-					<string>/var/folders/z2/06tyjn190ql3v0znm5g76bvc0000gn/T/478016B8-EA42-432B-A9E2-DDB68FF275ED/1/com.apple.RunShellScript</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.RunShellScript</string>
@@ -199,7 +178,7 @@ CoppeliaSim_Edu_V4_0_0_Mac/coppeliaSim.app/Contents/MacOS/coppeliaSim -q ../../.
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:316.000000</string>
+				<string>450.000000:253.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

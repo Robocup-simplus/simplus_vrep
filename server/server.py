@@ -57,7 +57,7 @@ def run():
         team_score = 0
         team_name = response.name
         for i in range(game_duration):
-            testtime=time.time_ns()
+            #testtime=time.time_ns()
             is_started = sa.get_status(isOneshot=True)
             while not is_started:
                 is_started = sa.get_status(isOneshot=True)
@@ -96,8 +96,8 @@ def run():
             team_score += ra.checkAllTraps()
 
             sa.set_score(my_team_id, str(team_score))
-            print("dif time =",1000000000/(time.time_ns()-testtime))
-            testtime=time.time_ns()
+            #print("dif time =",1000000000/(time.time_ns()-testtime))
+            #testtime=time.time_ns()
         response = stub.End(
             simplus_pb2.Ending(server=simplus_pb2.ServerInfo(time=i, server_state='running', my_score=0, opp_score=1)))
         print('END IS: ' + response.message)

@@ -125,7 +125,7 @@ class trapClass:
             return 0
 
     def logTrap(self, x, y, z, index_min, distance):
-          print("TRAP: ",self.trap," Passed point : ",x, y, z,"---- Distance to center of trap: ",distance,"---- Recieved score: ",self.penalty)
+          print("TRAP: ",self.trap," Passed point : ",x, y, z,"---- Distance from center of trap: ",distance,"---- Recieved score: ",self.penalty)
 
 #         print(self.trap)
 #         print(x, y, z)
