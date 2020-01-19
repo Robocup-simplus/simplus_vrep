@@ -33,14 +33,18 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
 
     def Start(self, request, context):
         response = simplus_pb2.TeamInfo()
-        player.start.argtypes = [ct.c_int32,ct.c_int32,ct.c_int32,ct.c_int32]
-        player.start.restype=ct.c_char_p;
-        res=player.start(1,1,3,8)
-        response.name = res.decode("utf-8") 
+        try:
+         player.start.argtypes = [ct.c_int32,ct.c_int32,ct.c_int32,ct.c_int32]
+         player.start.restype=ct.c_char_p;
+         res=player.start(1,1,3,8)
+         response.name = res.decode("utf-8") 
+        except Exception as err:
+            print(str(err))
         return response
 
     def Action(self, request, context):
-        response = simplus_pb2.Commands()
+      response = simplus_pb2.Commands()
+      try:  
         for id, observation in enumerate(request.robots):
 #             print(type(observation.camera.raw))
             cmd = simplus_pb2.Command(id=id)
@@ -86,15 +90,20 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
             if(res.decode("utf-8")!=""):
               cmd.actions.append(simplus_pb2.Action(x=a_x.value,y=a_y.value,z=a_z.value,type=res.decode("utf-8")))
             response.commands.append(cmd)
-        return response
+      except Exception as err:
+            print(str(err))
+      return response
 
     def End(self, request, context):
-        response = simplus_pb2.Result()
+      response = simplus_pb2.Result()
+      try:  
         player.end.argtypes = []
         player.end.restype=ct.c_char_p;
         res=player_end()
         response.message = res.decode("utf-8") 
-        return response
+      except Exception as err:
+            print(str(err))
+      return response
 
 
 def serve():

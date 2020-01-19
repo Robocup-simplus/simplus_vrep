@@ -12,20 +12,29 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
 
     def Start(self, request, context):
         response = simplus_pb2.TeamInfo()
-        player.Start(request, response)
+        try:
+          player.Start(request, response)
+        except Exception as err:
+            print(str(err))
         return response
 
     def Action(self, request, context):
         response = simplus_pb2.Commands()
-        for id, observation in enumerate(request.robots):
+        try:
+          for id, observation in enumerate(request.robots):
             cmd = simplus_pb2.Command(id=id)
             player.Play(id, request.server, observation, cmd)
             response.commands.append(cmd)
+        except Exception as err:
+            print(str(err))
         return response
 
     def End(self, request, context):
         response = simplus_pb2.Result()
-        player.End(request, response)
+        try:
+          player.End(request, response)
+        except Exception as err:
+            print(str(err))
         return response
 
 
