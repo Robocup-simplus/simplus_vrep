@@ -3,9 +3,9 @@
 pwd
 cd ../..
 git pull
-rm -f -R CoppeliaSim_Edu_V4_0_0_Ubuntu18_04/models/Simplus
-mv models/Simplus/ CoppeliaSim_Edu_V4_0_0_Ubuntu18_04/models/
-cp worlds/SampleMap.ttt  CoppeliaSim_Edu_V4_0_0_Ubuntu18_04/
+rm -f -R V-REP_PRO_EDU_V3_6_2_Ubuntu18_04/models/Simplus
+mv models/Simplus/ V-REP_PRO_EDU_V3_6_2_Ubuntu18_04/models/
+cp worlds/SampleMap.ttt  V-REP_PRO_EDU_V3_6_2_Ubuntu18_04/
 sudo chmod 777 * -R
 cd ..
 sudo chmod 777 * simplus_vrep
