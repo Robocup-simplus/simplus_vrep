@@ -12,10 +12,12 @@ Follow the setup instruction based on your OS:
     - [macOS Installation](#installation)
     - [World setup](#world-setup)
     - [Run](#run) 
+    - [update](#update)
    - [Using Scripts](#using-scripts)
      - [macOS Installation](#installation-1)
      - [World setup](#world-setup-1)
      - [Run](#run-1)
+     - [update](#update-1)
 - [Windows](#Windows)
   - [Windows Installation](#installation-2)
   - [World setup](#world-setup-2)
@@ -24,10 +26,12 @@ Follow the setup instruction based on your OS:
   - [Installation](#installation-3)
   - [World setup](#world-setup-3)
   - [Run](#run-3)
+  - [update](#update-2)
 - [Ubuntu 18.04](#ubuntu-1804)
   - [Installation](#installation-4)
   - [World setup](#world-setup-4)
   - [Run](#run-4)
+  - [update](#update-3)
 - [Setup for Scratch](#setup-for-scratch)  
 
 ---
@@ -87,6 +91,12 @@ Approach2: is based on remote API (the teams should use client to control robot 
   (They can be found in "simplus_vrep/easy_setup/mac" directory)
 
   ```
+## Update
+In case you want to update your simplus_vrep repository:
+  ```bash
+  Double click on the "update" application
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+```
 
 # Using Scripts
 ## Installation
@@ -138,6 +148,12 @@ Approach2: is based on remote API (the teams should use client to control robot 
   (They can be found in `simplus_vrep/easy_setup/mac` directory)
 
   ```
+## Update
+In case you want to update your simplus_vrep repository:
+  ```bash
+  Open the terminal and write "sh ", drag and drop the "update.sh" file to terminal then press enter
+  (It can be found in "simplus_vrep/easy_setup/mac" directory)
+```
 
 ---
 
@@ -235,6 +251,13 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 ```bash
        sudo sh run2_server.sh`
 ```
+## Update
+In case you want to update your simplus_vrep repository:
+Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open the terminal then write
+```bash 
+       sudo sh update.sh
+```
+
 ---
 
 # Ubuntu 18.04
@@ -282,6 +305,13 @@ Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open th
 2. Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write 
 ```bash
        sudo sh run2_server.sh
+```
+
+## Update
+In case you want to update your simplus_vrep repository:
+Go to the `simplus_vrep/easy_setup/ubuntu_18` directory, right click and open the terminal then write
+```bash 
+       sudo sh update.sh
 ```
 
 # Setup for Scratch
