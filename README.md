@@ -61,7 +61,7 @@ The Game Manager has been developed to
 The Robot Monitor shows the robot's sensors status, camera, orientation, & positions along providing a simple robot control panel, and possibility to connect with a real robot which might be intresting for kids.
 
 ### Robot Controlling
-The Robot Controlling code developed by the teams will be placed here. Simplus V-Rep supports lots of programming languages (e.g. **Scratch**, **Python**, GO, **C**, **C++**, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
+The Robot Controlling code developed by the teams will be placed here. Simplus V-Rep supports lots of programming languages (e.g. **Scratch**, **Python**, **C**, **C++**, GO, Obejctive C, JAVA, Node.js, ... etc) which makes it available for any age, & any paroblem!
 
 The developing team have prepared 2 sample codes moving one for Scratch, and an other for Python (more samples will be provided if needed).
 
