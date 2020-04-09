@@ -5,76 +5,124 @@ import simplus_pb2 as simplus__pb2
 
 
 class SimPlusStub(object):
-  # missing associated documentation comment in .proto file
-  pass
+    """Missing associated documentation comment in .proto file"""
 
-  def __init__(self, channel):
-    """Constructor.
+    def __init__(self, channel):
+        """Constructor.
 
-    Args:
-      channel: A grpc.Channel.
-    """
-    self.Start = channel.unary_unary(
-        '/SimPlus.SimPlus/Start',
-        request_serializer=simplus__pb2.WorldInfo.SerializeToString,
-        response_deserializer=simplus__pb2.TeamInfo.FromString,
-        )
-    self.Action = channel.unary_unary(
-        '/SimPlus.SimPlus/Action',
-        request_serializer=simplus__pb2.Observations.SerializeToString,
-        response_deserializer=simplus__pb2.Commands.FromString,
-        )
-    self.End = channel.unary_unary(
-        '/SimPlus.SimPlus/End',
-        request_serializer=simplus__pb2.Ending.SerializeToString,
-        response_deserializer=simplus__pb2.Result.FromString,
-        )
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Start = channel.unary_unary(
+                '/SimPlus.SimPlus/Start',
+                request_serializer=simplus__pb2.WorldInfo.SerializeToString,
+                response_deserializer=simplus__pb2.TeamInfo.FromString,
+                )
+        self.Action = channel.unary_unary(
+                '/SimPlus.SimPlus/Action',
+                request_serializer=simplus__pb2.Observations.SerializeToString,
+                response_deserializer=simplus__pb2.Commands.FromString,
+                )
+        self.End = channel.unary_unary(
+                '/SimPlus.SimPlus/End',
+                request_serializer=simplus__pb2.Ending.SerializeToString,
+                response_deserializer=simplus__pb2.Result.FromString,
+                )
 
 
 class SimPlusServicer(object):
-  # missing associated documentation comment in .proto file
-  pass
+    """Missing associated documentation comment in .proto file"""
 
-  def Start(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def Start(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
-  def Action(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def Action(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
-  def End(self, request, context):
-    # missing associated documentation comment in .proto file
-    pass
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+    def End(self, request, context):
+        """Missing associated documentation comment in .proto file"""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_SimPlusServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'Start': grpc.unary_unary_rpc_method_handler(
-          servicer.Start,
-          request_deserializer=simplus__pb2.WorldInfo.FromString,
-          response_serializer=simplus__pb2.TeamInfo.SerializeToString,
-      ),
-      'Action': grpc.unary_unary_rpc_method_handler(
-          servicer.Action,
-          request_deserializer=simplus__pb2.Observations.FromString,
-          response_serializer=simplus__pb2.Commands.SerializeToString,
-      ),
-      'End': grpc.unary_unary_rpc_method_handler(
-          servicer.End,
-          request_deserializer=simplus__pb2.Ending.FromString,
-          response_serializer=simplus__pb2.Result.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'SimPlus.SimPlus', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+            'Start': grpc.unary_unary_rpc_method_handler(
+                    servicer.Start,
+                    request_deserializer=simplus__pb2.WorldInfo.FromString,
+                    response_serializer=simplus__pb2.TeamInfo.SerializeToString,
+            ),
+            'Action': grpc.unary_unary_rpc_method_handler(
+                    servicer.Action,
+                    request_deserializer=simplus__pb2.Observations.FromString,
+                    response_serializer=simplus__pb2.Commands.SerializeToString,
+            ),
+            'End': grpc.unary_unary_rpc_method_handler(
+                    servicer.End,
+                    request_deserializer=simplus__pb2.Ending.FromString,
+                    response_serializer=simplus__pb2.Result.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'SimPlus.SimPlus', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class SimPlus(object):
+    """Missing associated documentation comment in .proto file"""
+
+    @staticmethod
+    def Start(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/SimPlus.SimPlus/Start',
+            simplus__pb2.WorldInfo.SerializeToString,
+            simplus__pb2.TeamInfo.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Action(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/SimPlus.SimPlus/Action',
+            simplus__pb2.Observations.SerializeToString,
+            simplus__pb2.Commands.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def End(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/SimPlus.SimPlus/End',
+            simplus__pb2.Ending.SerializeToString,
+            simplus__pb2.Result.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)

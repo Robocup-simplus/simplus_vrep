@@ -42,6 +42,7 @@ message Observation {
   repeated Pixel colors = 2;
   repeated Proximity distances = 3;
   Position pos = 4;
+  Image heatCamera = 5;
 }
 
 message Proximity {

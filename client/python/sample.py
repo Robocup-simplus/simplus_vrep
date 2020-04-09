@@ -26,7 +26,7 @@ def Play(id, server, observation, command):
     """ THIS FUNCTION WILL BE CALLED FOR EACH ROBOT
         id         : IN robot ID
         server     : IN server Infomation {time, score, state}
-        observation: IN {camera, position, color[], distance[]}
+        observation: IN {camera, position, color[], distance[], heatCamera}
         command    : OUT {linear, angular, LED, victims[]}
     """
     # Your will be here

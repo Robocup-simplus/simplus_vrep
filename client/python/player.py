@@ -1,7 +1,7 @@
 import client
 from simplus_pb2 import *
 import numpy as np
-
+import cv2 as cv
 info = WorldInfo()  # You can access world info everywhere
 
 
@@ -55,14 +55,16 @@ def Play(id, server, observation, command):
     for i in range(1, 5):
         obstacle += observation.distances[i].detected
 
-    if obstacle == 0:
-        command.linear = 0.05
-        command.angular = 0.0
-    else:
-        command.linear = 0.0
-        command.angular = 0.5
+    # if obstacle == 0:
+    #     command.linear = 0.00
+    #     command.angular = 0.0
+    # else:
+    #     command.linear = 0.0
+    #     command.angular = 0.0
     
     for c in observation.colors:
        if(c.r>100 and c.r<215 and c.g<215 and c.b<215 and abs(int(c.r)-int(c.g))<45 and abs(int(c.g)-int(c.b))<45 and  abs(int(c.r)-int(c.b))<45 ):
            command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='find_checkpoint'))
            break
+
+    
