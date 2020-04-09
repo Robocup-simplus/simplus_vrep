@@ -64,7 +64,7 @@ def run():
             a = time.process_time()
 
             image = ra.getCameraImage()
-            
+
             image_array = np.array(image[0], dtype=np.uint8)
 
             colors = [ra.getColorSensor(i) for i in range(3)]
@@ -81,7 +81,8 @@ def run():
                         colors=[simplus_pb2.Pixel(r=colors[i][0], g=colors[i][1], b=colors[i][2]) for i in range(3)],
                         distances=[simplus_pb2.Proximity(detected=proxim[i][0], distance=proxim[i][1]) for i in range(8)],
                         pos=simplus_pb2.Position(x=pos[0], y=pos[1], z=pos[2], roll=pos[3], pitch=pos[4], yaw=pos[5],
-                                                 gps_enabled=ra.gps_enabled)
+                                                 gps_enabled=ra.gps_enabled),
+                        heatCamera=simplus_pb2.Image(w=image[1], h=image[2], raw=array.array('B', image_array).tobytes())
                     ) for i in range(1)]
                 )
             )
