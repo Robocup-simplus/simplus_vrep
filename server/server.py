@@ -16,7 +16,7 @@ def run():
 
      vapi = VrepApi()
      sa = vapi.init_serverApi()
-#     
+#
      is_started = False
      while not is_started:
          print("Please click on the play button")
@@ -39,7 +39,7 @@ def run():
                                                     check_points=
                                                     [simplus_pb2.CheckPoint(color='red', point=10),
                                                      simplus_pb2.CheckPoint(color='green', point=5)]), timeout=1)
-            
+
         print("Client Received: " + response.name)
         my_team_id = 0
         r,game_duration=sa.set_name(response.name)
@@ -64,9 +64,9 @@ def run():
             a = time.process_time()
 
             image = ra.getCameraImage()
-
+            thermal_image = ra.get_thermal_camera_image()
             image_array = np.array(image[0], dtype=np.uint8)
-
+            thermal_image_array = np.array(thermal_image[0], dtype=np.uint8)
             colors = [ra.getColorSensor(i) for i in range(3)]
 
             proxim = [ra.getProximitySensor(i) for i in range(8)]
@@ -82,7 +82,7 @@ def run():
                         distances=[simplus_pb2.Proximity(detected=proxim[i][0], distance=proxim[i][1]) for i in range(8)],
                         pos=simplus_pb2.Position(x=pos[0], y=pos[1], z=pos[2], roll=pos[3], pitch=pos[4], yaw=pos[5],
                                                  gps_enabled=ra.gps_enabled),
-                        thermalCamera=simplus_pb2.Image(w=image[1], h=image[2], raw=array.array('B', image_array).tobytes())
+                        thermalCamera=simplus_pb2.Image(w=image[1], h=image[2], raw=array.array('B', thermal_image_array).tobytes())
                     ) for i in range(1)]
                 )
             )
@@ -117,10 +117,10 @@ def run():
           team_score = 0
           team_name = "my_team_name"
           counter=0
-          while True: 
+          while True:
 
              while not is_started:
-                  is_started = sa.get_status() 
+                  is_started = sa.get_status()
              time.sleep(0.25)
              counter += 1
              if (counter > 1000): break

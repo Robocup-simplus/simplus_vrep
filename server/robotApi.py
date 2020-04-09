@@ -31,10 +31,12 @@ class VrepApi:
     def init_robotApi(self, trapConfig=r'trapconfig.txt', robot_base='ePuck_base', robot_namespace="ePuck_",
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
-                      color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True):
+                      color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
+                      thermal_camera={"name": 'thermalCamera', "joint":None}):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
-                        camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled)
+                        camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
+                        thermal_camera=thermal_camera)
 
     def init_serverApi(self,
                        serverConfig=r'serverconfig.txt'):
@@ -138,7 +140,8 @@ class robotApi:
     def __init__(self, remoteApi, trapConfig=None, robot_base='ePuck', robot_namespace="ePuck_",
                  robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                  proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
-                 color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True):
+                 color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
+                 thermal_camera={"name": 'thermalCamera', "joint": None}):
         self.gps_enabled = gps_enabled
         self.clientID = remoteApi
         temp1, self.left = vrep.simxGetObjectHandle(self.clientID, robot_namespace + robot_motors["left"],
@@ -150,7 +153,9 @@ class robotApi:
         self.robot_width = self.__getRobotWidth__()
         temp4, self.camera = vrep.simxGetObjectHandle(self.clientID, robot_namespace + camera["name"],
                                                       vrep.simx_opmode_blocking)
-        if (camera["joint"]):
+        temp5, self.thermal_camera = vrep.simxGetObjectHandle(self.clientID, robot_namespace + thermal_camera["name"],
+                                                              vrep.simx_opmode_blocking)
+        if camera["joint"]:
             temp, self.camera_joint = vrep.simxGetObjectHandle(self.clientID, robot_namespace + camera["joint"],
                                                                vrep.simx_opmode_blocking)
         else:
@@ -174,7 +179,6 @@ class robotApi:
             self.parseConfig(trapConfig)
 
     def precompute(self):
-        vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,vrep.simx_opmode_streaming)
         vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,vrep.simx_opmode_streaming)
         vrep.simxGetObjectPosition(self.clientID, self.left, self.robot_base, vrep.simx_opmode_streaming) 
         vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,vrep.simx_opmode_streaming)    
@@ -183,6 +187,7 @@ class robotApi:
         vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[0], 0,vrep.simx_opmode_streaming)
         vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[1], 0,vrep.simx_opmode_streaming)
         vrep.simxGetVisionSensorImage(self.clientID,self.colorSensors[2], 0,vrep.simx_opmode_streaming)
+        vrep.simxGetVisionSensorImage(self.clientID, self.thermal_camera, 0,vrep.simx_opmode_streaming)
         
     def __getRobotWidth__(self):
         response_right = vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,
@@ -263,6 +268,14 @@ class robotApi:
         returnCode, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID, self.camera, 0,
                                                                                   vrep.simx_opmode_buffer)
         if (returnCode == 0 or returnCode == 1  ):
+            return [image_array, image_resolution[0], image_resolution[1]]
+        else:
+            return -1
+    def get_thermal_camera_image(self):
+        return_code, image_resolution, image_array = vrep.simxGetVisionSensorImage(self.clientID,
+                                                                                   self.thermal_camera, 0,
+                                                                                   vrep.simx_opmode_buffer)
+        if return_code == 0 or return_code == 1:
             return [image_array, image_resolution[0], image_resolution[1]]
         else:
             return -1
