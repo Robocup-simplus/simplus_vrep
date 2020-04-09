@@ -82,7 +82,7 @@ def run():
                         distances=[simplus_pb2.Proximity(detected=proxim[i][0], distance=proxim[i][1]) for i in range(8)],
                         pos=simplus_pb2.Position(x=pos[0], y=pos[1], z=pos[2], roll=pos[3], pitch=pos[4], yaw=pos[5],
                                                  gps_enabled=ra.gps_enabled),
-                        heatCamera=simplus_pb2.Image(w=image[1], h=image[2], raw=array.array('B', image_array).tobytes())
+                        thermalCamera=simplus_pb2.Image(w=image[1], h=image[2], raw=array.array('B', image_array).tobytes())
                     ) for i in range(1)]
                 )
             )

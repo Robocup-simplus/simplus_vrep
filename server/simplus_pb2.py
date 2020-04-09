@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='SimPlus',
   syntax='proto3',
   serialized_options=b'\n\030io.grpc.examples.simplusB\014SimPlusProtoP\001\242\002\003SPP',
-  serialized_pb=b'\n\rsimplus.proto\x12\x07SimPlus\"\x9b\x01\n\tWorldInfo\x12\x11\n\tteam_size\x18\x01 \x01(\x05\x12\x16\n\x0erobot_per_team\x18\x02 \x01(\x05\x12\x19\n\x11\x63olor_sensor_size\x18\x03 \x01(\x05\x12\x1d\n\x15proximity_sensor_size\x18\x04 \x01(\x05\x12)\n\x0c\x63heck_points\x18\x05 \x03(\x0b\x32\x13.SimPlus.CheckPoint\"U\n\nServerInfo\x12\x0c\n\x04time\x18\x01 \x01(\r\x12\x14\n\x0cserver_state\x18\x02 \x01(\t\x12\x10\n\x08my_score\x18\x03 \x01(\x05\x12\x11\n\topp_score\x18\x04 \x01(\x05\"\x18\n\x08TeamInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\"Y\n\x0cObservations\x12#\n\x06server\x18\x01 \x01(\x0b\x32\x13.SimPlus.ServerInfo\x12$\n\x06robots\x18\x02 \x03(\x0b\x32\x14.SimPlus.Observation\"\xb8\x01\n\x0bObservation\x12\x1e\n\x06\x63\x61mera\x18\x01 \x01(\x0b\x32\x0e.SimPlus.Image\x12\x1e\n\x06\x63olors\x18\x02 \x03(\x0b\x32\x0e.SimPlus.Pixel\x12%\n\tdistances\x18\x03 \x03(\x0b\x32\x12.SimPlus.Proximity\x12\x1e\n\x03pos\x18\x04 \x01(\x0b\x32\x11.SimPlus.Position\x12\"\n\nheatCamera\x18\x05 \x01(\x0b\x32\x0e.SimPlus.Image\"/\n\tProximity\x12\x10\n\x08\x64\x65tected\x18\x01 \x01(\x08\x12\x10\n\x08\x64istance\x18\x02 \x01(\x01\"j\n\x08Position\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x12\t\n\x01z\x18\x03 \x01(\x01\x12\x0c\n\x04roll\x18\x04 \x01(\x01\x12\r\n\x05pitch\x18\x05 \x01(\x01\x12\x0b\n\x03yaw\x18\x06 \x01(\x01\x12\x13\n\x0bgps_enabled\x18\x07 \x01(\x08\".\n\x08\x43ommands\x12\"\n\x08\x63ommands\x18\x01 \x03(\x0b\x32\x10.SimPlus.Command\"e\n\x07\x43ommand\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0e\n\x06linear\x18\x02 \x01(\x01\x12\x0f\n\x07\x61ngular\x18\x03 \x01(\x01\x12\x0b\n\x03LED\x18\x04 \x01(\t\x12 \n\x07\x61\x63tions\x18\x05 \x03(\x0b\x32\x0f.SimPlus.Action\"-\n\x06\x45nding\x12#\n\x06server\x18\x01 \x01(\x0b\x32\x13.SimPlus.ServerInfo\"6\n\x06Result\x12\x1b\n\x03map\x18\x01 \x01(\x0b\x32\x0e.SimPlus.Image\x12\x0f\n\x07message\x18\x02 \x01(\t\"7\n\x06\x41\x63tion\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x12\t\n\x01z\x18\x03 \x01(\x01\x12\x0c\n\x04type\x18\x04 \x01(\t\"*\n\nCheckPoint\x12\r\n\x05\x63olor\x18\x01 \x01(\t\x12\r\n\x05point\x18\x02 \x01(\x05\"(\n\x05Pixel\x12\t\n\x01r\x18\x01 \x01(\x05\x12\t\n\x01g\x18\x02 \x01(\x05\x12\t\n\x01\x62\x18\x03 \x01(\x05\"*\n\x05Image\x12\t\n\x01w\x18\x01 \x01(\x05\x12\t\n\x01h\x18\x02 \x01(\x05\x12\x0b\n\x03raw\x18\x03 \x01(\x0c\x32\x96\x01\n\x07SimPlus\x12.\n\x05Start\x12\x12.SimPlus.WorldInfo\x1a\x11.SimPlus.TeamInfo\x12\x32\n\x06\x41\x63tion\x12\x15.SimPlus.Observations\x1a\x11.SimPlus.Commands\x12\'\n\x03\x45nd\x12\x0f.SimPlus.Ending\x1a\x0f.SimPlus.ResultB0\n\x18io.grpc.examples.simplusB\x0cSimPlusProtoP\x01\xa2\x02\x03SPPb\x06proto3'
+  serialized_pb=b'\n\rsimplus.proto\x12\x07SimPlus\"\x9b\x01\n\tWorldInfo\x12\x11\n\tteam_size\x18\x01 \x01(\x05\x12\x16\n\x0erobot_per_team\x18\x02 \x01(\x05\x12\x19\n\x11\x63olor_sensor_size\x18\x03 \x01(\x05\x12\x1d\n\x15proximity_sensor_size\x18\x04 \x01(\x05\x12)\n\x0c\x63heck_points\x18\x05 \x03(\x0b\x32\x13.SimPlus.CheckPoint\"U\n\nServerInfo\x12\x0c\n\x04time\x18\x01 \x01(\r\x12\x14\n\x0cserver_state\x18\x02 \x01(\t\x12\x10\n\x08my_score\x18\x03 \x01(\x05\x12\x11\n\topp_score\x18\x04 \x01(\x05\"\x18\n\x08TeamInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\"Y\n\x0cObservations\x12#\n\x06server\x18\x01 \x01(\x0b\x32\x13.SimPlus.ServerInfo\x12$\n\x06robots\x18\x02 \x03(\x0b\x32\x14.SimPlus.Observation\"\xbb\x01\n\x0bObservation\x12\x1e\n\x06\x63\x61mera\x18\x01 \x01(\x0b\x32\x0e.SimPlus.Image\x12\x1e\n\x06\x63olors\x18\x02 \x03(\x0b\x32\x0e.SimPlus.Pixel\x12%\n\tdistances\x18\x03 \x03(\x0b\x32\x12.SimPlus.Proximity\x12\x1e\n\x03pos\x18\x04 \x01(\x0b\x32\x11.SimPlus.Position\x12%\n\rthermalCamera\x18\x05 \x01(\x0b\x32\x0e.SimPlus.Image\"/\n\tProximity\x12\x10\n\x08\x64\x65tected\x18\x01 \x01(\x08\x12\x10\n\x08\x64istance\x18\x02 \x01(\x01\"j\n\x08Position\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x12\t\n\x01z\x18\x03 \x01(\x01\x12\x0c\n\x04roll\x18\x04 \x01(\x01\x12\r\n\x05pitch\x18\x05 \x01(\x01\x12\x0b\n\x03yaw\x18\x06 \x01(\x01\x12\x13\n\x0bgps_enabled\x18\x07 \x01(\x08\".\n\x08\x43ommands\x12\"\n\x08\x63ommands\x18\x01 \x03(\x0b\x32\x10.SimPlus.Command\"e\n\x07\x43ommand\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0e\n\x06linear\x18\x02 \x01(\x01\x12\x0f\n\x07\x61ngular\x18\x03 \x01(\x01\x12\x0b\n\x03LED\x18\x04 \x01(\t\x12 \n\x07\x61\x63tions\x18\x05 \x03(\x0b\x32\x0f.SimPlus.Action\"-\n\x06\x45nding\x12#\n\x06server\x18\x01 \x01(\x0b\x32\x13.SimPlus.ServerInfo\"6\n\x06Result\x12\x1b\n\x03map\x18\x01 \x01(\x0b\x32\x0e.SimPlus.Image\x12\x0f\n\x07message\x18\x02 \x01(\t\"7\n\x06\x41\x63tion\x12\t\n\x01x\x18\x01 \x01(\x01\x12\t\n\x01y\x18\x02 \x01(\x01\x12\t\n\x01z\x18\x03 \x01(\x01\x12\x0c\n\x04type\x18\x04 \x01(\t\"*\n\nCheckPoint\x12\r\n\x05\x63olor\x18\x01 \x01(\t\x12\r\n\x05point\x18\x02 \x01(\x05\"(\n\x05Pixel\x12\t\n\x01r\x18\x01 \x01(\x05\x12\t\n\x01g\x18\x02 \x01(\x05\x12\t\n\x01\x62\x18\x03 \x01(\x05\"*\n\x05Image\x12\t\n\x01w\x18\x01 \x01(\x05\x12\t\n\x01h\x18\x02 \x01(\x05\x12\x0b\n\x03raw\x18\x03 \x01(\x0c\x32\x96\x01\n\x07SimPlus\x12.\n\x05Start\x12\x12.SimPlus.WorldInfo\x1a\x11.SimPlus.TeamInfo\x12\x32\n\x06\x41\x63tion\x12\x15.SimPlus.Observations\x1a\x11.SimPlus.Commands\x12\'\n\x03\x45nd\x12\x0f.SimPlus.Ending\x1a\x0f.SimPlus.ResultB0\n\x18io.grpc.examples.simplusB\x0cSimPlusProtoP\x01\xa2\x02\x03SPPb\x06proto3'
 )
 
 
@@ -240,7 +240,7 @@ _OBSERVATION = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='heatCamera', full_name='SimPlus.Observation.heatCamera', index=4,
+      name='thermalCamera', full_name='SimPlus.Observation.thermalCamera', index=4,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -259,7 +259,7 @@ _OBSERVATION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=389,
-  serialized_end=573,
+  serialized_end=576,
 )
 
 
@@ -296,8 +296,8 @@ _PROXIMITY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=575,
-  serialized_end=622,
+  serialized_start=578,
+  serialized_end=625,
 )
 
 
@@ -369,8 +369,8 @@ _POSITION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=624,
-  serialized_end=730,
+  serialized_start=627,
+  serialized_end=733,
 )
 
 
@@ -400,8 +400,8 @@ _COMMANDS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=732,
-  serialized_end=778,
+  serialized_start=735,
+  serialized_end=781,
 )
 
 
@@ -459,8 +459,8 @@ _COMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=780,
-  serialized_end=881,
+  serialized_start=783,
+  serialized_end=884,
 )
 
 
@@ -490,8 +490,8 @@ _ENDING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=883,
-  serialized_end=928,
+  serialized_start=886,
+  serialized_end=931,
 )
 
 
@@ -528,8 +528,8 @@ _RESULT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=930,
-  serialized_end=984,
+  serialized_start=933,
+  serialized_end=987,
 )
 
 
@@ -580,8 +580,8 @@ _ACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=986,
-  serialized_end=1041,
+  serialized_start=989,
+  serialized_end=1044,
 )
 
 
@@ -618,8 +618,8 @@ _CHECKPOINT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1043,
-  serialized_end=1085,
+  serialized_start=1046,
+  serialized_end=1088,
 )
 
 
@@ -663,8 +663,8 @@ _PIXEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1087,
-  serialized_end=1127,
+  serialized_start=1090,
+  serialized_end=1130,
 )
 
 
@@ -708,8 +708,8 @@ _IMAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1129,
-  serialized_end=1171,
+  serialized_start=1132,
+  serialized_end=1174,
 )
 
 _WORLDINFO.fields_by_name['check_points'].message_type = _CHECKPOINT
@@ -719,7 +719,7 @@ _OBSERVATION.fields_by_name['camera'].message_type = _IMAGE
 _OBSERVATION.fields_by_name['colors'].message_type = _PIXEL
 _OBSERVATION.fields_by_name['distances'].message_type = _PROXIMITY
 _OBSERVATION.fields_by_name['pos'].message_type = _POSITION
-_OBSERVATION.fields_by_name['heatCamera'].message_type = _IMAGE
+_OBSERVATION.fields_by_name['thermalCamera'].message_type = _IMAGE
 _COMMANDS.fields_by_name['commands'].message_type = _COMMAND
 _COMMAND.fields_by_name['actions'].message_type = _ACTION
 _ENDING.fields_by_name['server'].message_type = _SERVERINFO
@@ -855,8 +855,8 @@ _SIMPLUS = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1174,
-  serialized_end=1324,
+  serialized_start=1177,
+  serialized_end=1327,
   methods=[
   _descriptor.MethodDescriptor(
     name='Start',
