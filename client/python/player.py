@@ -35,6 +35,7 @@ def End(server, result):
 test_time = time.time_ns()
 start_time = time.time()
 
+
 # Type of each cell
 class CellType(enum.Enum):
     blank = 0
@@ -87,6 +88,14 @@ class MoveType(enum.Enum):
     invalid = 5
 
 
+def ang_normalize(ang):
+    if ang > 180:
+        return ang - 360
+    if ang < -180:
+        return ang + 360
+    return ang
+
+
 # Move Class
 class Move:
     def __init__(self):
@@ -103,20 +112,23 @@ class Move:
         else:
             desired_ang = -90
 
-        if desired_ang - current_pos[3] > 0.5:
-            return 0, min(abs(desired_ang - current_pos[3]) / 90, 0.95) + 0.05, False
-        if desired_ang - current_pos[3] < -0.5:
-            return 0, -1 * min(abs(desired_ang - current_pos[3]) / 90, 0.95) - 0.05, False
+        if ang_normalize(desired_ang - current_pos[3]) > 0.5:
+            return 0, min(abs(desired_ang - current_pos[3]) / 20, 0.95) + 0.1, False
+        if ang_normalize(desired_ang - current_pos[3]) < -0.5:
+            return 0, -1 * min(abs(desired_ang - current_pos[3]) / 20, 0.95) - 0.1, False
         else:
             return 0, 0, True
 
-    def step_move(self, current_pos, direction, vel):
+    def step_move(self, dist, current_pos, direction, vel):
         [lin, ang, is_done] = self.rotate(current_pos, direction)
         if not self.is_move_started:
             self.init_pos = current_pos.copy()
             self.is_move_started = True
         if not is_done:
             return lin, ang, False
+        if dist[2].distance + dist[3].distance < 0.1:
+            self.is_move_started = False
+            return 0, 0, True
         if abs(current_pos[1] - self.init_pos[1]) < 0.2 and abs(current_pos[0] - self.init_pos[0]) < 0.2:
             return vel, 0, False
         else:
@@ -125,7 +137,8 @@ class Move:
 
 
 
-def ang_to_dir(ang):
+def ang_to_dir(ang_in):
+    ang = ang_normalize(ang_in)
     if abs(ang) < 10:
         return MoveType.forward
     elif abs(ang - 90) < 10:
@@ -135,14 +148,18 @@ def ang_to_dir(ang):
     else:
         return MoveType.backward
 
+
 def simple_evaluate(current_location, distances):
-    if not distances[0].distance:
+    if not distances[0].distance and not distances[1].distance and not distances[2].distance\
+            and not distances[3].distance and not distances[4].distance and not distances[5].distance\
+            and not distances[6].distance and not distances[7].distance:
         return MoveType.invalid
-    if distances[5].distance > 0.15:
+    if distances[5].distance > 0.15 or not distances[5].detected:
         return ang_to_dir(current_location[3] - 90)
-    elif distances[2].distance + distances[3].distance > 0.3:
+    elif distances[2].distance + distances[3].distance > 0.3 \
+            or not distances[2].detected or not distances[3].detected:
         return ang_to_dir(current_location[3])
-    elif distances[0].distance > 0.15:
+    elif distances[0].distance > 0.15 or not distances[0].detected:
         return ang_to_dir(current_location[3] + 90)
     else:
         return ang_to_dir(current_location[3] + 180)
@@ -155,6 +172,7 @@ start_point = np.zeros(4)
 current_point = np.zeros(4)
 
 robot_move = Move()
+
 
 def Play(id, server, observation, command):
     """ THIS FUNCTION WILL BE CALLED FOR EACH ROBOT
@@ -188,18 +206,19 @@ def Play(id, server, observation, command):
     global robot_move
     global is_move_done
     global dir_to_go
-    # if is_move_done:
-    #     dir_to_go = simple_evaluate(local_pos, observation.distances)
-    #     print(observation.distances)
-    #     print(dir_to_go)
-    #     if dir_to_go != MoveType.invalid:
-    #         is_move_done = False
-    # else:
-    #     [command.linear, command.angular, is_done] = robot_move.step_move(local_pos, dir_to_go, 0.1)
-    #     # [command.linear, command.angular, is_done] = robot_move.rotate(local_pos,dir_to_go)
-    #     if is_done:
-    #         is_move_done = True
-    print(observation.distances)
+    if is_move_done:
+        dir_to_go = simple_evaluate(local_pos, observation.distances)
+        print(observation.distances)
+        print(dir_to_go)
+        if dir_to_go != MoveType.invalid:
+            is_move_done = False
+    else:
+        [command.linear, command.angular, is_done] = robot_move.step_move(observation.distances, local_pos, dir_to_go,
+                                                                          0.15)
+        # [command.linear, command.angular, is_done] = robot_move.rotate(local_pos,dir_to_go)
+        if is_done:
+            is_move_done = True
+    # print(observation.distances)
 
     # col = ['red', 'green', 'blue', 'akldjf']
     # a = [0, 0, 0]
