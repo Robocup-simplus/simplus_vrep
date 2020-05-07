@@ -126,10 +126,10 @@ class Move:
             self.is_move_started = True
         if not is_done:
             return lin, ang, False
-        if dist[2].distance + dist[3].distance < 0.1:
+        if dist[2].distance + dist[3].distance < 0.14:
             self.is_move_started = False
             return 0, 0, True
-        if abs(current_pos[1] - self.init_pos[1]) < 0.2 and abs(current_pos[0] - self.init_pos[0]) < 0.2:
+        if abs(current_pos[1] - self.init_pos[1]) < 0.1933333333 and abs(current_pos[0] - self.init_pos[0]) < 0.1933333333:
             return vel, 0, False
         else:
             self.is_move_started = False
@@ -212,6 +212,7 @@ def Play(id, server, observation, command):
         print(dir_to_go)
         if dir_to_go != MoveType.invalid:
             is_move_done = False
+        # time.sleep(0.5)
     else:
         [command.linear, command.angular, is_done] = robot_move.step_move(observation.distances, local_pos, dir_to_go,
                                                                           0.15)
