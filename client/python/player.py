@@ -239,7 +239,7 @@ def find_victim(img, dist, pos, h_img=None):
              or abs(pos[3] + 180) < 1):
         letter, center = my_vision.find_HSU(img)
         if letter:
-            cv.imwrite('{}--{}--{}.jpg'.format(letter, dist[2].distance + dist[3].distance, pos[3]), img)
+            # cv.imwrite('{}--{}--{}.jpg'.format(letter, dist[2].distance + dist[3].distance, pos[3]), img)
             return letter
         else:
             return None
@@ -326,9 +326,17 @@ def Play(id, server, observation, command):
                                                                                    local_pos, dir_to_go, 0.2)
             can_turn_l = observation.distances[0].distance < 0.2 and observation.distances[0].detected
             can_turn_r = observation.distances[5].distance < 0.2 and observation.distances[5].detected
-            # print('step')
+
         else:
+            # print('step')
             state = 'Start'
+            if is_front_tie_black:
+                is_move_done = True
+                is_step_done = False
+                is_check_done_L = False
+                is_check_done_R = False
+                victims.clear()
+                return
             if not is_check_done_L and can_turn_l:
                 # print('rotate L')
                 [command.linear, command.angular, is_check_done_L] = \
