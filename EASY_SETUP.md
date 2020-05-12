@@ -220,7 +220,7 @@ Approach2: is based on remote API (the teams should use `client.py` to control r
 
 # Ubuntu 16.04
 ## Installation
-1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_16/installer.tar.gz)
+1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_16/installer.zip)
 2. Put the file where ever you want the simplus package be installed in.
 3. Go to the interested folder, right click and open the terminal then write
    - Using V-rep version 4 (CoppeliaSim)
@@ -282,7 +282,7 @@ Go to the `simplus_vrep/easy_setup/ubuntu_16` directory, right click and open th
 
 # Ubuntu 18.04
 ## Installation
-1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_18/installer.tar.gz)
+1. Download [Installer](https://github.com/Robocup-simplus/simplus_vrep/raw/master/easy_setup/ubuntu_18/installer.zip)
 2. Put the file where ever you want the simplus package be installed in.
 3. Go to the interested folder, right click and open the terminal then write
    - Using V-rep version 4 (CoppeliaSim)
