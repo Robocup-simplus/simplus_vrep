@@ -356,7 +356,6 @@ btn_run.grid(row=11,column=0, pady=(15, 0),columnspan=3)
 
 
 
-msg_var.set(base_path)
 root.mainloop()
 
 
