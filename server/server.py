@@ -64,6 +64,7 @@ def run():
             
             if(is_started==2):
                 ra.freezRobot();
+                team_score+= (-5)
             a = time.process_time()
 
             image = ra.getCameraImage()

@@ -259,8 +259,8 @@ class robotApi:
 
     def freezRobot(self):
         print("robotapi freezing robot")
-        self.frozen=True;
         self.setRobotSpeed(0,0);
+        self.frozen=True;
         x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
