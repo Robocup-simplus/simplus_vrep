@@ -32,7 +32,7 @@ class VrepApi:
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=30):
+                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=10):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
@@ -149,6 +149,7 @@ class CheckPointClass:
             temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
             self.objects_distances.append([response[1][0], response[1][1], response[1][2]]);
+            print("robotapi , checkpoint name ,x , y",i, response[1][0],response[1][1])
             self.seen_checkpoints.append(0)
 
     def checkInsideCheckPoint(self,checkPointPoses,robotPoses):
@@ -236,6 +237,7 @@ class robotApi:
         self.freezTime=0;
 
     def setCheckPointTile(self,pose):
+        print("robotapi setting checkpoint")
         self.checkPointTilePose=pose
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Simplus_monitor',
@@ -258,6 +260,8 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def checkFrozenRobot(self):
+        print("robot api freez time =>", self.freezTime)
+        print("robotapi penalty time =>", self.freezTime)
         if(self.freezTime>self.penaltyStopTime):
             self.frozen=False;
             self.freezTime=0;
@@ -523,6 +527,8 @@ class serverApi:
                 self.victim_dict.update({ls[0]: ac})
     
     def findCheckpoint(self,action,x,y,z):
+        print("robot api , checkpoint name => ",action )
+        print("robot api , checkpoints array=>",self.checkPoint_dict.keys())
         if (action in self.checkPoint_dict.keys()):
             score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
             return score,poses
