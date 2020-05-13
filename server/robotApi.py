@@ -237,6 +237,13 @@ class robotApi:
 
     def setCheckPointTile(self,pose):
         self.checkPointTilePose=pose
+        return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+                                                                                      'Simplus_monitor',
+                                                                                      vrep.sim_scripttype_childscript,
+                                                                                      'remote_set_checkpoint',
+                                                                                      [], [pose[0],pose[1]], [],
+                                                                                      bytearray(),
+                                                                                      vrep.simx_opmode_oneshot)
 
     def freezRobot(self):
         self.frozen=True;
