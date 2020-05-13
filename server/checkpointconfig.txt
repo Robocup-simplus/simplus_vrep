@@ -1,2 +1,3 @@
 # checkpoint name ; name of object ; number of object ; size of checkpoint tile; success score; failure socre
-find_checkpoint;tile_silver;8;0.1;2;0
+find_checkpoint; checkpoint_tile;8;0.1;10;0
+find_checkpoint;start_tile;1;0.1;0;0
