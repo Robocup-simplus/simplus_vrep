@@ -253,7 +253,7 @@ class robotApi:
         if(pose==None):
             print("robotapi shit getting null pose for checkpoint")
             return 
-        print("robotapi setting checkpoint")
+        #print("robotapi setting checkpoint")
         self.checkPointTilePose=pose
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
                                                                                       'Game_manager',
@@ -264,7 +264,7 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def freezRobot(self):
-        print("robotapi freezing robot")
+       # print("robotapi freezing robot")
         self.setRobotSpeed(0,0);
         self.frozen=True;
         x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
@@ -277,8 +277,8 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def checkFrozenRobot(self):
-        print("robotapi freeze time ",self.freezTime )
-        print("robotapi freeze time ",self.penaltyStopTime )
+        # print("robotapi freeze time ",self.freezTime )
+        # print("robotapi freeze time ",self.penaltyStopTime )
 
         if(self.freezTime>self.penaltyStopTime):
             print("robot api heating the robot ")
@@ -488,7 +488,7 @@ class robotApi:
 
     def findCheckpoint(self):
         robot_pose=self.getRobotXYZ()
-        print("robot api robotpose =>",robot_pose )
+       # print("robot api robotpose =>",robot_pose )
         x=robot_pose[0]
         y=robot_pose[1]
         z=robot_pose[2];
@@ -498,7 +498,7 @@ class robotApi:
             score+=s
             if(poses!=None):
                 self.setCheckPointTile(poses)
-            print("robotapi finding checkpoints ### pose =>", poses)
+            #print("robotapi finding checkpoints ### pose =>", poses)
         return score
         
 
