@@ -32,7 +32,7 @@ class VrepApi:
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=50,checkPointConfig=r'checkpointconfig.txt'):
+                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=40,checkPointConfig=r'checkpointconfig.txt'):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
@@ -168,25 +168,25 @@ class CheckPointClass:
         index_min = np.argmin(np.array(target_distances))
         # now we check if the robot is in the closest checkpoint
         if not self.checkInsideCheckPoint(self.objects_distances[index_min],[x,y,z]):
-            print("robotapi coudln't find new check point ,index =>",index_min)
+           # print("robotapi coudln't find new check point ,index =>",index_min)
 
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.failure_score)
             return self.failure_score,None;
             
         elif self.seen_checkpoints[index_min]==0:
-            print("robotapi found new check point ,index =>",index_min)
+           # print("robotapi found new check point ,index =>",index_min)
 
             self.seen_checkpoints[index_min]=1;
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.success_score)
             return self.success_score,self.objects_distances[index_min];
         else:
-            print("robotapi found seen check point ,index =>",index_min)
+           # print("robotapi found seen check point ,index =>",index_min)
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],0)
             return 0,self.objects_distances[index_min];
 
     def logCheckPoint(self, x, y, z, index_min, distance,score=0):
         checkpointpose=self.objects_distances[index_min]
-        print("checkpointname : ",self.checkPoint," check point  index , pose : ",index_min,checkpointpose, " robot pose =>",x, y, z,"---- Distance from center of checkpoint: ",distance,"---- Recieved score: ",score)
+      #  print("checkpointname : ",self.checkPoint," check point  index , pose : ",index_min,checkpointpose, " robot pose =>",x, y, z,"---- Distance from center of checkpoint: ",distance,"---- Recieved score: ",score)
 
 #         print(self.trap)
 #         print(x, y, z)
