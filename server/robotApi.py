@@ -537,7 +537,7 @@ class serverApi:
     def findCheckpoint(self,action,x,y,z):
         if (action in self.checkPoint_dict.keys()):
             score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
-            print("robotapi finding checkpoints ### pose =>", pose)
+            print("robotapi finding checkpoints ### pose =>", poses)
             return score,poses
         else:  
             return 0,None
