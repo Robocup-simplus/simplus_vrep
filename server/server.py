@@ -56,7 +56,9 @@ def run():
         print("Start")
         team_score = 0
         team_name = response.name
-        for i in range(game_duration):
+        i=0
+        while True:
+            i=i+1
             #testtime=time.time_ns()
             is_started = sa.get_status(isOneshot=True)
             while not is_started:
@@ -92,7 +94,7 @@ def run():
             )
 
             for res in response.commands:
-               # print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' + res.LED)
+                #print('Robot ' + str(res.id) + ' Command: ' + str(res.linear) + ' ' + str(res.angular) + ' LED: ' + res.LED)
                 ra.setRobotSpeed(linear=res.linear, angular=res.angular)
                 ra.setLED(color=res.LED)
                 robot_pose=ra.getRobotXYZ();
