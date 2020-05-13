@@ -168,19 +168,25 @@ class CheckPointClass:
         index_min = np.argmin(np.array(target_distances))
         # now we check if the robot is in the closest checkpoint
         if not self.checkInsideCheckPoint(self.objects_distances[index_min],[x,y,z]):
+            print("robotapi coudln't find new check point ,index =>",index_min)
+
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.failure_score)
             return self.failure_score,None;
             
         elif self.seen_checkpoints[index_min]==0:
+            print("robotapi found new check point ,index =>",index_min)
+
             self.seen_checkpoints[index_min]=1;
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.success_score)
             return self.success_score,self.objects_distances[index_min];
         else:
+            print("robotapi found seen check point ,index =>",index_min)
             self.logCheckPoint(x, y, z, index_min, target_distances[index_min],0)
             return 0,self.objects_distances[index_min];
 
     def logCheckPoint(self, x, y, z, index_min, distance,score=0):
-          print("checkpoint: ",self.checkPoint," Passed point : ",x, y, z,"---- Distance from center of checkpoint: ",distance,"---- Recieved score: ",score)
+        checkpointpose=self.objects_distances[index_min]
+        print("checkpointname : ",self.checkPoint," check point  index , pose : ",index_min,checkpointpose, " robot pose =>",x, y, z,"---- Distance from center of checkpoint: ",distance,"---- Recieved score: ",score)
 
 #         print(self.trap)
 #         print(x, y, z)
