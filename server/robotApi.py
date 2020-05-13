@@ -149,7 +149,6 @@ class CheckPointClass:
             temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
             self.objects_distances.append([response[1][0], response[1][1], response[1][2]]);
-            print("robotapi , checkpoint name ,x , y",i, response[1][0],response[1][1])
             self.seen_checkpoints.append(0)
 
     def checkInsideCheckPoint(self,checkPointPoses,robotPoses):
@@ -240,7 +239,7 @@ class robotApi:
         print("robotapi setting checkpoint")
         self.checkPointTilePose=pose
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
-                                                                                      'Simplus_monitor',
+                                                                                      'Game_manager',
                                                                                       vrep.sim_scripttype_childscript,
                                                                                       'remote_set_checkpoint',
                                                                                       [], [pose[0],pose[1]], [],
@@ -252,7 +251,7 @@ class robotApi:
         self.setRobotSpeed(0,0);
         x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
-                                                                                      'Simplus_monitor',
+                                                                                      'Game_manager',
                                                                                       vrep.sim_scripttype_childscript,
                                                                                       'remote_set_robot_pose',
                                                                                       [], [x,y], [],
@@ -260,8 +259,6 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def checkFrozenRobot(self):
-        print("robot api freez time =>", self.freezTime)
-        print("robotapi penalty time =>", self.freezTime)
         if(self.freezTime>self.penaltyStopTime):
             self.frozen=False;
             self.freezTime=0;
@@ -395,7 +392,7 @@ class robotApi:
                 return [True, pow(pow(detectedPoint[0], 2) + pow(detectedPoint[1], 2) + pow(detectedPoint[2], 2), 0.5)]
             else:
                 return [False, 0]
-        else: 
+        else:
             print(returnCode,detectionState,detectedPoint )
             return -1
 
@@ -527,8 +524,6 @@ class serverApi:
                 self.victim_dict.update({ls[0]: ac})
     
     def findCheckpoint(self,action,x,y,z):
-        print("robot api , checkpoint name => ",action )
-        print("robot api , checkpoints array=>",self.checkPoint_dict.keys())
         if (action in self.checkPoint_dict.keys()):
             score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
             return score,poses
