@@ -32,19 +32,19 @@ class VrepApi:
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                      thermal_camera={"name": 'thermalCamera', "joint":None}):
+                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=5):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
-                        thermal_camera=thermal_camera)
+                        thermal_camera=thermal_camera,penaltyStopTime=penaltyStopTime)
 
     def init_serverApi(self,
-                       serverConfig=r'serverconfig.txt'):
-        return serverApi(remoteApi=self.clientID, serverConfig=serverConfig)
+                       actionConfig=r'actionconfig.txt',checkPointConfig=r'checkpointconfig.txt',victimConfig=r'victimconfig.txt'):
+        return serverApi(remoteApi=self.clientID, actionConfig=actionConfig,checkPointConfig=checkPointConfig,victimConfig=victimConfig)
 
 
 class actionClass:
-    def __init__(self, remoteApi, action, max_range=1.0, success_score=1.0, failure_score=-0.5, obejcts_names=[]):
+    def __init__(self, remoteApi, action, max_range=1.0, success_score=1.0, failure_score=-0.5, obejcts_names=[],multiplier_coefficient=0):
         self.action = action
         self.clientID = remoteApi
         self.range = float(max_range)
@@ -52,13 +52,14 @@ class actionClass:
         self.failure_score = float(failure_score)
         self.obejcts_names = obejcts_names
         self.objects_distances = []
+        self.multiplier_coefficient=multiplier_coefficient;
         self.seen_list=[]
         for i in self.obejcts_names:
             temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
             self.objects_distances.append([response[1][0], response[1][1], response[1][2]])
 
-    def applyAction(self, x, y, z):
+    def applyAction(self, x, y, z,current_score=0):
         target_distances = []
 #         print("Seen=",self.seen_list)
         for i in range(0, len(self.objects_distances)):
@@ -69,10 +70,13 @@ class actionClass:
         if target_distances[index_min] <= self.range and not(index_min in self.seen_list):
             self.logAction(x, y, z, index_min, target_distances[index_min], self.success_score)
             self.seen_list.append(index_min)
-            return self.success_score
+            action_score=self.success_score
+            if(current_score>0):
+                action_score+= current_score*(self.multiplier_coefficient-1)
+            return action_score
         else:
             self.logAction(x, y, z, index_min, target_distances[index_min], self.failure_score)
-            return self.failure_score
+            return self.failure_score,None
 
     def logAction(self, x, y, z, index_min, distance, score):
          if score==0:
@@ -86,11 +90,11 @@ class actionClass:
 
 
 class trapClass:
-    def __init__(self, remoteApi, trap, max_range=1.0, penalty=1.0, bandgap_range=0.5, obejcts_names=[]):
+    def __init__(self, remoteApi, trap, trap_size=1.0, penalty=1.0, bandgap_range=0.5, obejcts_names=[]):
         self.trap_activated = False
         self.trap = trap
         self.clientID = remoteApi
-        self.range = float(max_range)
+        self.trap_size = float(trap_size)
         self.penalty = float(penalty)
         self.bandgap_range = float(bandgap_range)
         self.obejcts_names = obejcts_names
@@ -100,34 +104,82 @@ class trapClass:
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
             self.objects_distances.append([response[1][0], response[1][1], response[1][2]])
 
+    def checkInsideTrap(self,trapPoses,robotPoses):
+        for i in [0,1]:
+            if(robotPoses[i]>(trapPoses[i]+self.trap_size/2)) or (robotPoses[i]<(trapPoses[i]-self.trap_size/2)):
+                return False;
+        return True;
+
     def checkTrap(self, x, y, z):
-        if (self.trap_activated == False):
-            target_distances = []
-            for i in range(0, len(self.objects_distances)):
-                s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
-                    self.objects_distances[i][2] - z, 2)
-                target_distances.append(pow(s, 0.5))
-            index_min = np.argmin(np.array(target_distances))
-            if target_distances[index_min] <= self.range:
-                self.logTrap(x, y, z, index_min, target_distances[index_min])
-                self.trap_activated = True
-                return self.penalty
-            else:
-                return 0
+        target_distances = []
+        # first we find the closest trap
+        for i in range(0, len(self.objects_distances)):
+            s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
+                self.objects_distances[i][2] - z, 2)
+            target_distances.append(pow(s, 0.5))
+        index_min = np.argmin(np.array(target_distances))
+        # now we check if the robot is in the closest trap
+        if self.checkInsideTrap(target_distances[index_min],[x,y,z]):
+            self.logTrap(x, y, z, index_min, target_distances[index_min])
+            return self.penalty
         else:
-            target_distances = []
-            for i in range(0, len(self.objects_distances)):
-                s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
-                    self.objects_distances[i][2] - z, 2)
-                target_distances.append(pow(s, 0.5))
-            index_min = np.argmin(np.array(target_distances))
-            if target_distances[index_min] >= self.range + self.bandgap_range:
-             #   self.logTrap(x, y, z, index_min, target_distances[index_min])
-                self.trap_activated = False
             return 0
 
     def logTrap(self, x, y, z, index_min, distance):
           print("TRAP: ",self.trap," Passed point : ",x, y, z,"---- Distance from center of trap: ",distance,"---- Recieved score: ",self.penalty)
+
+#         print(self.trap)
+#         print(x, y, z)
+#         print(self.obejcts_names[index_min], self.objects_distances[index_min])
+#         print(distance)
+
+
+
+class CheckPointClass:
+    def __init__(self, remoteApi, checkPoint, checkPoint_size=1.0, success_score=1.0, failure_score=0.0, obejcts_names=[]):
+        self.checkPoint = checkPoint
+        self.clientID = remoteApi
+        self.checkPoint_size = float(checkPoint_size)
+        self.success_score = float(success_score)
+        self.failure_score = float(failure_score)
+        self.obejcts_names = obejcts_names
+        self.objects_distances = []
+        self.seen_checkpoints=[]
+        for i in self.obejcts_names:
+            temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
+            response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
+            self.objects_distances.append([response[1][0], response[1][1], response[1][2]]);
+            self.seen_checkpoints.append(0)
+
+    def checkInsideCheckPoint(self,checkPointPoses,robotPoses):
+        for i in [0,1]:
+            if(robotPoses[i]>(checkPointPoses[i]+self.checkPoint_size/2)) or (robotPoses[i]<(checkPointPoses[i]-self.checkPoint_size/2)):
+                return False;
+        return True;
+
+    def checkAllCheckPoints(self, x, y, z):
+        target_distances = []
+        # first we find the closest checkpoint
+        for i in range(0, len(self.objects_distances)):
+            s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
+                self.objects_distances[i][2] - z, 2)
+            target_distances.append(pow(s, 0.5))
+        index_min = np.argmin(np.array(target_distances))
+        # now we check if the robot is in the closest checkpoint
+        if not self.checkInsideCheckPoint(target_distances[index_min],[x,y,z]):
+            self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.failure_score)
+            return self.failure_score,None;
+            
+        elif self.seen_checkpoints[index_min]==0:
+            self.seen_checkpoints[index_min]=1;
+            self.logCheckPoint(x, y, z, index_min, target_distances[index_min],self.success_score)
+            return self.success_score,self.objects_distances[index_min];
+        else:
+            self.logCheckPoint(x, y, z, index_min, target_distances[index_min],0)
+            return 0,self.objects_distances[index_min];
+
+    def logCheckPoint(self, x, y, z, index_min, distance,score=0):
+          print("checkpoint: ",self.checkPoint," Passed point : ",x, y, z,"---- Distance from center of checkpoint: ",distance,"---- Recieved score: ",score)
 
 #         print(self.trap)
 #         print(x, y, z)
@@ -141,7 +193,7 @@ class robotApi:
                  robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                  proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                  color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                 thermal_camera={"name": 'thermalCamera', "joint": None}):
+                 thermal_camera={"name": 'thermalCamera', "joint": None},penaltyStopTime=5):
         self.gps_enabled = gps_enabled
         self.clientID = remoteApi
         temp1, self.left = vrep.simxGetObjectHandle(self.clientID, robot_namespace + robot_motors["left"],
@@ -177,6 +229,32 @@ class robotApi:
         if (trapConfig != None):
             self.traps_dict = {}
             self.parseConfig(trapConfig)
+        
+        self.checkPointTilePose=self.getRobotXYZ()
+        self.penaltyStopTime=penaltyStopTime;
+        self.frozen=False;
+        self.freezTime=0;
+
+    def setCheckPointTile(self,pose):
+        self.checkPointTilePose=pose
+
+    def freezRobot(self):
+        self.frozen=True;
+        self.freezTime=time.time()
+        self.setRobotSpeed(0,0);
+        x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
+        return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
+                                                                                      'Simplus_monitor',
+                                                                                      vrep.sim_scripttype_childscript,
+                                                                                      'remote_set_robot_pose',
+                                                                                      [], [x,y], [],
+                                                                                      bytearray(),
+                                                                                      vrep.simx_opmode_oneshot)
+
+    def checkFrozenRobot(self):
+        if(time.time()-self.freezTime>self.penaltyStopTime):
+            self.frozen=False;
+            self.freezTime=0;
 
     def precompute(self):
         vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,vrep.simx_opmode_streaming)
@@ -210,7 +288,11 @@ class robotApi:
 
         for t in self.traps_dict.keys():
             penalty += self.traps_dict.get(t).checkTrap(pose[0],pose[1],pose[2])
-
+        
+        if not (penalty==0):
+            self.freezRobot();
+        if(self.frozen==True):
+            self.checkFrozenRobot()
         return penalty
 
     def setLED(self, color):
@@ -321,6 +403,7 @@ class robotApi:
                 return [0, 0, 0, angles_in_degree[0], angles_in_degree[1], angles_in_degree[2]]
 
     def setRobotSpeed(self, linear=0.0, angular=0.0):
+        if(self.frozen==True):return
         right_rotation = (linear + angular * self.robot_width / 2) / self.wheel_radius
         left_rotation = (linear - angular * self.robot_width / 2) / self.wheel_radius
         vrep.simxPauseCommunication(self.clientID, True)
@@ -329,6 +412,7 @@ class robotApi:
         vrep.simxPauseCommunication(self.clientID, False)
         
     def setJointSpeed(self,right_rotation,left_rotation):
+        if(self.frozen==True):return
         vrep.simxPauseCommunication(self.clientID,True)
         vrep.simxSetJointTargetVelocity(self.clientID,self.right,right_rotation,vrep.simx_opmode_oneshot)
         vrep.simxSetJointTargetVelocity(self.clientID,self.left,left_rotation,vrep.simx_opmode_oneshot)
@@ -338,6 +422,7 @@ class robotApi:
     def parseConfig(self, config_file):
         with open(config_file, 'r') as fp:
             for line in fp:
+                if(line[0]=='#'):continue;
                 ls = line.split(';')
                 ob = ls[1].split(',')
                 ix = ls[2].split(',')
@@ -348,23 +433,73 @@ class robotApi:
                         for j in range(0, int(ix[i]) - 1):
                             temp.append(ob[i] + str(j))
                     ob_indexed.extend(temp)
-                tc = trapClass(remoteApi=self.clientID, trap=ls[0], max_range=ls[3], bandgap_range=ls[4], penalty=ls[5],
+                tc = trapClass(remoteApi=self.clientID, trap=ls[0], trap_size=ls[3], bandgap_range=ls[4], penalty=ls[5],
                                obejcts_names=ob_indexed)
                 self.traps_dict.update({ls[0]: tc})
 
 
+
+
 class serverApi:
 
-    def __init__(self, remoteApi, serverConfig=None):
+    def __init__(self, remoteApi, actionConfig=None,checkPointConfig=None,victimConfig=None):
         self.clientID = remoteApi
+        self.victim_dict=None
         self.actions_dict = None
-        if (serverConfig != None):
+        self.checkPoint_dict=None
+        if (actionConfig != None):
             self.actions_dict = {}
-            self.parseConfig(serverConfig)
+            self.parseActionConfig(actionConfig)
+        if (checkPointConfig != None):
+            self.checkPoint_dict = {}
+            self.parseCheckPointConfig(checkPointConfig)
+        if (victimConfig != None):
+            self.victim_dict = {}
+            self.parseVictimConfig(victimConfig)
 
-    def parseConfig(self, config_file):
+    def parseActionConfig(self, config_file):
         with open(config_file, 'r') as fp:
             for line in fp:
+                if(line[0]=='#'):continue;
+                ls = line.split(';')
+                ob = ls[1].split(',')
+                ix = ls[2].split(',')
+                ob_indexed = []
+                for i in range(0, len(ob)):
+                    temp = [ob[i]]
+                    if (int(ix[i]) > 1):
+                        for j in range(0, int(ix[i]) - 1):
+                            temp.append(ob[i] + str(j))
+                    ob_indexed.extend(temp)
+                ac = actionClass(remoteApi=self.clientID, action=ls[0], max_range=float(ls[3]), success_score=float(ls[5]),
+                                 failure_score=float(ls[6]), obejcts_names=ob_indexed,multiplier_coefficient=float(ls[4]))
+                self.actions_dict.update({ls[0]: ac})
+
+
+    def parseCheckPointConfig(self, config_file):
+        with open(config_file, 'r') as fp:
+            for line in fp:
+                if(line[0]=='#'):continue;
+
+                ls = line.split(';')
+                ob = ls[1].split(',')
+                ix = ls[2].split(',')
+                ob_indexed = []
+                for i in range(0, len(ob)):
+                    temp = [ob[i]]
+                    if (int(ix[i]) > 1):
+                        for j in range(0, int(ix[i]) - 1):
+                            temp.append(ob[i] + str(j))
+                    ob_indexed.extend(temp)
+                ac = CheckPointClass(remoteApi=self.clientID, checkPoint=ls[0], checkPoint_size=float(ls[3]), success_score=float(ls[4]),
+                                 failure_score=float(ls[5]), obejcts_names=ob_indexed)
+                self.checkPoint_dict.update({ls[0]: ac})
+
+    def parseVictimConfig(self, config_file):
+        with open(config_file, 'r') as fp:
+            for line in fp:
+                if(line[0]=='#'):continue;
+
                 ls = line.split(';')
                 ob = ls[1].split(',')
                 ix = ls[2].split(',')
@@ -377,11 +512,25 @@ class serverApi:
                     ob_indexed.extend(temp)
                 ac = actionClass(remoteApi=self.clientID, action=ls[0], max_range=float(ls[3]), success_score=float(ls[4]),
                                  failure_score=float(ls[5]), obejcts_names=ob_indexed)
-                self.actions_dict.update({ls[0]: ac})
-
-    def callAction(self, action, x, y, z):
+                self.victim_dict.update({ls[0]: ac})
+    
+    def findCheckpoint(self,action,x,y,z):
+        if (action in self.checkPoint_dict.keys()):
+            score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
+            return score,poses
+        else:  
+            return 0,None
+    
+    def callAction(self,action,x,y,z,score=0):
         if (action in self.actions_dict.keys()):
-            return self.actions_dict.get(action).applyAction(x, y, z)
+            score=self.actions_dict.get(action).applyAction(x, y, z)
+            return score
+        else:  
+            return 0
+    def findVictim(self, action, x, y, z):
+        if (action in self.victim_dict.keys()):
+            score=self.victim_dict.get(action).applyAction(x, y, z)
+            return score
         else:
             
             return 0

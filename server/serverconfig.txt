@@ -1,3 +1,0 @@
-rescue_victim;Victim_H_small,Victim_S_small,Victim_U_small;5,8,5;0.5;10;-5
-find_checkpoint;Checkpoint_silver;8;1;2;0
-find_victim;Victim_H_small,Victim_S_small,Victim_U_small;5,8,5;2;5;-2

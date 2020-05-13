@@ -147,7 +147,7 @@ class ScratchApi(Bottle):
             pose=self.rapi.getRobotXYZ()
 #             print(pose)
             res=-1
-            res=self.sapi.callAction("find_victim",pose[0],pose[1],pose[2])
+            res=self.sapi.findVictim("find_victim",pose[0],pose[1],pose[2])
 #             print(res,"  dis")
             if(res<1):
                 value=0.0
@@ -183,11 +183,11 @@ class ScratchApi(Bottle):
             pose=self.rapi.getRobotXYZ()
             value=0
             if action == 'Find Victim':
-                res=self.sapi.callAction("find_victim",pose[0],pose[1],pose[2])
+                res=self.sapi.findVictim("find_victim",pose[0],pose[1],pose[2])
             elif action == "Find Checkpoint":
-                res=self.sapi.callAction("find_checkpoint",pose[0],pose[1],pose[2])
+                res=self.sapi.findCheckpoint("find_checkpoint",pose[0],pose[1],pose[2])
             elif action == "Rescue Victim":
-                res=self.sapi.callAction("rescue_victim",pose[0],pose[1],pose[2])
+                res=self.sapi.findVictim("rescue_victim",pose[0],pose[1],pose[2])
             else:
                 res=self.sapi.callAction(action,pose[0],pose[1],pose[2])
             return str(value);
