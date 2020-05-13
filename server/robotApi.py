@@ -32,7 +32,7 @@ class VrepApi:
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=10):
+                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=10,checkPointConfig=r'checkpointconfig.txt'):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
@@ -194,7 +194,7 @@ class robotApi:
                  robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                  proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                  color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                 thermal_camera={"name": 'thermalCamera', "joint": None},penaltyStopTime=5):
+                 thermal_camera={"name": 'thermalCamera', "joint": None},penaltyStopTime=5,checkPointConfig=None):
         self.gps_enabled = gps_enabled
         self.clientID = remoteApi
         temp1, self.left = vrep.simxGetObjectHandle(self.clientID, robot_namespace + robot_motors["left"],
@@ -230,6 +230,11 @@ class robotApi:
         if (trapConfig != None):
             self.traps_dict = {}
             self.parseConfig(trapConfig)
+
+        self.checkPoint_dict=None
+        if (checkPointConfig != None):
+            self.checkPoint_dict = {}
+            self.parsecheckPointConfig(checkPointConfig)
         
         self.checkPointTilePose=self.getRobotXYZ()
         if(self.checkPointTilePose[0]==0 and self.checkPointTilePose[1]==0  ):
@@ -457,6 +462,40 @@ class robotApi:
                                obejcts_names=ob_indexed)
                 self.traps_dict.update({ls[0]: tc})
 
+    def parseCheckPointConfig(self, config_file):
+        with open(config_file, 'r') as fp:
+            for line in fp:
+                if(line[0]=='#'):continue;
+
+                ls = line.split(';')
+                ob = ls[1].split(',')
+                ix = ls[2].split(',')
+                ob_indexed = []
+                for i in range(0, len(ob)):
+                    temp = [ob[i]]
+                    if (int(ix[i]) > 1):
+                        for j in range(0, int(ix[i]) - 1):
+                            temp.append(ob[i] + str(j))
+                    ob_indexed.extend(temp)
+                ac = CheckPointClass(remoteApi=self.clientID, checkPoint=ls[0], checkPoint_size=float(ls[3]), success_score=float(ls[4]),
+                                 failure_score=float(ls[5]), obejcts_names=ob_indexed)
+                self.checkPoint_dict.update({ls[0]: ac})
+
+    def findCheckpoint(self):
+        robot_pose=self.getRobotXYZ()
+        x=robot_pose[0],y=robot_pose[1],z=robot_pose[2];
+        score=0
+        for action in self.checkPoint_dict.keys():
+            s,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
+            score+=s
+            if(poses!=None):
+                self.setCheckPointTile(poses)
+            print("robotapi finding checkpoints ### pose =>", poses)
+        return score
+        
+
+
+
 
 
 
@@ -470,9 +509,6 @@ class serverApi:
         if (actionConfig != None):
             self.actions_dict = {}
             self.parseActionConfig(actionConfig)
-        if (checkPointConfig != None):
-            self.checkPoint_dict = {}
-            self.parseCheckPointConfig(checkPointConfig)
         if (victimConfig != None):
             self.victim_dict = {}
             self.parseVictimConfig(victimConfig)
@@ -496,25 +532,7 @@ class serverApi:
                 self.actions_dict.update({ls[0]: ac})
 
 
-    def parseCheckPointConfig(self, config_file):
-        with open(config_file, 'r') as fp:
-            for line in fp:
-                if(line[0]=='#'):continue;
-
-                ls = line.split(';')
-                ob = ls[1].split(',')
-                ix = ls[2].split(',')
-                ob_indexed = []
-                for i in range(0, len(ob)):
-                    temp = [ob[i]]
-                    if (int(ix[i]) > 1):
-                        for j in range(0, int(ix[i]) - 1):
-                            temp.append(ob[i] + str(j))
-                    ob_indexed.extend(temp)
-                ac = CheckPointClass(remoteApi=self.clientID, checkPoint=ls[0], checkPoint_size=float(ls[3]), success_score=float(ls[4]),
-                                 failure_score=float(ls[5]), obejcts_names=ob_indexed)
-                self.checkPoint_dict.update({ls[0]: ac})
-
+    
     def parseVictimConfig(self, config_file):
         with open(config_file, 'r') as fp:
             for line in fp:
@@ -533,14 +551,6 @@ class serverApi:
                 ac = actionClass(remoteApi=self.clientID, action=ls[0], max_range=float(ls[3]), success_score=float(ls[4]),
                                  failure_score=float(ls[5]), obejcts_names=ob_indexed)
                 self.victim_dict.update({ls[0]: ac})
-    
-    def findCheckpoint(self,action,x,y,z):
-        if (action in self.checkPoint_dict.keys()):
-            score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
-            print("robotapi finding checkpoints ### pose =>", poses)
-            return score,poses
-        else:  
-            return 0,None
     
     def callAction(self,action,x,y,z,score=0):
         if (action in self.actions_dict.keys()):
