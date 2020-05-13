@@ -36,7 +36,7 @@ class VrepApi:
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
-                        thermal_camera=thermal_camera,penaltyStopTime=penaltyStopTime)
+                        thermal_camera=thermal_camera,penaltyStopTime=penaltyStopTime,checkPointConfig=checkPointConfig)
 
     def init_serverApi(self,
                        actionConfig=r'actionconfig.txt',checkPointConfig=r'checkpointconfig.txt',victimConfig=r'victimconfig.txt'):
