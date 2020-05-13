@@ -104,7 +104,8 @@ def run():
                     if not(pose == None):
                         print("server api setting checkpoint pose ")
                         ra.setCheckPointTile(pose);
-            
+                    else:
+                        ra.setCheckPointTile(pose);            
 
             team_score += ra.checkAllTraps()
 

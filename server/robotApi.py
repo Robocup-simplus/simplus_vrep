@@ -239,6 +239,9 @@ class robotApi:
         self.freezTime=0;
 
     def setCheckPointTile(self,pose):
+        if(pose==None):
+            print("robotapi shit getting null pose for checkpoint")
+            return 
         print("robotapi setting checkpoint")
         self.checkPointTilePose=pose
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
@@ -534,6 +537,7 @@ class serverApi:
     def findCheckpoint(self,action,x,y,z):
         if (action in self.checkPoint_dict.keys()):
             score,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
+            print("robotapi finding checkpoints ### pose =>", pose)
             return score,poses
         else:  
             return 0,None
