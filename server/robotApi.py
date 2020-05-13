@@ -32,7 +32,7 @@ class VrepApi:
                       robot_motors={"left": 'leftJoint', "right": 'rightJoint', "radius": 0.02},
                       proximity_sensor={"num": 8, "name": 'proxSensor'}, camera={"name": 'camera', "joint": None},
                       color_sensor={"num": 1, "name": 'lightSensor'}, gps_enabled=True,
-                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=5):
+                      thermal_camera={"name": 'thermalCamera', "joint":None},penaltyStopTime=1000):
         return robotApi(remoteApi=self.clientID, trapConfig=trapConfig, robot_base=robot_base,
                         robot_namespace=robot_namespace, robot_motors=robot_motors, proximity_sensor=proximity_sensor,
                         camera=camera, color_sensor=color_sensor, gps_enabled=gps_enabled,
@@ -247,7 +247,6 @@ class robotApi:
 
     def freezRobot(self):
         self.frozen=True;
-        self.freezTime=time.time()
         self.setRobotSpeed(0,0);
         x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
         return_code, o_int, o_float, o_string, o_buffer = vrep.simxCallScriptFunction(self.clientID,
@@ -259,9 +258,11 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def checkFrozenRobot(self):
-        if(time.time()-self.freezTime>self.penaltyStopTime):
+        if(self.freezTime>self.penaltyStopTime):
             self.frozen=False;
             self.freezTime=0;
+        else:
+            self.freezTime+=1
 
     def precompute(self):
         vrep.simxGetObjectPosition(self.clientID, self.right, self.robot_base,vrep.simx_opmode_streaming)

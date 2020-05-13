@@ -61,6 +61,9 @@ def run():
             is_started = sa.get_status(isOneshot=True)
             while not is_started:
                 is_started = sa.get_status(isOneshot=True)
+            
+            if(is_started==2):
+                ra.freezRobot();
             a = time.process_time()
 
             image = ra.getCameraImage()
