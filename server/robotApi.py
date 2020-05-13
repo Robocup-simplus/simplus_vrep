@@ -231,6 +231,8 @@ class robotApi:
             self.parseConfig(trapConfig)
         
         self.checkPointTilePose=self.getRobotXYZ()
+        if(self.checkPointTilePose[0]==0 and self.checkPointTilePose[1]==0  ):
+            self.checkPointTilePose=[10,10]
         self.penaltyStopTime=penaltyStopTime;
         self.frozen=False;
         self.freezTime=0;
