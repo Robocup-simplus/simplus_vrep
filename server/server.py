@@ -99,8 +99,10 @@ def run():
                     team_score += sa.callAction(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     team_score += sa.findVictim(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     score,pose= sa.findCheckpoint(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
+                    print("server api checkpoint pose ",pose)
                     team_score+=score;
-                    if(pose != None):
+                    if not(pose == None):
+                        print("server api setting checkpoint pose ")
                         ra.setCheckPointTile(pose);
             
 

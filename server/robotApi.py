@@ -149,6 +149,7 @@ class CheckPointClass:
             temp1, oh = vrep.simxGetObjectHandle(self.clientID, i, vrep.simx_opmode_blocking)
             response = vrep.simxGetObjectPosition(self.clientID, oh, -1, vrep.simx_opmode_blocking)
             self.objects_distances.append([response[1][0], response[1][1], response[1][2]]);
+            print("robot api , checkpoint name =>",i," x =>",response[1][0]," ###### y =>",response[1][1]," ##  z =>",response[1][2])
             self.seen_checkpoints.append(0)
 
     def checkInsideCheckPoint(self,checkPointPoses,robotPoses):
