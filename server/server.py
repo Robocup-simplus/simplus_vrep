@@ -98,7 +98,7 @@ def run():
                 for action in res.actions:
                     team_score += sa.callAction(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     team_score += sa.findVictim(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
-                    score,pose= sa.findCheckpoint(action,robot_pose[0],robot_pose[1],robot_pose[2])
+                    score,pose= sa.findCheckpoint(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     team_score+=score;
                     if(pose != None):
                         ra.setCheckPointTile(pose);
