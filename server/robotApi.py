@@ -249,6 +249,7 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def freezRobot(self):
+        print("robotapi freezing robot")
         self.frozen=True;
         self.setRobotSpeed(0,0);
         x,y=self.checkPointTilePose[0],self.checkPointTilePose[1]
@@ -261,7 +262,11 @@ class robotApi:
                                                                                       vrep.simx_opmode_oneshot)
 
     def checkFrozenRobot(self):
+        print("robotapi freeze time ",self.freezTime )
+        print("robotapi freeze time ",self.penaltyStopTime )
+
         if(self.freezTime>self.penaltyStopTime):
+            print("robot api heating the robot ")
             self.frozen=False;
             self.freezTime=0;
         else:
