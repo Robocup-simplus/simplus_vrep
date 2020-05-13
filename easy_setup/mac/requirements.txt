@@ -5,3 +5,4 @@ protobuf==3.10.0rc1
 bottle
 tkfilebrowser
 image
+opencv-python

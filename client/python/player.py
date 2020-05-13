@@ -27,7 +27,7 @@ def End(server, result):
     result.message = 'The Ending Message'
 
 import time
-testtime=time.time_ns()
+# testtime=time.time_ns()
 
 def Play(id, server, observation, command):
     """ THIS FUNCTION WILL BE CALLED FOR EACH ROBOT
@@ -42,8 +42,8 @@ def Play(id, server, observation, command):
     # for i, c in enumerate(observation.colors):
     #     print('COL:', i, c.r, c.g, c.b)
     global testtime
-    print("dif time =",1000000000/(time.time_ns()-testtime))
-    testtime=time.time_ns()
+    #print("dif time =",1000000000/(time.time_ns()-testtime))
+    # testtime=time.time_ns()
     col = ['red', 'green', 'blue', 'akldjf']
     a = [0, 0, 0]
     for c in observation.colors:
@@ -55,12 +55,12 @@ def Play(id, server, observation, command):
     for i in range(1, 5):
         obstacle += observation.distances[i].detected
 
-    # if obstacle == 0:
-    #     command.linear = 0.00
-    #     command.angular = 0.0
-    # else:
-    #     command.linear = 0.0
-    #     command.angular = 0.0
+    if obstacle == 0:
+        command.linear = 0.04
+        command.angular = 0.0
+    else:
+        command.linear = 0.0
+        command.angular = 0.04
     
     for c in observation.colors:
        if(c.r>100 and c.r<215 and c.g<215 and c.b<215 and abs(int(c.r)-int(c.g))<45 and abs(int(c.g)-int(c.b))<45 and  abs(int(c.r)-int(c.b))<45 ):
