@@ -234,7 +234,7 @@ class robotApi:
         self.checkPoint_dict=None
         if (checkPointConfig != None):
             self.checkPoint_dict = {}
-            self.parsecheckPointConfig(checkPointConfig)
+            self.parseCheckPointConfig(checkPointConfig)
         
         self.checkPointTilePose=self.getRobotXYZ()
         if(self.checkPointTilePose[0]==0 and self.checkPointTilePose[1]==0  ):
@@ -303,9 +303,8 @@ class robotApi:
         return max(x_width, y_width)
 
     def getRobotXYZ(self):
-        returnCode_pose, position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,
-                                                               vrep.simx_opmode_buffer)
-        return position
+        position = vrep.simxGetObjectPosition(self.clientID, self.robot_base, -1,vrep.simx_opmode_blocking)
+        return position[1]
 
     def checkAllTraps(self):
         penalty = 0
@@ -483,7 +482,9 @@ class robotApi:
 
     def findCheckpoint(self):
         robot_pose=self.getRobotXYZ()
-        x=robot_pose[0],y=robot_pose[1],z=robot_pose[2];
+        x=robot_pose[0]
+        y=robot_pose[1]
+        z=robot_pose[2];
         score=0
         for action in self.checkPoint_dict.keys():
             s,poses=self.checkPoint_dict.get(action).checkAllCheckPoints(x, y, z)
