@@ -61,8 +61,8 @@ class actionClass:
 
     def applyAction(self, x, y, z,current_score=0):
         target_distances = []
-#         print("Seen=",self.seen_list)
         for i in range(0, len(self.objects_distances)):
+            print(self.objects_distances[i][0],self.objects_distances[i][1],self.objects_distances[i][2],self.range )
             s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
                 self.objects_distances[i][2] - z, 2)
             target_distances.append(pow(s, 0.5))
@@ -509,11 +509,13 @@ class robotApi:
 
 class serverApi:
 
+
     def __init__(self, remoteApi, actionConfig=None,checkPointConfig=None,victimConfig=None):
         self.clientID = remoteApi
         self.victim_dict=None
         self.actions_dict = None
         self.checkPoint_dict=None
+        self.is_foundVictim =False
         if (actionConfig != None):
             self.actions_dict = {}
             self.parseActionConfig(actionConfig)
@@ -560,15 +562,29 @@ class serverApi:
                                  failure_score=float(ls[5]), obejcts_names=ob_indexed)
                 self.victim_dict.update({ls[0]: ac})
     
-    def callAction(self,action,x,y,z,score=0):
+    def callAction(self,action,x,y,z,old_score=0):
         if (action in self.actions_dict.keys()):
             score=self.actions_dict.get(action).applyAction(x, y, z)
+            if type(score) is tuple:
+                score,x = score
+
+            if action=='exit' :
+                if score>0:
+                   if self.is_foundVictim :
+                      score += 0.1* old_score+10;
+                   else:
+                      score=10
+                else:
+                    score=0
+
             return score
         else:  
             return 0
     def findVictim(self, action, x, y, z):
         if (action in self.victim_dict.keys()):
             score=self.victim_dict.get(action).applyAction(x, y, z)
+            if score >0:
+                self.is_foundVictim =True
             return score
         else:
             

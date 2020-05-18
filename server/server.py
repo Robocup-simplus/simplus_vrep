@@ -57,7 +57,8 @@ def run():
         team_score = 0
         team_name = response.name
         i=0
-        while True:
+        isExit=False
+        while not isExit:
             i=i+1
             #testtime=time.time_ns()
             is_started = sa.get_status(isOneshot=True)
@@ -99,14 +100,19 @@ def run():
                 ra.setLED(color=res.LED)
                 robot_pose=ra.getRobotXYZ();
                 for action in res.actions:
-                    team_score += sa.callAction(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     team_score += sa.findVictim(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
-
+                    action_score = sa.callAction(action.type,robot_pose[0],robot_pose[1],robot_pose[2],team_score)
+                    if action=='exit' and action_score>0:
+                     	isExit=True
+                    team_score += action_score;
             
             team_score += ra.findCheckpoint()          
             team_score += ra.checkAllTraps()
-
+            if team_score < 0:
+            	team_score = 0
             sa.set_score(my_team_id, str(team_score))
+            if isExit:
+               sa.get_status(4)
             #print("dif time =",1000000000/(time.time_ns()-testtime))
             #testtime=time.time_ns()
         response = stub.End(

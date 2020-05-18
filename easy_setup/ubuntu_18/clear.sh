@@ -10,3 +10,6 @@ if [[ $pid ]]; then
   kill -9 $pid
 fi
 
+
+cd ../../logs
+rm -f client_log.txt

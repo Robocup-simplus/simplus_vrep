@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd ../../logs
+
+rm -f client_log.txt
+
 pid=$(lsof -ti tcp:8080)
 if [[ $pid ]]; then
   kill -9 $pid

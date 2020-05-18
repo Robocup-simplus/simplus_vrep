@@ -17,9 +17,11 @@ import pathlib
 import platform
 import subprocess
 
-root = Tk()
-root.title("Robocup Simplus Panel")
 
+############# simplus panel ###########
+
+root = Tk()
+root.title("Simplus Panel")
 
 
 def linux_distribution():
@@ -77,9 +79,12 @@ base_path = base_path[:-1*postfix]
 
 
 def subprocess_cmd(command):
-    process = subprocess.Popen(command,stdout=subprocess.PIPE, shell=True)
-    proc_stdout = process.communicate()[0].strip()
-    return proc_stdout
+    process = subprocess.Popen(command,stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    std_out, std_error  = process.communicate()
+    lines=""
+    for line in std_error.splitlines():
+        lines += line.decode("utf-8")+"\n"
+    return lines
 
 def simulator_th():
   if  os_type == 'windows':
@@ -147,6 +152,7 @@ def clear_th():
 
 
 def clear():
+  msg_var.set("")
   try:
     _thread.start_new_thread( clear_th, ( ) )
 
@@ -165,7 +171,6 @@ def code_compile_th():
           msg_var.set("Please Double Click on your scratch program");
       else:
           msg_var.set(str( subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+" run2_client.bat")))
-          clear()     
   else:
      if lang_var.get()==2:
          msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"compile_cpp.sh")))
@@ -173,7 +178,6 @@ def code_compile_th():
           msg_var.set("Please Double Click on your scratch program");
      else:
           msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"run2_client.sh")))
-          clear()     
 
 
 def code_compile():
@@ -240,12 +244,14 @@ def upload():
     print(e)
     return
 
+
+
+
+
 ########################
 file_name_var = StringVar(root)
 file_name = Label(root, textvariable=file_name_var)
 file_name.visible = False
-
-
 ########################
 
 # logo
@@ -297,7 +303,7 @@ btn.grid(row=5,column=0, pady=(10, 0), columnspan=3)
 # msg
 msg_var = StringVar(root)
 msg = Label(root, textvariable=msg_var)
-msg.grid(row=6,column=1, columnspan=3, padx=(60, 0), pady=(15, 0))
+msg.grid(row=6,column=0, columnspan=3, padx=(60, 0), pady=(15, 0))
 msg.visible = True
 # msg_var.set(base_path)
 
@@ -350,6 +356,7 @@ btn_run.grid(row=10,column=0, pady=(15, 0),columnspan=3)
 
 btn_run=Button(root, text = '    Run Server!   ', image = photo_run_server, compound = LEFT,command=run_server)
 btn_run.grid(row=11,column=0, pady=(15, 0),columnspan=3)
+
 
 
 

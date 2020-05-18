@@ -1,9 +1,12 @@
 import client
 from simplus_pb2 import *
 import numpy as np
-#import cv2 as cv
-info = WorldInfo()  # You can access world info everywhere
+import time
 
+info = WorldInfo()  # You can access world info everywhere
+isStart=False
+startTime = time.time()
+cycle=0
 
 def Start(world_info, team_info):
     """ THIS FUNCTION WILL BE CALLED IN THE BEGINING
@@ -24,10 +27,8 @@ def End(server, result):
     # Get ending server info from server
 
     # Fill your final result here
-    result.message = 'The Ending Message'
 
-import time
-# testtime=time.time_ns()
+    result.message = 'The Ending Message'
 
 def Play(id, server, observation, command):
     """ THIS FUNCTION WILL BE CALLED FOR EACH ROBOT
@@ -36,14 +37,15 @@ def Play(id, server, observation, command):
         observation: IN {camera, position, color[], distance[]}
         command    : OUT {linear, angular, LED, actions[]}
     """
-    # for i, d in enumerate(observation.distances):
-    #     print('DIS:', i, d.detected, d.distance)
-    #
-    # for i, c in enumerate(observation.colors):
-    #     print('COL:', i, c.r, c.g, c.b)
-    global testtime
-    #print("dif time =",1000000000/(time.time_ns()-testtime))
-    # testtime=time.time_ns()
+
+    log = open("./logs/client_log.txt", "a")
+    global cycle
+    log.write("-------cycle "+str(cycle)+"-------\n")
+
+    #------------ start your code  -----------
+
+
+    
     col = ['red', 'green', 'blue', 'akldjf']
     a = [0, 0, 0]
     for c in observation.colors:
@@ -79,9 +81,26 @@ def Play(id, server, observation, command):
         command.linear = 0.0
         command.angular = 0.5
     
+    global isStart
+    global startTime
+    startTime_seconds = int(startTime % 60)
+    now = time.time()
+    now_seconds = int(now % 60)
+    command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='exit'))
     for c in observation.colors:
        if(c.r>100 and c.r<215 and c.g<215 and c.b<215 and abs(int(c.r)-int(c.g))<45 and abs(int(c.g)-int(c.b))<45 and  abs(int(c.r)-int(c.b))<45 ):
-           command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='find_checkpoint'))
-           break
+           command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='find_silver'))
+           log.write("Sending find_silver action"+"\n")
+           break;
+       if c.r > 190 and c.g<20 and c.b < 20: #red
+          if not isStart and now_seconds-startTime_seconds>10:  
+              command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='exit'))
+              log.write("Sending exit action"+"\n")
+              break;
+       elif isStart:
+            isStart = False
+    #---------- end of your code ----------
+    log.close()
+    cycle +=1
 
     
