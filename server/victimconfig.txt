@@ -1,5 +1,5 @@
 #victimName;nameOfFirstvictimObject,nameOfsecondvictimObject;numberOfFirstvictimObject,NumberOfSecondvictimObject;maxAcceptableRangeFromvictimObject;ScoreForSuccess;ScoreForFailure
 rescue_victim;Victim_H_small,Victim_S_small,Victim_U_small;5,8,5;0.5;10;-5
-#so the following line means we can call find_victim action when we are less than 2 meters from Victim_H_small0-4 or Victim_S_small0-7 or  Victim_U_small0-4 
-# and we get  5 score , if we call the find_victim more than 2 meter from the mentioned objects we get -2
-find_victim;Victim_H_small,Victim_S_small,Victim_U_small;5,8,5;2;5;-2
+find_victim_H;Victim_H_small;5;0.5;5;-2
+find_victim_S;Victim_S_small;8;0.5;5;-2
+find_victim_U;Victim_U_small;5;0.5;5;-2

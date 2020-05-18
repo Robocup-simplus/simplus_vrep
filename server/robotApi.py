@@ -582,6 +582,8 @@ class serverApi:
     def findVictim(self, action, x, y, z):
         if (action in self.victim_dict.keys()):
             score=self.victim_dict.get(action).applyAction(x, y, z)
+            if type(score) is tuple:
+                score,x = score
             if score >0:
                 self.is_foundVictim =True
             return score
