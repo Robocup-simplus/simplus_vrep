@@ -86,7 +86,6 @@ def Play(id, server, observation, command):
     startTime_seconds = int(startTime % 60)
     now = time.time()
     now_seconds = int(now % 60)
-    command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='exit'))
     for c in observation.colors:
        if(c.r>100 and c.r<215 and c.g<215 and c.b<215 and abs(int(c.r)-int(c.g))<45 and abs(int(c.g)-int(c.b))<45 and  abs(int(c.r)-int(c.b))<45 ):
            command.actions.append(Action(x=observation.pos.x,y=observation.pos.y,z=observation.pos.z,type='find_silver'))

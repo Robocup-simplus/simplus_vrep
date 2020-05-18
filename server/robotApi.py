@@ -62,7 +62,6 @@ class actionClass:
     def applyAction(self, x, y, z,current_score=0):
         target_distances = []
         for i in range(0, len(self.objects_distances)):
-            print(self.objects_distances[i][0],self.objects_distances[i][1],self.objects_distances[i][2],self.range )
             s = pow(self.objects_distances[i][0] - x, 2) + pow(self.objects_distances[i][1] - y, 2) + pow(
                 self.objects_distances[i][2] - z, 2)
             target_distances.append(pow(s, 0.5))
