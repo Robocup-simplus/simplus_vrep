@@ -79,7 +79,7 @@ cd simplus_vrep/server
 pip install -r requirements.txt
 cd ..
 brew install curl
-curl -o CoppeliaSim_Edu_V4_0_0_Mac.zip "http://www.coppeliarobotics.com/files/CoppeliaSim_Edu_V4_0_0_Mac.zip"
+curl -LO "http://www.coppeliarobotics.com/files/CoppeliaSim_Edu_V4_0_0_Mac.zip"
 unzip CoppeliaSim_Edu_V4_0_0_Mac.zip
 rm -f CoppeliaSim_Edu_V4_0_0_Mac.zip
 mv models/Simplus/ CoppeliaSim_Edu_V4_0_0_Mac/models/
@@ -197,12 +197,10 @@ osascript -e  'tell app "System Events" to display dialog "The installation is d
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>450.000000:572.000000</string>
+				<string>406.000000:629.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
