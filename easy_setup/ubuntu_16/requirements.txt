@@ -6,3 +6,4 @@ bottle
 tkfilebrowser
 image
 opencv-python
+Pillow

@@ -87,6 +87,7 @@ cp worlds/SampleMap.ttt  CoppeliaSim_Edu_V4_0_0_Mac/
 cd ..
 rm -f get-pip.py
 rm -f distribute_setup.py
+pip install -U Pillow
 osascript -e  'tell app "System Events" to display dialog "The installation is done successfully"'</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
@@ -200,7 +201,7 @@ osascript -e  'tell app "System Events" to display dialog "The installation is d
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>406.000000:629.000000</string>
+				<string>406.000000:663.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>

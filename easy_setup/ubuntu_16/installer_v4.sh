@@ -31,4 +31,8 @@ sudo chmod 777 * -R
 cd ..
 sudo chmod 777 * simplus_vrep
 sudo apt-get install python3-tk
+sudo apt-get install python3-apt
+sudo apt-get install python3-pil python3-pil.imagetk
+pip install -U Pillow
+
 

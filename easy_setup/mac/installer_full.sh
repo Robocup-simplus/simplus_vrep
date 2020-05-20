@@ -27,4 +27,5 @@ cd ..
 rm -f installer_full.sh
 rm -f get-pip.py
 rm -f distribute_setup.py
+pip install -U Pillow
 pwd
