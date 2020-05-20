@@ -22,7 +22,7 @@ git clone "https://github.com/Robocup-simplus/simplus_vrep.git"
 cd simplus_vrep/server
 pip install -r requirements.txt
 cd ..
-curl -O http://www.coppeliarobotics.com/files/CoppeliaSim_Edu_V4_0_0_Ubuntu16_04.tar.xz 
+wget http://www.coppeliarobotics.com/files/CoppeliaSim_Edu_V4_0_0_Ubuntu16_04.tar.xz 
 tar -xf  CoppeliaSim_Edu_V4_0_0_Ubuntu16_04.tar.xz
 rm -f CoppeliaSim_Edu_V4_0_0_Ubuntu16_04.tar.xz
 mv models/Simplus/ CoppeliaSim_Edu_V4_0_0_Ubuntu16_04/models/
