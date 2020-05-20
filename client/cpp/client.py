@@ -11,6 +11,9 @@ import os
 import ctypes as ct
 import sys
 
+
+port_number=4719
+
 try:
     file_extension = '.so'
     if platform.system() =='cli':
@@ -109,7 +112,8 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(), server)
-    server.add_insecure_port('[::]:50051')
+    global port_number
+    server.add_insecure_port('[::]:'+str(port_number))
     server.start()
     server.wait_for_termination()
 

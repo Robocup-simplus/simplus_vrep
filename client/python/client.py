@@ -7,6 +7,7 @@ import simplus_pb2
 import simplus_pb2_grpc
 import player
 
+port_number=4719
 
 class Client(simplus_pb2_grpc.SimPlusServicer):
 
@@ -41,7 +42,8 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(), server)
-    server.add_insecure_port('[::]:50051')
+    global port_number
+    server.add_insecure_port('[::]:'+str(port_number))
     server.start()
     server.wait_for_termination()
 

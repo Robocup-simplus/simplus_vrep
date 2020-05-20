@@ -5,7 +5,7 @@ if [[ $pid ]]; then
   kill -9 $pid
 fi
 
-pid=$(lsof -ti tcp:50051)
+pid=$(lsof -ti tcp:4719)
 if [[ $pid ]]; then
   kill -9 $pid
 fi

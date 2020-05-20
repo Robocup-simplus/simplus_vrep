@@ -12,6 +12,7 @@ import numpy as np
 import simplus_scratch
 
 
+port_number=4719
 def run():
 
      vapi = VrepApi()
@@ -24,8 +25,9 @@ def run():
 #     # sa.startSimulation()
      print("step1")
      time.sleep(0.1)
+     global port_number
      with grpc.insecure_channel(
-             target='localhost:50051',
+             target='localhost:'+str(port_number),
              options=[('grpc.lb_policy_name', 'pick_first'),
                       ('grpc.enable_retries', 0), ('grpc.keepalive_timeout_ms',
                                                    10000)]) as channel:
