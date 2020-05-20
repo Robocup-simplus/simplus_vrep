@@ -8,6 +8,7 @@ isStart=False
 startTime = time.time()
 cycle=0
 
+
 def Start(world_info, team_info):
     """ THIS FUNCTION WILL BE CALLED IN THE BEGINING
         world_info : IN  {team_count, robot_per_team, color_sensors, distance_sensors, check_points}
@@ -37,8 +38,10 @@ def Play(id, server, observation, command):
         observation: IN {camera, position, color[], distance[]}
         command    : OUT {linear, angular, LED, actions[]}
     """
-
-    log = open("./logs/client_log.txt", "a")
+    try:
+      log = open("./logs/client_log.txt", "a")
+    except:
+      log = open("../../logs/client_log.txt", "a")
     global cycle
     log.write("-------cycle "+str(cycle)+"-------\n")
 

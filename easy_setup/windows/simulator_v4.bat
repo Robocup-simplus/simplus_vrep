@@ -2,6 +2,6 @@
 ECHO Start Run Vrep
 
 cd ../../simulator
-coppeliaSim.exe -s -q SampleMap.ttt 
+coppeliaSim.exe -s SampleMap.ttt 
 
 PAUSE
