@@ -1,0 +1,10 @@
+numpy
+matplotlib
+grpcio==1.24.3
+protobuf
+bottle
+tkfilebrowser
+image
+opencv-python
+Pillow
+RCJRVision
