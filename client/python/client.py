@@ -7,14 +7,17 @@ import simplus_pb2
 import simplus_pb2_grpc
 import player
 
-port_number=4719
+port_number = 4719
+
 
 class Client(simplus_pb2_grpc.SimPlusServicer):
+    def __init__(self, actor):
+        self.actor = actor
 
     def Start(self, request, context):
         response = simplus_pb2.TeamInfo()
         try:
-          player.Start(request, response)
+            self.actor.Start(request, response)
         except Exception as err:
             print(str(err))
         return response
@@ -22,10 +25,10 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
     def Action(self, request, context):
         response = simplus_pb2.Commands()
         try:
-          for id, observation in enumerate(request.robots):
-            cmd = simplus_pb2.Command(id=id)
-            player.Play(id, request.server, observation, cmd)
-            response.commands.append(cmd)
+            for id, observation in enumerate(request.robots):
+                cmd = simplus_pb2.Command(id=id)
+                self.actor.Play(id, request.server, observation, cmd)
+                response.commands.append(cmd)
         except Exception as err:
             print(str(err))
         return response
@@ -33,7 +36,7 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
     def End(self, request, context):
         response = simplus_pb2.Result()
         try:
-          player.End(request, response)
+            self.actor.End(request, response)
         except Exception as err:
             print(str(err))
         return response
@@ -41,9 +44,9 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(), server)
+    simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(player), server)
     global port_number
-    server.add_insecure_port('[::]:'+str(port_number))
+    server.add_insecure_port('[::]:' + str(port_number))
     server.start()
     server.wait_for_termination()
 
