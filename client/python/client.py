@@ -1,11 +1,15 @@
 from concurrent import futures
 import logging
-
 import grpc
 
 import simplus_pb2
 import simplus_pb2_grpc
+
+# TODO: Import your own player file (a copy of sample.py which is filled with your code)
 import player
+
+# TODO: Set my_player to your own player
+my_player = player
 
 port_number = 4719
 
@@ -42,9 +46,9 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
         return response
 
 
-def serve():
+def serve(actor):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(player), server)
+    simplus_pb2_grpc.add_SimPlusServicer_to_server(Client(actor), server)
     global port_number
     server.add_insecure_port('[::]:' + str(port_number))
     server.start()
@@ -53,4 +57,4 @@ def serve():
 
 if __name__ == '__main__':
     logging.basicConfig()
-    serve()
+    serve(my_player)
