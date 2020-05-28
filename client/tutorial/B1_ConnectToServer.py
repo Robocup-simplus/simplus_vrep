@@ -17,7 +17,7 @@
 
     This file also contain a sample strategy.
     For practice try import and use this file, by fixing TODO s
-    after using this file robot should move forward and then start to turn around itself.
+    after using this file you should see output of V-REP printed in console
 
 """
 import client
