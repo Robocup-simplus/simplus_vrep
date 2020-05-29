@@ -19,9 +19,9 @@
 
     TODO:
         1. Fill the missing codes from last tutorials you complete
-        2. Fill the think function and complete todos
+        2. Fill the control function and complete todos
         3. Call think funcion in right place of Play function
-        4. Watch and Enjoy !
+        4. Watch and Enjoy ! (You can play with parameter and numbers in code to find a better control)
 """
 import client
 from client.python.simplus_pb2 import *
@@ -81,26 +81,7 @@ def Play(id, server, observation, command):
     print('Camera Image size:', TODO)  # Using OpenCV
     print('Camera Image dtype:', TODO)  # Using OpenCV
 
-    # TODO: In This tutorial we want to make robot do below instruction:
-    #   1. Go Forward for 20 cycle
-    #   2. Turn Left for 10 cycle
-    #   3. Go Forward for 20 cycle
-    #   4. Turn Right for 10 cycle
-    #   5. Go Backward for 40 cycle
-    #   6. Stop forever
-    #   7. Have Fun with playing with robot and changing LED colors :)
-    if server.time < 20:
-        command = move_robot(GO_FW)  # Make Robot Go forward for 20 cycle
-    elif server.time < 20 + 10:
-        command = move_robot(TURN_LT)  # Make Robot Turn left for 10 cycle
-    elif server.time < 20 + 10 + 20:
-        command = move_robot(TODO)  # Fill To Go forward
-    elif server.time < 20 + 10 + 20 + 10 + 10:
-        command = move_robot(TODO)  # Fill To Turn Right
-    elif server.time < 20 + 10 + 20 + 10 + 10 + 40:
-        command = move_robot(TODO)  # Fill To Go Backward
-    else:
-        command = move_robot(TODO)  # Fill To Stop
+    # TODO: call control function
 
 
 """ Helper Function to conver raw image to OpenCV image"""
@@ -136,7 +117,7 @@ STOP = 'STOP'
 def move_robot(text_commad):
     command = Command(id=1)
     if text_commad == 'FORWARD':
-        command.linear = 5.0
+        command.linear = 0.1
         command.angular = 0.0
         command.LED = 'green'
     if text_commad == 'BACKWARD':
@@ -145,7 +126,7 @@ def move_robot(text_commad):
         command.LED = TODO  # Make it green
     if text_commad == 'TURN_LEFT':
         command.linear = 0.0
-        command.angular = 1.0
+        command.angular = 0.2
         command.LED = 'blue'
     if text_commad == 'TURN_RIGHT':
         command.linear = TODO  # Set the right value to make robot turn right (See. Turn Left)
@@ -158,5 +139,52 @@ def move_robot(text_commad):
     return command
 
 
-def think():
-    pass
+PREV_TURN = STOP  # Store previous turn in this variable
+
+
+def control(observation):
+    sensivity = 10  # Higher number means robot more afraid of hitting obstacles
+    detected_obstacle = []
+    for i, sensor in enumerate(observation.distances):
+        if sensor.detected == True and sensor.distance < 1 / sensivity:
+            detected_obstacle.append(i)  # There is an obstacle near sensor number "i"
+
+    # define sensor locations
+    #
+    #    Map of Sensor location on Robot
+    #
+    #           /--- *2* ---- *3* ---\
+    #          /                      \
+    #        *1*                      *4*
+    #         |       SIMPLUS          |
+    #        *0*        ROBOT         *5*
+    #         |                        |
+    #          \                      /
+    #          *7* -----------------*6*
+    #
+    left_1 = 0
+    left_2 = 1
+    front_1 = 2
+    front_2 = 3
+    right_1 = 4
+    right_2 = 5
+    back_right = 6
+    back_left = 7
+
+    global PREV_TURN
+    if front_1 not in detected_obstacle and front_2 not in detected_obstacle:  # FORWARD
+        move_robot(GO_FW)
+    elif left_1 not in detected_obstacle or left_2 not in detected_obstacle:
+        move_robot(TURN_LT)
+        PREV_TURN = TURN_LT
+    elif right_1 not in detected_obstacle or right_2 not in detected_obstacle:
+        move_robot(TURN_RT)
+        PREV_TURN = TURN_RT
+    elif back_right not in detected_obstacle:
+        move_robot(TODO)  # Turn to Right
+        PREV_TURN = TODO
+    elif back_left not in detected_obstacle:
+        move_robot(TODO)  # Turn to Left
+        PREV_TURN = TODO
+    else:
+        move_robot(PREV_TURN)
