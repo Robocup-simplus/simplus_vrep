@@ -6,10 +6,10 @@ import simplus_pb2
 import simplus_pb2_grpc
 
 # TODO: Import your own player file (a copy of sample.py which is filled with your code)
-import player
+import sample
 
 # TODO: Set my_player to your own player
-my_player = player
+my_player = sample
 
 port_number = 4719
 
