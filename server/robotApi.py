@@ -72,6 +72,8 @@ class actionClass:
             action_score=self.success_score
             if(current_score>0):
                 action_score+= current_score*(self.multiplier_coefficient-1)
+            if "_high" in self.obejcts_names[index_min]:
+                action_score+= 20  #high score for special victims
             return action_score
         else:
             self.logAction(x, y, z, index_min, target_distances[index_min], self.failure_score)

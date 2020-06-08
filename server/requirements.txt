@@ -7,3 +7,4 @@ tkfilebrowser
 image
 opencv-python
 Pillow
+RCJRVision

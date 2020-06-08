@@ -104,16 +104,16 @@ def simulator():
 def run_client_th():
   print("run client")
   if  os_type == 'windows':
-      if lang_var.get()==2:
+      if lang_var.get()=='2':
            subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+" run2_client_cpp.bat")
-      elif  lang_var.get()==3:
+      elif  lang_var.get()=='3':
           msg_var.set("Please Double Click on your scratch program");
       else:
            subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+" run2_client.bat")
   else:
-      if lang_var.get()==2:
+      if lang_var.get()=='2':
           subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"run2_client_cpp.sh")
-      elif  lang_var.get()==3:
+      elif  lang_var.get()=='3':
           msg_var.set("Please Double Click on your scratch program");
       else:
           subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"run2_client.sh")
@@ -162,19 +162,19 @@ def clear():
 def code_compile_th():
   print("compile")
   if  os_type == 'windows':
-      if lang_var.get()==2:
+      if lang_var.get()=='2':
          if is_32:
            msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+"compile_cpp_32.bat")))
          else:
           msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+"compile_cpp_64.bat")))
-      elif  lang_var.get()==3:
+      elif  lang_var.get()=='3':
           msg_var.set("Please Double Click on your scratch program");
       else:
           msg_var.set(str( subprocess_cmd("cd "+base_path+"easy_setup\\"+os_type+'&'+" run2_client.bat")))
   else:
-     if lang_var.get()==2:
+     if lang_var.get()=='2':
          msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"compile_cpp.sh")))
-     elif  lang_var.get()==3:
+     elif  lang_var.get()=='3':
           msg_var.set("Please Double Click on your scratch program");
      else:
           msg_var.set(str(subprocess_cmd("cd "+base_path+"easy_setup/"+os_type+'; sh '+"run2_client.sh")))
@@ -220,7 +220,7 @@ def show_progress():
  msg_var.set("Uploading ....");
  try:
     f1=open(str(file_name_var.get()), 'rb')
-    if lang_var.get()==2:
+    if lang_var.get()=='2':
         destination = base_path + 'client/cpp/'
         copy_file(destination+"player.cc",f1)
         copy_file(destination+"player_win.cc",f1)
@@ -277,9 +277,9 @@ def changedes():
 # change destination
 lang_var = StringVar(root, "1") 
   
-Radiobutton(root, text = "Python", variable = lang_var,command=changedes,value = 1, indicator = 0,width=8).grid( row=2,column=0 ) 
-Radiobutton(root, text = "C/C++", variable = lang_var,command=changedes,value = 2, indicator = 0,width=8).grid(row=2,column=1) 
-Radiobutton(root, text = "Scratch", variable = lang_var, command=changedes,value = 3, indicator = 0,width=8).grid(row=2,column=2) 
+Radiobutton(root, text = "Python", variable = lang_var,command=changedes,value = '1', indicator = 0,width=8).grid( row=2,column=0 ) 
+Radiobutton(root, text = "C/C++", variable = lang_var,command=changedes,value = '2', indicator = 0,width=8).grid(row=2,column=1) 
+Radiobutton(root, text = "Scratch", variable = lang_var, command=changedes,value = '3', indicator = 0,width=8).grid(row=2,column=2) 
 
 
 # msg

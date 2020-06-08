@@ -1,4 +1,4 @@
 #actionName;nameOfFirstActionObject,nameOfsecondActionObject;numberOfFirstActionObject,NumberOfSecondActionObject;maxAcceptableRangeFromActionObject;multiplierCoeffientForSuccess;addedScoreForSuccess;ScoreForFailure
 #so the following line means we can call finish_game action when we are less than 0.5 meter from Finish_Tile0 and our score will be 
 # equal to 1.1 times our current score plus 10 , if we call the action more than 0.5 meter from Finish_Tile0 we get -10 
-exit;start_tile;1;0.5;1.1;10;-10
+exit;start_title;1;0.125;1.1;10;-10

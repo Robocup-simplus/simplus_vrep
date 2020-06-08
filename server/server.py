@@ -53,8 +53,6 @@ def run():
         print("start precompute")
         ra.precompute()
         print("end precompute")
-        st=simplus_scratch.ScratchThread(vapi,ra,sa)
-        st.start()
         print("Start")
         team_score = 0
         team_name = response.name

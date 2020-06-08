@@ -1,2 +1,2 @@
 # trap name ; name of object ; number of object ; size of trap tile; bandgap range (leave to be a number for backward capability); penalty for trap activation
-trap1;hole_tile;3;0.075;0.02;-5
+trap1;hole_tile;6;0.125;0.02;-5

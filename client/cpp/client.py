@@ -10,7 +10,8 @@ import platform
 import os
 import ctypes as ct
 import sys
-
+import numpy as np
+import cv2
 
 port_number=4719
 
@@ -34,6 +35,16 @@ except:
 
 class Client(simplus_pb2_grpc.SimPlusServicer):
 
+    def convert_to_cv_img(self,img_raw, h, w):
+        img_array = np.frombuffer(img_raw, dtype=np.uint8)
+        img = img_array.reshape(h, w, 3)
+        img_center = (w / 2, h / 2)
+        mirrored_img = cv2.getRotationMatrix2D(img_center, 180.0, 1.0)
+        main_img = cv2.warpAffine(img, mirrored_img, (w, h))
+        main_img = cv2.flip(main_img, 1)
+        return main_img
+
+
     def Start(self, request, context):
         response = simplus_pb2.TeamInfo()
         try:
@@ -49,7 +60,26 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
       response = simplus_pb2.Commands()
       try:  
         for id, observation in enumerate(request.robots):
-#             print(type(observation.camera.raw))
+
+            ###### image camera
+            pyarr = self.convert_to_cv_img(observation.camera.raw, observation.camera.h, observation.camera.w)
+            image_blue = pyarr[:,:,2].ravel().tolist() #blue
+            img_size = len(image_blue)
+            img_b = ((ct.c_int32 * img_size ))(*image_blue)
+
+            image_green = pyarr[:,:,1].ravel().tolist() #green
+            img_g = ((ct.c_int32 * img_size ))(*image_green)
+
+            image_red = pyarr[:,:,0].ravel().tolist() #red
+            img_r = ((ct.c_int32 * img_size ))(*image_red)
+
+            ####### Thermal camera
+            pyarr = self.convert_to_cv_img(observation.thermalCamera.raw, observation.thermalCamera.h, observation.thermalCamera.w)
+            image_red = pyarr[:,:,0].ravel().tolist() #red
+            img_size = len(image_red)
+            thermal = ((ct.c_int32 * img_size ))(*image_red)
+
+
             cmd = simplus_pb2.Command(id=id)
             player.play.argtypes = [
             ct.POINTER(ct.c_int32),
@@ -58,6 +88,10 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
             ct.POINTER(ct.c_int32),
             ct.POINTER(ct.c_float),
             ct.POINTER(ct.c_float),
+            ct.POINTER(ct.c_int32),
+            ct.POINTER(ct.c_int32),
+            ct.POINTER(ct.c_int32),
+            ct.POINTER(ct.c_int32),
             ct.POINTER(ct.c_int32),
             ct.POINTER(ct.c_float),
             ct.POINTER(ct.c_float),
@@ -79,7 +113,7 @@ class Client(simplus_pb2_grpc.SimPlusServicer):
             a_y=(ct.c_float)()
             a_z=(ct.c_float)()
             a_name=ct.POINTER(ct.c_char)()
-            res = player.play(c1,c2,c3,detected,distances,pos,ct.byref(led),ct.byref(w_l),ct.byref(w_a),ct.byref(a_x),ct.byref(a_y),ct.byref(a_z)) 
+            res = player.play(c1,c2,c3,detected,distances,pos,img_r,img_g,img_b,thermal,ct.byref(led),ct.byref(w_l),ct.byref(w_a),ct.byref(a_x),ct.byref(a_y),ct.byref(a_z)) 
             cmd.linear = w_l.value
             cmd.angular = w_a.value
             if led.value==1:
