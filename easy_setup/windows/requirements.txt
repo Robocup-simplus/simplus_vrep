@@ -1,6 +1,6 @@
 numpy
 matplotlib
-grpcio==1.24.3
+grpcio==1.26.0rc1
 protobuf==3.10.0rc1
 bottle
 tkfilebrowser
