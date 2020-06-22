@@ -11,4 +11,5 @@ powershell -Command [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityP
 powershell Expand-Archive simulator.zip
 copy "worlds\SampleMap.ttt" "simulator\"
 Xcopy /E "models" "simulator\models"
+python -m pip install image
 PAUSE
