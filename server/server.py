@@ -19,9 +19,6 @@ def run():
      sa = vapi.init_serverApi()
 #
      is_started = False
-     while not is_started:
-         print("Please click on the play button")
-         is_started = sa.get_status(1)
 #     # sa.startSimulation()
      print("step1")
      time.sleep(0.1)
@@ -58,6 +55,9 @@ def run():
         team_name = response.name
         i=0
         isExit=False
+        while not is_started:
+          print("Please click on the play button")
+          is_started = sa.get_status(1)
         while not isExit:
             i=i+1
             #testtime=time.time_ns()
