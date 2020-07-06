@@ -319,11 +319,6 @@ class robotApi:
 
         for t in self.traps_dict.keys():
             penalty += self.traps_dict.get(t).checkTrap(pose[0],pose[1],pose[2])
-        
-        if not (penalty==0):
-            self.freezRobot();
-        if(self.frozen==True):
-            self.checkFrozenRobot()
         return penalty
 
     def setLED(self, color):
