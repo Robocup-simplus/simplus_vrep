@@ -66,7 +66,7 @@ def run():
                 is_started = sa.get_status(isOneshot=True)
             
             if(is_started==2):
-                ra.freezRobot();
+             #   ra.freezRobot();
                 team_score+= (-5)
             a = time.process_time()
 
