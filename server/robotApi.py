@@ -322,7 +322,8 @@ class robotApi:
         
         if not (penalty==0):
             self.freezRobot();
-
+        if(self.frozen==True):
+            self.checkFrozenRobot()
         return penalty
 
     def setLED(self, color):
