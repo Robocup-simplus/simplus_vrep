@@ -103,13 +103,13 @@ def run():
                     team_score += sa.findVictim(action.type,robot_pose[0],robot_pose[1],robot_pose[2])
                     action_score = sa.callAction(action.type,robot_pose[0],robot_pose[1],robot_pose[2],team_score)
                     if action=='exit' and action_score>0:
-                     	isExit=True
+                      isExit=True
                     team_score += action_score;
             
             team_score += ra.findCheckpoint()          
             team_score += ra.checkAllTraps()
             if team_score < 0:
-            	team_score = 0
+              team_score = 0
             sa.set_score(my_team_id, str(team_score))
             if isExit:
                sa.get_status(4)
